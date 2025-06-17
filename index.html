@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dallen Smith — Portfolio</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Helvetica Neue', sans-serif;
+      line-height: 1.6;
+      color: #f4f4f4;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    }
+
+    a {
+      text-decoration: none !important;
+      color: inherit;
+    }
+
+    .page-wrapper {
+      opacity: 0;
+      transform: translateY(50px);
+      animation: fadeSlideIn 1s ease-out forwards;
+    }
+
+    @keyframes fadeSlideIn {
+      0% { opacity: 0; transform: translateY(50px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes shimmer {
+      0% { left: -75%; }
+      100% { left: 100%; }
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 12px rgba(52,152,219,0.6); }
+      50% { box-shadow: 0 0 20px rgba(109,213,237,0.9); }
+    }
+
+    header {
+      padding: 1rem 2rem;
+      background: rgba(0,0,0,0.8);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid #444;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav a {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      font-weight: bold;
+      color: white;
+      background: linear-gradient(135deg, #3498db, #6dd5ed);
+      box-shadow: 0 0 12px rgba(52, 152, 219, 0.6);
+      animation: pulseGlow 3s ease-in-out infinite;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      margin-left: 1rem;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -75%;
+      width: 200%;
+      height: 100%;
+      background: linear-gradient(120deg, rgba(255,255,255,0.2), rgba(255,255,255,0));
+      transform: skewX(-20deg);
+      animation: shimmer 2s linear infinite;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    nav a:hover {
+      transform: scale(1.07);
+      box-shadow: 0 0 25px rgba(52,152,219,1), 0 0 40px rgba(109,213,237,0.9);
+    }
+
+    section {
+      padding: 3rem 2rem;
+      max-width: 1000px;
+      margin: auto;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 1s ease;
+    }
+
+    section.reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
+    .hero p { font-size: 1.25rem; margin-bottom: 2rem; }
+
+    .button {
+      position: relative;
+      display: inline-block;
+      padding: 0.75rem 1.75rem;
+      font-weight: bold;
+      color: white;
+      background: linear-gradient(135deg, #3498db, #6dd5ed);
+      border-radius: 0.5rem;
+      overflow: hidden;
+      z-index: 0;
+      box-shadow: 0 0 12px rgba(52, 152, 219, 0.6);
+      animation: pulseGlow 3s ease-in-out infinite;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      transform: scale(1.07);
+      box-shadow: 0 0 25px rgba(52,152,219,1), 0 0 40px rgba(109,213,237,0.9);
+    }
+
+    .button:hover::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -75%;
+      width: 200%;
+      height: 100%;
+      background: linear-gradient(120deg, rgba(255,255,255,0.2), rgba(255,255,255,0));
+      transform: skewX(-20deg);
+      animation: shimmer 2s linear infinite;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .about {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .about img {
+      width: 250px;
+      border-radius: 10px;
+    }
+
+    .about p {
+      flex: 1;
+    }
+
+    /* Projects grid */  
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    /* Live Projects & GitHub Projects: square image containers */
+    #projects .project,
+    #live .project {
+      aspect-ratio: 1 / 1;
+    }
+
+    .project {
+      position: relative;
+      overflow: hidden;
+      border-radius: .5rem;
+    }
+
+    /* Zoom images to fill the square */
+    .project img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .3s;
+    }
+
+    .project:hover img {
+      transform: scale(1.05);
+    }
+
+    .project .overlay {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      padding: 1rem;
+      background: rgba(0,0,0,0.6);
+      color: white;
+      opacity: 0;
+      transition: opacity .3s;
+    }
+
+    .project:hover .overlay {
+      opacity: 1;
+    }
+
+    /* Design Projects: keep original iframe dimensions */
+    #designs .project {
+      aspect-ratio: auto;
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .skills div {
+      background: #333;
+      padding: 1rem 1.5rem;
+      border-radius: .5rem;
+      font-weight: bold;
+      color: #6dd5ed;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+
+    .skills div:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(109,213,237,0.6);
+    }
+
+    .skills div::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -75%;
+      width: 200%;
+      height: 100%;
+      background: linear-gradient(120deg, rgba(255,255,255,0.2), rgba(255,255,255,0));
+      transform: skewX(-20deg);
+      animation: shimmer 3s linear infinite;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .contact form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      position: relative;
+    }
+
+    .contact input, .contact textarea {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border: 2px solid #3498db;
+      border-radius: .5rem;
+      padding: 1rem;
+      font-size: 1rem;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .contact input:focus, .contact textarea:focus {
+      outline: none;
+      border-color: #6dd5ed;
+      box-shadow: 0 0 10px #6dd5ed;
+    }
+
+    .contact button {
+      width: fit-content;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid #444;
+      margin-top: 2rem;
+      color: #bbb;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+    <header>
+      <h2>Dallen Smith</h2>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#projects">Live Projects</a>
+        <a href="#live">GitHub Projects</a>
+        <a href="#designs">Design Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <section class="hero reveal">
+      <h1>Hello, I am Dallen Smith</h1>
+      <p>I design and build beautiful web experiences.</p>
+      <a href="#projects" class="button">View Projects</a>
+    </section>
+
+    <section id="about" class="about reveal">
+      <img src="me.jfif" alt="Me" />
+      <p>
+        I'm a web developer passionate about creating user-centered digital experiences.
+        With a strong foundation in design and coding, I bring both beauty and functionality to every project.
+      </p>
+    </section>
+
+    <section id="projects" class="reveal">
+      <h2>Live Projects</h2>
+      <div class="projects">
+        <div class="project">
+          <img src="reactmusicplayingapp.netlify.app_.png" alt="React Music App" />
+          <div class="overlay"><a href="https://reactmusicplayingapp.netlify.app" target="_blank"><h3>React Music App</h3></a></div>
+        </div>
+        <div class="project">
+          <img src="wikipediaviewer1.netlify.app_.png" alt="Wikipedia Viewer" />
+          <div class="overlay"><a href="https://wikipediaviewer1.netlify.app" target="_blank"><h3>Wikipedia Viewer</h3></a></div>
+        </div>
+        <div class="project">
+          <img src="jjjtje-3n.myshopify.com_.png" alt="Kambo Website" />
+          <div class="overlay"><a href="https://jjjtje-3n.myshopify.com" target="_blank"><h3>Kambo Website *ask for password*</h3></a></div>
+        </div>
+        <div class="project">
+          <img src="blindswordsmands.netlify.app_.png" alt="Blindswordsman Website" />
+          <div class="overlay"><a href="https://blindswordsmands.netlify.app" target="_blank"><h3>Blindswordsman Website</h3></a></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="live" class="reveal">
+      <h2>GitHub Projects</h2>
+      <p>Download these to see what they do.</p>
+      <div class="projects">
+        <div class="project">
+          <img src="github.com_dallensmith93_budgetlyapp.png" alt="Budget App" />
+          <div class="overlay">
+            <h3>Budget App</h3>
+            <p><a href="https://github.com/dallensmith93/budgetlyapp.git" target="_blank">budgetly</a></p>
+          </div>
+        </div>
+        <div class="project">
+          <img src="github.com_dallensmith93_chatbox.png" alt="Chat App" />
+          <div class="overlay">
+            <h3>Chat App</h3>
+            <p><a href="https://github.com/dallensmith93/chatbox.git" target="_blank">Chatbox</a></p>
+          </div>
+        </div>
+        <div class="project">
+          <img src="github.com_dallensmith93_Libs.png" alt="Mad Libs Django" />
+          <div class="overlay">
+            <h3>Mad Libs Django</h3>
+            <p><a href="https://github.com/dallensmith93/Libs.git" target="_blank">Mad Libs</a></p>
+          </div>
+        </div>
+        <div class="project">
+          <img src="github.com_dallensmith93_weatherproject_tree_main_weather_project.png" alt="Django Web App" />
+          <div class="overlay">
+            <h3>Django Web App</h3>
+            <p><a href="https://github.com/dallensmith93/weatherproject.git" target="_blank">Weather Project</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="designs" class="reveal">
+      <h2>Design Projects</h2>
+      <div class="projects">
+        <div class="project">
+          <iframe width="100%" height="400" style="border: 1px solid #ccc; border-radius: 0.5rem;" src="https://embed.figma.com/design/ywbeq2hgQmOddkMUVEaUOA/Pink-Banana-Designs?node-id=0-1&embed-host=share" allowfullscreen></iframe>
+          <div class="overlay"><h3>Pink Banana Hero Page Redesign</h3></div>
+        </div>
+        <div class="project">
+          <iframe width="100%" height="400" style="border: 1px solid #ccc; border-radius: 0.5rem;" src="https://embed.figma.com/design/4dNvCJAIHLsC6Euvt7ksGf/Crazy-Stacy-s-Dreamz?embed-host=share" allowfullscreen></iframe>
+          <div class="overlay"><h3>Stacy's Dreamz Hero Design</h3></div>
+        </div>
+        <div class="project">
+          <iframe width="100%" height="400" style="border: 1px solid #ccc; border-radius: 0.5rem;" src="https://embed.figma.com/design/SJwNRVTMX3BYpnX9mdazE3/Untitled?node-id=2-319&embed-host=share" allowfullscreen></iframe>
+          <div class="overlay"><h3>Kambo Website with Categories Design</h3></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="reveal">
+      <h2>Skills</h2>
+      <div class="skills">
+        <div>HTML</div>
+        <div>CSS</div>
+        <div>JavaScript</div>
+        <div>React</div>
+        <div>Django</div>
+        <div>PHP</div>
+        <div>Angular</div>
+        <div>Figma</div>
+        <div>UI/UX</div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact reveal">
+      <h2>Contact</h2>
+      <form>
+        <input type="text" placeholder="Your Name" required />
+        <input type="email" placeholder="Your Email" required />
+        <textarea placeholder="Your Message" rows="5" required></textarea>
+        <button type="submit" class="button">Send Message</button>
+      </form>
+    </section>
+
+    <footer>
+      © 2025 Dallen Smith — Built with HTML/CSS/JavaScript
+    </footer>
+  </div>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    function revealOnScroll() {
+      const windowHeight = window.innerHeight;
+      for (let el of reveals) {
+        const top = el.getBoundingClientRect().top;
+        if (top < windowHeight - 50) {
+          el.classList.add('active');
+        }
+      }
+    }
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', revealOnScroll);
+  </script>
+</body>
+</html>
