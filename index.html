@@ -4,6 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Dallen Smith — Portfolio</title>
+  <!-- SEO & Social -->
+  <meta name="description" content="Portfolio of Dallen Smith — Web & UX Designer/Developer showcasing live apps, GitHub repos and Figma design case-studies."/>
+  <meta property="og:title" content="Dallen Smith — Portfolio"/>
+  <meta property="og:description" content="I design and build beautiful web experiences."/>
+  <meta property="og:image" content="me.jfif"/>
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png" />
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -14,10 +21,7 @@
       background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
     }
 
-    a {
-      text-decoration: none !important;
-      color: inherit;
-    }
+    a { text-decoration: none !important; color: inherit; }
 
     .page-wrapper {
       opacity: 0;
@@ -37,7 +41,7 @@
 
     @keyframes pulseGlow {
       0%, 100% { box-shadow: 0 0 12px rgba(52,152,219,0.6); }
-      50% { box-shadow: 0 0 20px rgba(109,213,237,0.9); }
+      50%        { box-shadow: 0 0 20px rgba(109,213,237,0.9); }
     }
 
     header {
@@ -52,7 +56,7 @@
       align-items: center;
     }
 
-    nav a {
+    nav[aria-label="Primary"] a {
       display: inline-block;
       padding: 0.75rem 1.5rem;
       border-radius: 0.5rem;
@@ -66,19 +70,17 @@
       overflow: hidden;
       margin-left: 1rem;
     }
+    nav a.current { outline: 3px solid #6dd5ed; }
 
     nav a::after {
       content: '';
       position: absolute;
-      top: 0;
-      left: -75%;
-      width: 200%;
-      height: 100%;
+      top: 0; left: -75%;
+      width: 200%; height: 100%;
       background: linear-gradient(120deg, rgba(255,255,255,0.2), rgba(255,255,255,0));
       transform: skewX(-20deg);
       animation: shimmer 2s linear infinite;
-      z-index: 1;
-      pointer-events: none;
+      z-index: 1; pointer-events: none;
     }
 
     nav a:hover {
@@ -94,207 +96,88 @@
       transform: translateY(30px);
       transition: all 1s ease;
     }
-
-    section.reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    section.reveal.active { opacity: 1; transform: translateY(0); }
 
     .hero {
-      min-height: 90vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: transparent;
-      text-align: center;
-      padding: 2rem;
+      min-height: 90vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      background: transparent; text-align: center; padding: 2rem;
     }
-
     .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
-    .hero p { font-size: 1.25rem; margin-bottom: 2rem; }
+    .hero p  { font-size: 1.25rem; margin-bottom: 2rem; }
 
     .button {
-      position: relative;
-      display: inline-block;
-      padding: 0.75rem 1.75rem;
-      font-weight: bold;
-      color: white;
+      position: relative; display: inline-block; padding: 0.75rem 1.75rem;
+      font-weight: bold; color: white;
       background: linear-gradient(135deg, #3498db, #6dd5ed);
-      border-radius: 0.5rem;
-      overflow: hidden;
-      z-index: 0;
+      border-radius: 0.5rem; overflow: hidden; z-index: 0;
       box-shadow: 0 0 12px rgba(52, 152, 219, 0.6);
       animation: pulseGlow 3s ease-in-out infinite;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      border: none;
-      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease; border: none; cursor: pointer;
     }
-
-    .button:hover {
-      transform: scale(1.07);
-      box-shadow: 0 0 25px rgba(52,152,219,1), 0 0 40px rgba(109,213,237,0.9);
-    }
-
+    .button:hover { transform: scale(1.07); box-shadow: 0 0 25px rgba(52,152,219,1), 0 0 40px rgba(109,213,237,0.9); }
     .button:hover::after {
       content: '';
-      position: absolute;
-      top: 0;
-      left: -75%;
-      width: 200%;
-      height: 100%;
+      position: absolute; top: 0; left: -75%; width: 200%; height: 100%;
       background: linear-gradient(120deg, rgba(255,255,255,0.2), rgba(255,255,255,0));
-      transform: skewX(-20deg);
-      animation: shimmer 2s linear infinite;
-      z-index: 1;
-      pointer-events: none;
+      transform: skewX(-20deg); animation: shimmer 2s linear infinite; z-index: 1; pointer-events: none;
     }
 
-    .about {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      align-items: center;
-    }
+    .about { display: flex; flex-wrap: wrap; gap: 2rem; align-items: center; }
+    .about img { width: 250px; border-radius: 10px; }
+    .about p   { flex: 1; }
 
-    .about img {
-      width: 250px;
-      border-radius: 10px;
-    }
+    /* Projects grid */
+    .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
 
-    .about p {
-      flex: 1;
-    }
-
-    /* Projects grid */  
-    .projects {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-
-    /* Live Projects & GitHub Projects: square image containers */
-    #projects .project,
-    #live .project {
-      aspect-ratio: 1 / 1;
-    }
-
-    .project {
-      position: relative;
-      overflow: hidden;
-      border-radius: .5rem;
-    }
-
-    /* Zoom images to fill the square */
-    .project img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform .3s;
-    }
-
-    .project:hover img {
-      transform: scale(1.05);
-    }
-
+    /* Live & GitHub: enforce square */
+    #projects .project, #live .project { aspect-ratio: 1 / 1; }
+    .project { position: relative; overflow: hidden; border-radius: .5rem; }
+    .project img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .3s; }
+    .project:hover img { transform: scale(1.05); }
     .project .overlay {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      padding: 1rem;
-      background: rgba(0,0,0,0.6);
-      color: white;
-      opacity: 0;
-      transition: opacity .3s;
+      position: absolute; bottom: 0; width: 100%; padding: 1rem;
+      background: rgba(0,0,0,0.6); color: white; opacity: 0; transition: opacity .3s;
     }
+    .project:hover .overlay { opacity: 1; }
+    #designs .project { aspect-ratio: auto; }
 
-    .project:hover .overlay {
-      opacity: 1;
-    }
-
-    /* Design Projects: keep original iframe dimensions */
-    #designs .project {
-      aspect-ratio: auto;
-    }
-
-    .skills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
+    .skills { display: flex; flex-wrap: wrap; gap: 1rem; }
     .skills div {
-      background: #333;
-      padding: 1rem 1.5rem;
-      border-radius: .5rem;
-      font-weight: bold;
-      color: #6dd5ed;
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.3s ease;
+      background: #333; padding: 1rem 1.5rem; border-radius: .5rem; font-weight: bold; color: #6dd5ed;
+      position: relative; overflow: hidden; transition: transform 0.3s ease;
     }
-
-    .skills div:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px rgba(109,213,237,0.6);
-    }
-
+    .skills div:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(109,213,237,0.6); }
     .skills div::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -75%;
-      width: 200%;
-      height: 100%;
+      content: ''; position: absolute; top: 0; left: -75%; width: 200%; height: 100%;
       background: linear-gradient(120deg, rgba(255,255,255,0.2), rgba(255,255,255,0));
-      transform: skewX(-20deg);
-      animation: shimmer 3s linear infinite;
-      z-index: 0;
-      pointer-events: none;
+      transform: skewX(-20deg); animation: shimmer 3s linear infinite; z-index: 0; pointer-events: none;
     }
 
-    .contact form {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      position: relative;
-    }
-
+    .contact form { display: flex; flex-direction: column; gap: 1rem; position: relative; }
     .contact input, .contact textarea {
-      background: rgba(255, 255, 255, 0.1);
-      color: #fff;
-      border: 2px solid #3498db;
-      border-radius: .5rem;
-      padding: 1rem;
-      font-size: 1rem;
-      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      background: rgba(255, 255, 255, 0.1); color: #fff; border: 2px solid #3498db;
+      border-radius: .5rem; padding: 1rem; font-size: 1rem; transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
+    .contact input:focus, .contact textarea:focus { outline: none; border-color: #6dd5ed; box-shadow: 0 0 10px #6dd5ed; }
 
-    .contact input:focus, .contact textarea:focus {
-      outline: none;
-      border-color: #6dd5ed;
-      box-shadow: 0 0 10px #6dd5ed;
-    }
+    .contact button { width: fit-content; }
 
-    .contact button {
-      width: fit-content;
-    }
+    footer { text-align: center; padding: 2rem; border-top: 1px solid #444; margin-top: 2rem; color: #bbb; }
 
-    footer {
-      text-align: center;
-      padding: 2rem;
-      border-top: 1px solid #444;
-      margin-top: 2rem;
-      color: #bbb;
+    /* Scroll-to-top button */
+    #scrollTop {
+      position: fixed; right: 1.5rem; bottom: 1.5rem; width: 3rem; height: 3rem; border-radius: 50%;
+      background: #3498db; display: flex; justify-content: center; align-items: center; font-size: 1.25rem; color: #fff;
+      cursor: pointer; opacity: 0; pointer-events: none; transition: opacity .3s;
     }
+    #scrollTop.show { opacity: 1; pointer-events: auto; }
   </style>
 </head>
 <body>
   <div class="page-wrapper">
     <header>
       <h2>Dallen Smith</h2>
-      <nav>
+      <nav aria-label="Primary">
         <a href="#about">About</a>
         <a href="#projects">Live Projects</a>
         <a href="#live">GitHub Projects</a>
@@ -304,116 +187,116 @@
       </nav>
     </header>
 
-    <section class="hero reveal">
+    <section class="hero reveal" id="home">
       <h1>Hello, I am Dallen Smith</h1>
       <p>I design and build beautiful web experiences.</p>
-      <a href="#projects" class="button">View Projects</a>
+      <a href="#projects" class="button" aria-label="View Projects">View Projects</a>
     </section>
 
     <section id="about" class="about reveal">
-      <img src="me.jfif" alt="Me" />
+      <img src="me.jfif" alt="Portrait of Dallen Smith" loading="lazy" />
       <p>
         I'm a web developer passionate about creating user-centered digital experiences.
         With a strong foundation in design and coding, I bring both beauty and functionality to every project.
       </p>
     </section>
 
-    <section id="projects" class="reveal">
-      <h2>Live Projects</h2>
+    <section id="projects" class="reveal" aria-labelledby="projects-heading">
+      <h2 id="projects-heading">Live Projects</h2>
       <div class="projects">
         <div class="project">
-          <img src="reactmusicplayingapp.netlify.app_.png" alt="React Music App" />
-          <div class="overlay"><a href="https://reactmusicplayingapp.netlify.app" target="_blank"><h3>React Music App</h3></a></div>
+          <img src="reactmusicplayingapp.netlify.app_.png" alt="Screenshot of React Music App" loading="lazy" />
+          <div class="overlay"><a href="https://reactmusicplayingapp.netlify.app" target="_blank" rel="noopener noreferrer"><h3>React Music App</h3></a></div>
         </div>
         <div class="project">
-          <img src="wikipediaviewer1.netlify.app_.png" alt="Wikipedia Viewer" />
-          <div class="overlay"><a href="https://wikipediaviewer1.netlify.app" target="_blank"><h3>Wikipedia Viewer</h3></a></div>
+          <img src="wikipediaviewer1.netlify.app_.png" alt="Screenshot of Wikipedia Viewer" loading="lazy" />
+          <div class="overlay"><a href="https://wikipediaviewer1.netlify.app" target="_blank" rel="noopener noreferrer"><h3>Wikipedia Viewer</h3></a></div>
         </div>
         <div class="project">
-          <img src="jjjtje-3n.myshopify.com_.png" alt="Kambo Website" />
-          <div class="overlay"><a href="https://jjjtje-3n.myshopify.com" target="_blank"><h3>Kambo Website *ask for password*</h3></a></div>
+          <img src="jjjtje-3n.myshopify.com_.png" alt="Screenshot of Kambo Website" loading="lazy" />
+          <div class="overlay"><a href="https://jjjtje-3n.myshopify.com" target="_blank" rel="noopener noreferrer"><h3>Kambo Website *ask for password*</h3></a></div>
         </div>
         <div class="project">
-          <img src="blindswordsmands.netlify.app_.png" alt="Blindswordsman Website" />
-          <div class="overlay"><a href="https://blindswordsmands.netlify.app" target="_blank"><h3>Blindswordsman Website</h3></a></div>
+          <img src="blindswordsmands.netlify.app_.png" alt="Screenshot of Blindswordsman Website" loading="lazy" />
+          <div class="overlay"><a href="https://blindswordsmands.netlify.app" target="_blank" rel="noopener noreferrer"><h3>Blindswordsman Website</h3></a></div>
         </div>
       </div>
     </section>
 
-    <section id="live" class="reveal">
-      <h2>GitHub Projects</h2>
+    <section id="live" class="reveal" aria-labelledby="github-heading">
+      <h2 id="github-heading">GitHub Projects</h2>
       <p>Download these to see what they do.</p>
       <div class="projects">
         <div class="project">
-          <img src="github.com_dallensmith93_budgetlyapp.png" alt="Budget App" />
+          <img src="github.com_dallensmith93_budgetlyapp.png" alt="Screenshot of Budget App repository" loading="lazy" />
           <div class="overlay">
             <h3>Budget App</h3>
-            <p><a href="https://github.com/dallensmith93/budgetlyapp.git" target="_blank">budgetly</a></p>
+            <p><a href="https://github.com/dallensmith93/budgetlyapp.git" target="_blank" rel="noopener noreferrer">budgetly</a></p>
           </div>
         </div>
         <div class="project">
-          <img src="github.com_dallensmith93_chatbox.png" alt="Chat App" />
+          <img src="github.com_dallensmith93_chatbox.png" alt="Screenshot of Chat App repository" loading="lazy" />
           <div class="overlay">
             <h3>Chat App</h3>
-            <p><a href="https://github.com/dallensmith93/chatbox.git" target="_blank">Chatbox</a></p>
+            <p><a href="https://github.com/dallensmith93/chatbox.git" target="_blank" rel="noopener noreferrer">Chatbox</a></p>
           </div>
         </div>
         <div class="project">
-          <img src="github.com_dallensmith93_Libs.png" alt="Mad Libs Django" />
+          <img src="github.com_dallensmith93_Libs.png" alt="Screenshot of Mad Libs Django repository" loading="lazy" />
           <div class="overlay">
             <h3>Mad Libs Django</h3>
-            <p><a href="https://github.com/dallensmith93/Libs.git" target="_blank">Mad Libs</a></p>
+            <p><a href="https://github.com/dallensmith93/Libs.git" target="_blank" rel="noopener noreferrer">Mad Libs</a></p>
           </div>
         </div>
         <div class="project">
-          <img src="github.com_dallensmith93_weatherproject_tree_main_weather_project.png" alt="Django Web App" />
+          <img src="github.com_dallensmith93_weatherproject_tree_main_weather_project.png" alt="Screenshot of Django Weather App repository" loading="lazy" />
           <div class="overlay">
-            <h3>Django Web App</h3>
-            <p><a href="https://github.com/dallensmith93/weatherproject.git" target="_blank">Weather Project</a></p>
+            <h3>Django Weather App</h3>
+            <p><a href="https://github.com/dallensmith93/weatherproject.git" target="_blank" rel="noopener noreferrer">Weather Project</a></p>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="designs" class="reveal">
-      <h2>Design Projects</h2>
+    <section id="designs" class="reveal" aria-labelledby="design-heading">
+      <h2 id="design-heading">Design Projects</h2>
       <div class="projects">
         <div class="project">
-          <iframe width="100%" height="400" style="border: 1px solid #ccc; border-radius: 0.5rem;" src="https://embed.figma.com/design/ywbeq2hgQmOddkMUVEaUOA/Pink-Banana-Designs?node-id=0-1&embed-host=share" allowfullscreen></iframe>
+          <iframe width="100%" height="400" style="border: 1px solid #ccc; border-radius: 0.5rem;" src="https://embed.figma.com/design/ywbeq2hgQmOddkMUVEaUOA/Pink-Banana-Designs?node-id=0-1&embed-host=share" allowfullscreen loading="lazy"></iframe>
           <div class="overlay"><h3>Pink Banana Hero Page Redesign</h3></div>
         </div>
         <div class="project">
-          <iframe width="100%" height="400" style="border: 1px solid #ccc; border-radius: 0.5rem;" src="https://embed.figma.com/design/4dNvCJAIHLsC6Euvt7ksGf/Crazy-Stacy-s-Dreamz?embed-host=share" allowfullscreen></iframe>
+          <iframe width="100%" height="400" style="border: 1px solid #ccc; border-radius: 0.5rem;" src="https://embed.figma.com/design/4dNvCJAIHLsC6Euvt7ksGf/Crazy-Stacy-s-Dreamz?embed-host=share" allowfullscreen loading="lazy"></iframe>
           <div class="overlay"><h3>Stacy's Dreamz Hero Design</h3></div>
         </div>
         <div class="project">
-          <iframe width="100%" height="400" style="border: 1px solid #ccc; border-radius: 0.5rem;" src="https://embed.figma.com/design/SJwNRVTMX3BYpnX9mdazE3/Untitled?node-id=2-319&embed-host=share" allowfullscreen></iframe>
+          <iframe width="100%" height="400" style="border: 1px solid #ccc; border-radius: 0.5rem;" src="https://embed.figma.com/design/SJwNRVTMX3BYpnX9mdazE3/Untitled?node-id=2-319&embed-host=share" allowfullscreen loading="lazy"></iframe>
           <div class="overlay"><h3>Kambo Website with Categories Design</h3></div>
         </div>
       </div>
     </section>
 
-    <section id="skills" class="reveal">
-      <h2>Skills</h2>
-      <div class="skills">
-        <div>HTML</div>
-        <div>CSS</div>
-        <div>JavaScript</div>
-        <div>React</div>
-        <div>Django</div>
-        <div>PHP</div>
-        <div>Angular</div>
-        <div>Figma</div>
-        <div>UI/UX</div>
+    <section id="skills" class="reveal" aria-labelledby="skills-heading">
+      <h2 id="skills-heading">Skills</h2>
+      <div class="skills" role="list">
+        <div role="listitem">HTML</div>
+        <div role="listitem">CSS</div>
+        <div role="listitem">JavaScript</div>
+        <div role="listitem">React</div>
+        <div role="listitem">Django</div>
+        <div role="listitem">PHP</div>
+        <div role="listitem">Angular</div>
+        <div role="listitem">Figma</div>
+        <div role="listitem">UI/UX</div>
       </div>
     </section>
 
-    <section id="contact" class="contact reveal">
-      <h2>Contact</h2>
-      <form>
-        <input type="text" placeholder="Your Name" required />
-        <input type="email" placeholder="Your Email" required />
-        <textarea placeholder="Your Message" rows="5" required></textarea>
+    <section id="contact" class="contact reveal" aria-labelledby="contact-heading">
+      <h2 id="contact-heading">Contact</h2>
+      <form action="https://formspree.io/f/your_form_id" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="email" placeholder="Your Email" required />
+        <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
         <button type="submit" class="button">Send Message</button>
       </form>
     </section>
@@ -423,19 +306,62 @@
     </footer>
   </div>
 
+  <div id="scrollTop" aria-label="Scroll to top" title="Back to top">▲</div>
+
   <script>
+    // Section reveal
     const reveals = document.querySelectorAll('.reveal');
     function revealOnScroll() {
       const windowHeight = window.innerHeight;
       for (let el of reveals) {
         const top = el.getBoundingClientRect().top;
-        if (top < windowHeight - 50) {
-          el.classList.add('active');
-        }
+        if (top < windowHeight - 50) el.classList.add('active');
       }
     }
     window.addEventListener('scroll', revealOnScroll);
     window.addEventListener('load', revealOnScroll);
+
+    // Highlight current nav link
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('nav a');
+    function setActiveLink() {
+      let index = sections.length;
+      while (--index && window.scrollY + 60 < sections[index].offsetTop) {}
+      navLinks.forEach(link => link.classList.remove('current'));
+      navLinks[index].classList.add('current');
+    }
+    setActiveLink();
+    window.addEventListener('scroll', setActiveLink);
+
+    // Scroll-to-top button
+    const scrollBtn = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) scrollBtn.classList.add('show');
+      else scrollBtn.classList.remove('show');
+    });
+    scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // AJAX contact (optional)
+    const form = document.querySelector('.contact form');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          alert('Thank you! Your message was sent.');
+          form.reset();
+        } else {
+          alert('Oops, there was a problem.');
+        }
+      } catch {
+        alert('Network error.');
+      }
+    });
   </script>
 </body>
 </html>
