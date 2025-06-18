@@ -4,12 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Dallen Smith — Portfolio</title>
-  <!-- SEO & Social -->
   <meta name="description" content="Portfolio of Dallen Smith — Web & UX Designer/Developer showcasing live apps, GitHub repos and Figma design case-studies."/>
   <meta property="og:title" content="Dallen Smith — Portfolio"/>
   <meta property="og:description" content="I design and build beautiful web experiences."/>
   <meta property="og:image" content="me.jfif"/>
-  <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png" />
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -309,7 +307,7 @@
   <div id="scrollTop" aria-label="Scroll to top" title="Back to top">▲</div>
 
   <script>
-    // Section reveal
+    
     const reveals = document.querySelectorAll('.reveal');
     function revealOnScroll() {
       const windowHeight = window.innerHeight;
@@ -341,7 +339,7 @@
     });
     scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-    // AJAX contact (optional)
+   
     const form = document.querySelector('.contact form');
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
