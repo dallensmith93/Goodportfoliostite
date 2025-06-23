@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -9,68 +9,60 @@
   <meta property="og:description" content="I design and build beautiful web experiences."/>
   <meta property="og:image" content="me.jfif"/>
   <link rel="icon" type="image/png" href="favicon.png" />
-  <style>
+    <style>
+    /* ------------------  Theme Variables ------------------ */
+    :root {
+      --blue: #007bff;            /* unified brand blue */
+      /* Light theme */
+      --bg-light: #f9f9f9;
+      --text-light: #333;
+      /* Dark theme */
+      --bg-dark: #0a0d12;
+      --text-dark: #f4f4f4;
+      /* Primary gradient (solid blue now) */
+      --primary-start: var(--blue);
+      --primary-end:   var(--blue);
+    }
+
+    html.light body { background: var(--bg-light); color: var(--text-light); }
+    html.dark  body { background: var(--bg-dark);  color: var(--text-dark);  }
+
+    a { text-decoration: none; color: inherit; }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Helvetica Neue', sans-serif;
-      line-height: 1.6;
-      color: #f4f4f4;
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-    }
+    body { font-family: 'Helvetica Neue', sans-serif; line-height: 1.6; transition: background 0.3s, color 0.3s; }
 
-    a { text-decoration: none !important; color: inherit; }
+    /* ------------------  Global Section Spacing ------------------ */
+    section { margin-block: 5rem; padding: 0 2rem; }
+    header + .hero { margin-top: 0; } /* keep hero tight under header */
 
-    .page-wrapper {
-      opacity: 0;
-      transform: translateY(50px);
-      animation: fadeSlideIn 1s ease-out forwards;
-    }
-
-    @keyframes fadeSlideIn {
-      0% { opacity: 0; transform: translateY(50px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes shimmer {
-      0% { left: -75%; }
-      100% { left: 100%; }
-    }
-
-    @keyframes pulseGlow {
-      0%, 100% { box-shadow: 0 0 12px rgba(52,152,219,0.6); }
-      50%        { box-shadow: 0 0 20px rgba(109,213,237,0.9); }
-    }
-
-    header {
-      padding: 1rem 2rem;
-      background: rgba(0,0,0,0.8);
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      border-bottom: 1px solid #444;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    nav[aria-label="Primary"] a {
+    /* ------------------  Buttons & Interactive ------------------ */
+    .button,
+    .filters button,
+    .controls a.resume {
       display: inline-block;
       padding: 0.75rem 1.5rem;
-      border-radius: 0.5rem;
       font-weight: bold;
-      color: white;
-      background: linear-gradient(135deg, #3498db, #6dd5ed);
-      box-shadow: 0 0 12px rgba(52, 152, 219, 0.6);
-      animation: pulseGlow 3s ease-in-out infinite;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      color: #fff;
+      background: linear-gradient(135deg, var(--primary-start), var(--primary-end));
+      border-radius: 0.5rem;
       position: relative;
       overflow: hidden;
-      margin-left: 1rem;
+      cursor: pointer;
+      animation: pulseGlow 3s ease-in-out infinite;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: center;
     }
-    nav a.current { outline: 3px solid #6dd5ed; }
 
-    nav a::after {
+    .button:hover,
+    .filters button:hover,
+    .controls a.resume:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(0,123,255,0.7), 0 0 40px rgba(0,123,255,0.5);
+    }
+    .button::after,
+    .filters button::after,
+    .controls a.resume::after {
       content: '';
       position: absolute;
       top: 0; left: -75%;
@@ -78,220 +70,346 @@
       background: linear-gradient(120deg, rgba(255,255,255,0.2), rgba(255,255,255,0));
       transform: skewX(-20deg);
       animation: shimmer 2s linear infinite;
-      z-index: 1; pointer-events: none;
+      pointer-events: none;
     }
 
+    /* Pulse glow animation */
+    @keyframes pulseGlow {
+      0%,100% { box-shadow: 0 0 12px rgba(0,123,255,0.6); }
+      50%    { box-shadow: 0 0 24px rgba(0,123,255,0.8); }
+    }
+    /* Shimmer effect */
+    @keyframes shimmer {
+      0% { left: -75%; }
+      100% { left: 100%; }
+    }
+
+    /* ------------------  Layout Elements ------------------ */
+    header {
+      padding: 1rem 2rem;
+      background: rgba(0,0,0,0.8);
+      position: sticky; top: 0; z-index: 10;
+      display: flex; align-items: center;
+    }
+    nav {
+      flex: 1;
+      display: flex;
+      justify-content: center;   /* center nav links */
+      gap: 2rem;
+    }
+
+    /* ─── Nav links: text‑only with smooth lift + underline grow ─── */
+    nav a {
+      position: relative;
+      font-weight: 600;
+      padding: 0.5rem 0.75rem;
+      color: inherit;           /* inherit white/black text */
+      background: none;
+      animation: none;          /* remove pulseGlow */
+      transition: transform .3s ease, opacity .3s ease;
+    }
     nav a:hover {
-      transform: scale(1.07);
-      box-shadow: 0 0 25px rgba(52,152,219,1), 0 0 40px rgba(109,213,237,0.9);
+      transform: translateY(-3px);   /* gentle lift */
+      opacity: 0.85;                 /* subtle fade */
     }
+    nav a.current { outline: none; }
 
-    section {
-      padding: 3rem 2rem;
-      max-width: 1000px;
-      margin: auto;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 1s ease;
-    }
-    section.reveal.active { opacity: 1; transform: translateY(0); }
-
-    .hero {
-      min-height: 90vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
-      background: transparent; text-align: center; padding: 2rem;
-    }
-    .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
-    .hero p  { font-size: 1.25rem; margin-bottom: 2rem; }
-
-    .button {
-      position: relative; display: inline-block; padding: 0.75rem 1.75rem;
-      font-weight: bold; color: white;
-      background: linear-gradient(135deg, #3498db, #6dd5ed);
-      border-radius: 0.5rem; overflow: hidden; z-index: 0;
-      box-shadow: 0 0 12px rgba(52, 152, 219, 0.6);
-      animation: pulseGlow 3s ease-in-out infinite;
-      transition: transform 0.3s ease, box-shadow 0.3s ease; border: none; cursor: pointer;
-    }
-    .button:hover { transform: scale(1.07); box-shadow: 0 0 25px rgba(52,152,219,1), 0 0 40px rgba(109,213,237,0.9); }
-    .button:hover::after {
+    /* underline animation */
+    nav a::after {
       content: '';
-      position: absolute; top: 0; left: -75%; width: 200%; height: 100%;
-      background: linear-gradient(120deg, rgba(255,255,255,0.2), rgba(255,255,255,0));
-      transform: skewX(-20deg); animation: shimmer 2s linear infinite; z-index: 1; pointer-events: none;
+      position: absolute;
+      left: 0; bottom: -4px;
+      width: 100%; height: 2px;
+      background: currentColor;  /* same as link text */
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .3s ease;
     }
+    nav a:hover::after,
+    nav a.current::after { transform: scaleX(1); }
 
-    .about { display: flex; flex-wrap: wrap; gap: 2rem; align-items: center; }
+    .controls { display: flex; gap: 1rem; align-items: center; margin-left: auto; }
+
+    /* ------------------  Theme Switch ------------------ */
+    .theme-switch { position: relative; display: inline-block; width: 50px; height: 24px; }
+    .theme-switch input { opacity: 0; width: 0; height: 0; }
+    .slider {
+      position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+      background: #ccc; transition: .4s; border-radius: 9999px;
+    }
+    .slider::before {
+      position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px;
+      background: #fff; transition: .4s; border-radius: 50%;
+    }
+    input:checked + .slider { background: var(--blue); }
+    input:checked + .slider::before { transform: translateX(26px); }
+
+    /* Section reveal */
+    .page-wrapper { opacity: 0; transform: translateY(50px); animation: fadeSlideIn 1s ease-out forwards; }
+    @keyframes fadeSlideIn { to { opacity: 1; transform: translateY(0); }}
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+
+    /* Hero */
+    .hero { min-height: 90vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+    .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
+
+    /* About */
+    .about { display: flex; flex-wrap: wrap; gap: 2rem; align-items: center; max-width: 1000px; margin: auto; }
     .about img { width: 250px; border-radius: 10px; }
-    .about p   { flex: 1; }
+    .about p { flex: 1; }
 
-    /* Projects grid */
-    .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    /* ------------------  Timeline ------------------ */
+    .timeline { position: relative; margin: auto; padding: 2rem 0; max-width: 800px; }
+    .timeline::after { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 4px; background: var(--blue); transform: translateX(-50%); }
 
-    /* Live & GitHub: enforce square */
-    #projects .project, #live .project { aspect-ratio: 1 / 1; }
-    .project { position: relative; overflow: hidden; border-radius: .5rem; }
-    .project img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .3s; }
-    .project:hover img { transform: scale(1.05); }
-    .project .overlay {
-      position: absolute; bottom: 0; width: 100%; padding: 1rem;
-      background: rgba(0,0,0,0.6); color: white; opacity: 0; transition: opacity .3s;
+    .entry { position: relative; width: 50%; padding: 2rem; }
+    .entry:nth-child(odd)  { left: 0; text-align: right; }
+    .entry:nth-child(even) { left: 50%; text-align: left; }
+
+    .entry::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--blue);
+      border: 4px solid var(--bg-dark);
+      transform: translate(-50%, -50%); /* shift by half for perfect centering */
+      z-index: 2;
     }
-    .project:hover .overlay { opacity: 1; }
-    #designs .project { aspect-ratio: auto; }
+    /* place the dot at the timeline center for each side */
+    .entry:nth-child(odd)::before  { left: 100%; }
+    .entry:nth-child(even)::before { left: 0%;   }
 
-    .skills { display: flex; flex-wrap: wrap; gap: 1rem; }
-    .skills div {
-      background: #333; padding: 1rem 1.5rem; border-radius: .5rem; font-weight: bold; color: #6dd5ed;
-      position: relative; overflow: hidden; transition: transform 0.3s ease;
+    .entry h3 { margin-bottom: 0.5rem; }
+
+    /* Projects & Filters */
+    .filters { text-align: center; margin-bottom: 1rem; }
+    .filters button { margin: 0 0.5rem; padding: 0.5rem 1rem; border: none; border-radius: 0.5rem; cursor: pointer; }
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      justify-items: center;
+      max-width: 1200px;
+      margin: auto;
     }
-    .skills div:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(109,213,237,0.6); }
-    .skills div::after {
-      content: ''; position: absolute; top: 0; left: -75%; width: 200%; height: 100%;
-      background: linear-gradient(120deg, rgba(255,255,255,0.2), rgba(255,255,255,0));
-      transform: skewX(-20deg); animation: shimmer 3s linear infinite; z-index: 0; pointer-events: none;
+    .project {
+      position: relative;
+      overflow: hidden;
+      border-radius: .5rem;
+      width: 220px; height: 160px;
+      transition: transform .3s ease;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,.3);
+    }
+    .project:hover { transform: scale(1.12); z-index: 2; }
+    .project img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .project h3 { position: absolute; bottom: 0; left: 0; right: 0; padding: .5rem; background: rgba(0,0,0,.6); color: #fff; font-size: .95rem; text-align: center; opacity: 0; transition: opacity .3s; }
+    .project:hover h3 { opacity: 1; }
+
+    /* Skills with progress bars */
+    .skills { max-width: 800px; margin: auto; }
+    .skill { margin-bottom: 2rem; }
+    .skill label { display: block; margin-bottom: 0.5rem; font-weight: bold; }
+    .skill .bar { width: 100%; background: #ddd; border-radius: 0.5rem; overflow: hidden; }
+    .bar-inner {
+      height: 1rem;
+      width: 0;                       /* starts at 0, fills via JS */
+      border-radius: 0.5rem;
+      background: repeating-linear-gradient(
+        45deg,
+        var(--blue),
+        var(--blue) 10px,
+        #1e90ff 10px,
+        #1e90ff 20px
+      );
+      background-size: 200% 100%;
+      animation: slide 3s linear infinite; /* diagonal stripes animation */
+      transition: width 1.5s ease-out;     /* smooth growth */
     }
 
-    .contact form { display: flex; flex-direction: column; gap: 1rem; position: relative; }
-    .contact input, .contact textarea {
-      background: rgba(255, 255, 255, 0.1); color: #fff; border: 2px solid #3498db;
-      border-radius: .5rem; padding: 1rem; font-size: 1rem; transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    @keyframes slide {
+      from { background-position: 0 0; }
+      to   { background-position: 40px 0; }
     }
-    .contact input:focus, .contact textarea:focus { outline: none; border-color: #6dd5ed; box-shadow: 0 0 10px #6dd5ed; }
 
-    .contact button { width: fit-content; }
-
-    footer { text-align: center; padding: 2rem; border-top: 1px solid #444; margin-top: 2rem; color: #bbb; }
-
-    /* Scroll-to-top button */
-    #scrollTop {
-      position: fixed; right: 1.5rem; bottom: 1.5rem; width: 3rem; height: 3rem; border-radius: 50%;
-      background: #3498db; display: flex; justify-content: center; align-items: center; font-size: 1.25rem; color: #fff;
-      cursor: pointer; opacity: 0; pointer-events: none; transition: opacity .3s;
+    /* Contact Form */
+    #contact { max-width: 800px; margin: auto; }
+    #map { width: 100%; height: 300px; border: none; border-radius: 0.5rem; margin-bottom: 2rem; }
+    #contact-form { display: grid; gap: 1rem; }
+    #contact-form input,
+    #contact-form textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid #444;
+      border-radius: 0.5rem;
+      background: rgba(255,255,255,0.05);
+      color: inherit;
+      transition: border-color .3s;
     }
-    #scrollTop.show { opacity: 1; pointer-events: auto; }
+    #contact-form input:focus,
+    #contact-form textarea:focus { outline: none; border-color: var(--blue); }
+
+    /* Footer */
+    footer { text-align: center; padding: 2rem 0; }
   </style>
 </head>
 <body>
   <div class="page-wrapper">
+    <!-- --------------  Header -------------- -->
     <header>
-      <h2>Dallen Smith</h2>
       <nav aria-label="Primary">
         <a href="#about">About</a>
-        <a href="#projects">Live Projects</a>
-        <a href="#live">GitHub Projects</a>
-        <a href="#designs">Design Projects</a>
+        <a href="#timeline">Journey</a>
+        <a href="#projects">Projects</a>
         <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
       </nav>
+      <div class="controls">
+        <a href="Dallen-Smith-Frontend React Developer.pdf" class="resume" download>Download CV</a>
+        <!-- Theme switch -->
+        <label class="theme-switch">
+          <input type="checkbox" id="theme-toggle" aria-label="Toggle theme" />
+          <span class="slider"></span>
+        </label>
+      </div>
     </header>
 
+    <!-- --------------  Hero -------------- -->
     <section class="hero reveal" id="home">
       <h1>Hello, I am Dallen Smith</h1>
       <p>I design and build beautiful web experiences.</p>
       <a href="#projects" class="button" aria-label="View Projects">View Projects</a>
     </section>
 
+    <!-- --------------  About -------------- -->
     <section id="about" class="about reveal">
       <img src="me.jfif" alt="Portrait of Dallen Smith" loading="lazy" />
-      <p>
-        I'm a web developer passionate about creating user-centered digital experiences.
-        With a strong foundation in design and coding, I bring both beauty and functionality to every project.
-      </p>
+      <p>I'm a web developer passionate about creating user-centered digital experiences. With a strong foundation in design and coding, I bring both beauty and functionality to every project.</p>
     </section>
 
+    <!-- --------------  Timeline -------------- -->
+    <section id="timeline" class="reveal timeline" aria-labelledby="timeline-heading">
+      <h2 id="timeline-heading">My Journey</h2>
+      <div class="entry">
+        <h3>Associate’s Degree</h3>
+        <time>2012 - 2014</time>
+        <p>Completed CS associate’s at Stevens-Henager College.</p>
+      </div>
+      <div class="entry">
+        <h3>Associate’s Degree</h3>
+        <time>2016 - 2023</time>
+        <p>Completed Web and UX associate’s at Weber State University.</p>
+      </div>
+      <div class="entry">
+        <h3>Weber State University</h3>
+        <time>2016 - 2023</time>
+        <p>Completed Web and UX Bachelor’s at Weber State University.</p>
+      </div>
+      <div class="entry">
+        <h3>Adventure Wing</h3>
+        <time>2025</time>
+        <p>Web and UX Designer</p>
+      </div>
+    </section>
+
+    <!-- --------------  Projects -------------- -->
     <section id="projects" class="reveal" aria-labelledby="projects-heading">
-      <h2 id="projects-heading">Live Projects</h2>
+      <h2 id="projects-heading">Showcase</h2>
+      <div class="filters">
+        <button data-filter="all">All</button>
+        <button data-filter="web">Web</button>
+        <button data-filter="design">Design</button>
+        <button data-filter="code">Code</button>
+      </div>
       <div class="projects">
-        <div class="project">
-          <img src="reactmusicplayingapp.netlify.app_.png" alt="Screenshot of React Music App" loading="lazy" />
-          <div class="overlay"><a href="https://reactmusicplayingapp.netlify.app" target="_blank" rel="noopener noreferrer"><h3>React Music App</h3></a></div>
-        </div>
-        <div class="project">
-          <img src="wikipediaviewer1.netlify.app_.png" alt="Screenshot of Wikipedia Viewer" loading="lazy" />
-          <div class="overlay"><a href="https://wikipediaviewer1.netlify.app" target="_blank" rel="noopener noreferrer"><h3>Wikipedia Viewer</h3></a></div>
-        </div>
-        <div class="project">
-          <img src="jjjtje-3n.myshopify.com_.png" alt="Screenshot of Kambo Website" loading="lazy" />
-          <div class="overlay"><a href="https://jjjtje-3n.myshopify.com" target="_blank" rel="noopener noreferrer"><h3>Kambo Website *ask for password*</h3></a></div>
-        </div>
-        <div class="project">
-          <img src="blindswordsmands.netlify.app_.png" alt="Screenshot of Blindswordsman Website" loading="lazy" />
-          <div class="overlay"><a href="https://blindswordsmands.netlify.app" target="_blank" rel="noopener noreferrer"><h3>Blindswordsman Website</h3></a></div>
-        </div>
+        <!-- ------------ Existing Web Projects ------- -->
+        <a href="https://reactmusicplayingapp.netlify.app" class="project" data-category="web" target="_blank" rel="noopener noreferrer">
+          <img src="reactmusicplayingapp.netlify.app_.png" alt="React Music App screenshot" loading="lazy" />
+          <h3>React Music App</h3>
+        </a>
+        <a href="https://wikipediaviewer1.netlify.app" class="project" data-category="web" target="_blank" rel="noopener noreferrer">
+          <img src="wikipediaviewer1.netlify.app_.png" alt="Wikipedia Viewer screenshot" loading="lazy" />
+          <h3>Wikipedia Viewer</h3>
+        </a>
+        <a href="https://jjjtje-3n.myshopify.com" class="project" data-category="web" target="_blank" rel="noopener noreferrer">
+          <img src="jjjtje-3n.myshopify.com_.png" alt="Kambo Website screenshot" loading="lazy" />
+          <h3>Kambo Website (ask for password)</h3>
+        </a>
+        <a href="https://blindswordsmands.netlify.app" class="project" data-category="web" target="_blank" rel="noopener noreferrer">
+          <img src="blindswordsmands.netlify.app_.png" alt="Blindswordsman Website screenshot" loading="lazy" />
+          <h3>Blindswordsman Website</h3>
+        </a>
+
+        <!-- ------------ New Figma Design Case-Studies ------- -->
+        <a href="https://embed.figma.com/design/SJwNRVTMX3BYpnX9mdazE3/Kambo-with-categores-drop-down-desgin?node-id=0-1&embed-host=share" class="project" data-category="design" target="_blank" rel="noopener noreferrer">
+          <img src="Kambo.JPG" alt="Figma Design System screenshot" loading="lazy" />
+          <h3>Design System (Figma)</h3>
+        </a>
+        <a href="https://embed.figma.com/design/ywbeq2hgQmOddkMUVEaUOA/Pink-Banana-Designs?embed-host=share" class="project" data-category="design" target="_blank" rel="noopener noreferrer">
+          <img src="pink banana designs.JPG" alt="second figma design screen shot" loading="lazy" />
+          <h3>Mobile App Case Study</h3>
+        </a>
+
+        <!-- ------------ GitHub Repos for Code filter ------- -->
+        <a href="https://github.com/dallensmith93/budgetlyapp.git" class="project" data-category="code" target="_blank" rel="noopener noreferrer">
+          <img src="github.com_dallensmith93_budgetlyapp.png" alt="budgetlyapp repository" loading="lazy" />
+          <h3>Budgetly app Repo</h3>
+        </a>
+        <a href="https://github.com/dallensmith93/chatbox.git" class="project" data-category="code" target="_blank" rel="noopener noreferrer">
+          <img src="github.com_dallensmith93_chatbox.png" alt="chatbox repository" loading="lazy" />
+          <h3>Chatbox Repo</h3>
+        </a>
+        <a href="https://github.com/dallensmith93/Libs.git" class="project" data-category="code" target="_blank" rel="noopener noreferrer">
+          <img src="github.com_dallensmith93_Libs.png" alt="Django Mad Libs repository" loading="lazy" />
+          <h3>Madlibs Repo</h3>
+        </a>
       </div>
     </section>
 
-    <section id="live" class="reveal" aria-labelledby="github-heading">
-      <h2 id="github-heading">GitHub Projects</h2>
-      <p>Download these to see what they do.</p>
-      <div class="projects">
-        <div class="project">
-          <img src="github.com_dallensmith93_budgetlyapp.png" alt="Screenshot of Budget App repository" loading="lazy" />
-          <div class="overlay">
-            <h3>Budget App</h3>
-            <p><a href="https://github.com/dallensmith93/budgetlyapp.git" target="_blank" rel="noopener noreferrer">budgetly</a></p>
-          </div>
-        </div>
-        <div class="project">
-          <img src="github.com_dallensmith93_chatbox.png" alt="Screenshot of Chat App repository" loading="lazy" />
-          <div class="overlay">
-            <h3>Chat App</h3>
-            <p><a href="https://github.com/dallensmith93/chatbox.git" target="_blank" rel="noopener noreferrer">Chatbox</a></p>
-          </div>
-        </div>
-        <div class="project">
-          <img src="github.com_dallensmith93_Libs.png" alt="Screenshot of Mad Libs Django repository" loading="lazy" />
-          <div class="overlay">
-            <h3>Mad Libs Django</h3>
-            <p><a href="https://github.com/dallensmith93/Libs.git" target="_blank" rel="noopener noreferrer">Mad Libs</a></p>
-          </div>
-        </div>
-        <div class="project">
-          <img src="github.com_dallensmith93_weatherproject_tree_main_weather_project.png" alt="Screenshot of Django Weather App repository" loading="lazy" />
-          <div class="overlay">
-            <h3>Django Weather App</h3>
-            <p><a href="https://github.com/dallensmith93/weatherproject.git" target="_blank" rel="noopener noreferrer">Weather Project</a></p>
-          </div>
-        </div>
+    <!-- --------------  Skills -------------- -->
+    <section id="skills" class="reveal skills" aria-labelledby="skills-heading">
+      <h2 id="skills-heading">Skills & Proficiency</h2>
+      <div class="skill">
+        <label>HTML & CSS</label>
+        <div class="bar"><div class="bar-inner" data-percentage="100%"></div></div>
+      </div>
+      <div class="skill">
+        <label>JavaScript</label>
+        <div class="bar"><div class="bar-inner" data-percentage="95%"></div></div>
+      </div>
+      <div class="skill">
+        <label>React & Vue</label>
+        <div class="bar"><div class="bar-inner" data-percentage="80%"></div></div>
+      </div>
+      <div class="skill">
+        <label>Django</label>
+        <div class="bar"><div class="bar-inner" data-percentage="90%"></div></div>
+      </div>
+      <div class="skill">
+        <label>PHP</label>
+        <div class="bar"><div class="bar-inner" data-percentage="75%"></div></div>
+      </div>
+      <div class="skill">
+        <label>Angular</label>
+        <div class="bar"><div class="bar-inner" data-percentage="70%"></div></div>
+      </div>
+      <div class="skill">
+        <label>C#</label>
+        <div class="bar"><div class="bar-inner" data-percentage="90%"></div></div>
       </div>
     </section>
 
-    <section id="designs" class="reveal" aria-labelledby="design-heading">
-      <h2 id="design-heading">Design Projects</h2>
-      <div class="projects">
-        <div class="project">
-          <iframe width="100%" height="400" style="border: 1px solid #ccc; border-radius: 0.5rem;" src="https://embed.figma.com/design/ywbeq2hgQmOddkMUVEaUOA/Pink-Banana-Designs?node-id=0-1&embed-host=share" allowfullscreen loading="lazy"></iframe>
-          <div class="overlay"><h3>Pink Banana Hero Page Redesign</h3></div>
-        </div>
-        <div class="project">
-          <iframe width="100%" height="400" style="border: 1px solid #ccc; border-radius: 0.5rem;" src="https://embed.figma.com/design/4dNvCJAIHLsC6Euvt7ksGf/Crazy-Stacy-s-Dreamz?embed-host=share" allowfullscreen loading="lazy"></iframe>
-          <div class="overlay"><h3>Stacy's Dreamz Hero Design</h3></div>
-        </div>
-        <div class="project">
-          <iframe width="100%" height="400" style="border: 1px solid #ccc; border-radius: 0.5rem;" src="https://embed.figma.com/design/SJwNRVTMX3BYpnX9mdazE3/Untitled?node-id=2-319&embed-host=share" allowfullscreen loading="lazy"></iframe>
-          <div class="overlay"><h3>Kambo Website with Categories Design</h3></div>
-        </div>
-      </div>
-    </section>
+    <!-- --------------  Contact -------------- -->
+    <section id="contact" class="reveal" aria-labelledby="contact-heading">
+      <h2 id="contact-heading">Get in Touch</h2>
+      <iframe id="map" src="https://maps.google.com/maps?q=Layton%20Utah&t=&z=13&ie=UTF8&iwloc=&output=embed" loading="lazy"></iframe>
 
-    <section id="skills" class="reveal" aria-labelledby="skills-heading">
-      <h2 id="skills-heading">Skills</h2>
-      <div class="skills" role="list">
-        <div role="listitem">HTML</div>
-        <div role="listitem">CSS</div>
-        <div role="listitem">JavaScript</div>
-        <div role="listitem">React</div>
-        <div role="listitem">Django</div>
-        <div role="listitem">PHP</div>
-        <div role="listitem">Angular</div>
-        <div role="listitem">Figma</div>
-        <div role="listitem">UI/UX</div>
-      </div>
-    </section>
-
-    <section id="contact" class="contact reveal" aria-labelledby="contact-heading">
-      <h2 id="contact-heading">Contact</h2>
-      <form action="https://formspree.io/f/your_form_id" method="POST">
+      <!-- -------------  Custom Contact Form ------------- -->
+      <form id="contact-form" novalidate>
         <input type="text" name="name" placeholder="Your Name" required />
         <input type="email" name="email" placeholder="Your Email" required />
         <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
@@ -299,67 +417,86 @@
       </form>
     </section>
 
-    <footer>
+    <!-- --------------  Footer -------------- -->
+    <footer class="reveal">
       © 2025 Dallen Smith — Built with HTML/CSS/JavaScript
     </footer>
-  </div>
+  </div> <!-- end page-wrapper -->
 
-  <div id="scrollTop" aria-label="Scroll to top" title="Back to top">▲</div>
-
+  <!-- ------------------  Scripts ------------------ -->
   <script>
-    
-    const reveals = document.querySelectorAll('.reveal');
-    function revealOnScroll() {
-      const windowHeight = window.innerHeight;
-      for (let el of reveals) {
-        const top = el.getBoundingClientRect().top;
-        if (top < windowHeight - 50) el.classList.add('active');
-      }
-    }
-    window.addEventListener('scroll', revealOnScroll);
-    window.addEventListener('load', revealOnScroll);
-
-    // Highlight current nav link
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('nav a');
-    function setActiveLink() {
-      let index = sections.length;
-      while (--index && window.scrollY + 60 < sections[index].offsetTop) {}
-      navLinks.forEach(link => link.classList.remove('current'));
-      navLinks[index].classList.add('current');
-    }
-    setActiveLink();
-    window.addEventListener('scroll', setActiveLink);
-
-    // Scroll-to-top button
-    const scrollBtn = document.getElementById('scrollTop');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 300) scrollBtn.classList.add('show');
-      else scrollBtn.classList.remove('show');
+    // Reveal on scroll
+    document.querySelectorAll('.reveal').forEach(el => {
+      const observer = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting) { el.classList.add('active'); observer.disconnect(); }
+      }, { threshold: 0.1 });
+      observer.observe(el);
     });
-    scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-   
-    const form = document.querySelector('.contact form');
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const formData = new FormData(form);
-      try {
-        const res = await fetch(form.action, {
-          method: 'POST',
-          body: formData,
-          headers: { 'Accept': 'application/json' }
+    // ------------------  Theme Toggle ------------------
+    const themeToggleCheckbox = document.getElementById('theme-toggle');
+    const applyTheme = (theme) => {
+      document.documentElement.classList.remove('light','dark');
+      document.documentElement.classList.add(theme);
+      localStorage.setItem('theme', theme);
+    };
+
+    // Persist theme & checkbox state
+    const storedTheme = localStorage.getItem('theme') || 'dark';
+    applyTheme(storedTheme);
+    themeToggleCheckbox.checked = (storedTheme === 'dark');
+
+    themeToggleCheckbox.addEventListener('change', () => {
+      const next = themeToggleCheckbox.checked ? 'dark' : 'light';
+      applyTheme(next);
+    });
+
+    // ------------------  Project filter ------------------
+    document.querySelectorAll('.filters button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.dataset.filter;
+        document.querySelectorAll('.project').forEach(p => {
+          p.style.display = (filter === 'all' || p.dataset.category === filter) ? '' : 'none';
         });
+      });
+    });
+
+    // ------------------  Animate skill bars ------------------
+    window.addEventListener('load', () => {
+      document.querySelectorAll('.bar-inner').forEach(bar => {
+        bar.style.width = bar.dataset.percentage;
+      });
+    });
+
+    // ------------------  Custom Contact Form Submission ------------------
+    document.getElementById('contact-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const data = new FormData(form);
+
+      try {
+        // Replace '/api/contact' with your backend endpoint
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          body: data
+        });
+
         if (res.ok) {
-          alert('Thank you! Your message was sent.');
+          alert('Thanks! Your message has been sent.');
           form.reset();
         } else {
-          alert('Oops, there was a problem.');
+          alert('Sorry, there was a problem sending your message.');
         }
-      } catch {
-        alert('Network error.');
+      } catch (err) {
+        console.error(err);
+        alert('Network error. Please try again later.');
       }
     });
+
+    // Calendly script (optional)
+    const script = document.createElement('script');
+    script.src = 'https://assets.calendly.com/assets/external/widget.js';
+    document.head.appendChild(script);
   </script>
 </body>
 </html>
