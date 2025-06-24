@@ -9,7 +9,7 @@
   <meta property="og:description" content="I design and build beautiful web experiences."/>
   <meta property="og:image" content="me.jfif"/>
   <link rel="icon" type="image/png" href="favicon.png" />
-    <style>
+     <style>
     /* ------------------  Theme Variables ------------------ */
     :root {
       --blue: #007bff;            /* unified brand blue */
@@ -26,6 +26,9 @@
 
     html.light body { background: var(--bg-light); color: var(--text-light); }
     html.dark  body { background: var(--bg-dark);  color: var(--text-dark);  }
+
+    /* Light‑mode header tweak so nav links stay visible */
+    html.light header { background: rgba(255,255,255,0.9); }
 
     a { text-decoration: none; color: inherit; }
     * { margin: 0; padding: 0; box-sizing: border-box; }
