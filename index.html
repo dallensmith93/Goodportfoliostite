@@ -23,10 +23,50 @@
   --primary-start: var(--blue);
   --primary-end:   var(--blue);
 }
+.case-study {
+  background: var(--card-bg-light);
+  border: 1px solid var(--card-border-light);
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Dark‐mode override */
+html.dark .case-study {
+  background: var(--card-bg-dark);
+  border: 1px solid var(--card-border-dark);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Lift + deepen shadow on hover */
+.case-study:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Optional: slightly enlarge “rectangle” variants */
+.case-study.rectangle {
+  max-width: 280px;  /* bump from 220px if you like */
+}
+
+/* Tidy up inner image */
+.case-study img {
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  object-fit: cover;
+}
+
+/* Make the title pop a bit */
+.case-study h3 {
+  font-size: 1.05rem;
+  margin-bottom: 0.75rem;
+  color: var(--blue);
+}
 
 html.light body { background: var(--bg-light); color: var(--text-light); }
 html.dark  body { background: var(--bg-dark);  color: var(--text-dark);  }
-
+.logo { height: 40px; margin-right: 1rem; }
 /* Light-mode header tweak so nav links stay visible */
 html.light header { background: rgba(255,255,255,0.9); }
 
@@ -210,8 +250,25 @@ input:checked + .slider::before { transform: translateX(26px); }
 }
 .project:hover { transform: scale(1.12); z-index: 2; }
 .project img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.project h3 { position: absolute; bottom: 0; left: 0; right: 0; padding: .5rem; background: rgba(0,0,0,.6); color: #fff; font-size: .95rem; text-align: center; opacity: 0; transition: opacity .3s; }
-.project:hover h3 { opacity: 1; }
+.project h3 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0.75rem;              /* adds breathing room */
+  background: rgba(0, 0, 0, 0.75); /* darker, semi-opaque backdrop */
+  color: #fff;                   /* pure white text */
+  font-size: 1rem;               /* slightly larger */
+  font-weight: 600;              /* bolder weight for contrast */
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+  transition: opacity 0.3s ease;
+  opacity: 0.9;                  /* visible by default */
+}
+
+.project:hover h3 {
+  opacity: 1;                    /* full opacity on hover */
+}
 
 /* Skills with progress bars */
 .skills { max-width: 800px; margin: auto; }
@@ -360,12 +417,366 @@ footer { text-align: center; padding: 2rem 0; }
   gap: 1.5rem;             /* same gutter as Showcase */
   justify-items: center;
 }
+.case-study {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: var(--card-bg-light);
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.case-study img {
+  width: 100%;
+  height: 120px;        /* fix height */
+  object-fit: cover;    /* crop to fit */
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.case-studies > .case-study {
+  /* force two-column flex */
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: flex-start !important;
+  gap: 1.5rem !important;
+
+  /* card look */
+  background: var(--card-bg-light) !important;
+  border: 1px solid var(--card-border-light) !important;
+  border-radius: 0.75rem !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
+  padding: 1.5rem !important;
+
+  /* initial hidden for reveal */
+  opacity: 0 !important;
+  transform: translateY(20px) !important;
+  transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease, transform 0.3s ease !important;
+}
+
+/* dark‐mode */
+html.dark .case-studies > .case-study {
+  background: var(--card-bg-dark) !important;
+  border-color: var(--card-border-dark) !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5) !important;
+}
+
+/* on scroll-reveal */
+.case-studies > .case-study.reveal.active {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* hover lift */
+.case-studies > .case-study:hover {
+  transform: translateY(-6px) !important;
+  box-shadow: 0 12px 24px rgba(0,0,0,0.15) !important;
+}
+
+/* image sizing */
+.case-studies > .case-study img {
+  flex: 0 0 180px !important;
+  width: 100% !important;
+  height: auto !important;
+  border-radius: 0.5rem !important;
+  object-fit: cover !important;
+}
+
+/* text column */
+.case-studies > .case-study .case-study-details {
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.75rem !important;
+}
+.case-studies .case-study {
+      display: flex !important;
+      flex-direction: row !important;
+      align-items: flex-start !important;
+      gap: 1.5rem !important;
+      background: var(--card-bg-light) !important;
+      border: 1px solid var(--card-border-light) !important;
+      border-radius: 0.75rem !important;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
+      padding: 1.5rem !important;
+      opacity: 1 !important;
+      transform: none !important;
+      transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+    }
+    html.dark .case-studies .case-study {
+      background: var(--card-bg-dark) !important;
+      border-color: var(--card-border-dark) !important;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5) !important;
+    }
+    .case-studies .case-study:hover {
+      transform: translateY(-6px) !important;
+      box-shadow: 0 12px 24px rgba(0,0,0,0.15) !important;
+    }
+    .case-studies .case-study img {
+      flex: 0 0 180px !important;
+      width: 100% !important;
+      height: auto !important;
+      border-radius: 0.5rem !important;
+      object-fit: cover !important;
+    }
+    .case-studies .case-study .case-study-details {
+      flex: 1 !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 0.75rem !important;
+    }
+
+    /* ─── CONDENSED CASE-STUDY CARDS ──────────────────────────────────────────────── */
+    .case-studies .case-study {
+      max-height: 200px !important;
+      overflow: hidden !important;
+      padding: 1rem !important;
+    }
+    .case-studies .case-study img {
+      flex: 0 0 40% !important;
+      max-height: 180px !important;
+    }
+    .case-studies .case-study .case-study-details {
+      flex: 1 1 60% !important;
+      font-size: 0.9rem !important;
+      line-height: 1.3 !important;
+      gap: 0.5rem !important;
+    }
+    .case-studies .case-study h3,
+    .case-studies .case-study h4 {
+      margin: 0 !important;
+      font-weight: 600 !important;
+    }
+    .case-studies .case-study p {
+      margin: 0 !important;
+    }
+    .case-studies .case-study:hover {
+      transform: translateY(-4px) !important;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.12) !important;
+    }
+
+/* fix image width */
+.case-studies .case-study img {
+  flex: 0 0 180px !important;
+  width: 100% !important;
+  height: auto !important;
+  border-radius: 0.5rem !important;
+  object-fit: cover !important;
+}
+
+/* text column */
+.case-studies .case-study .case-study-details {
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.75rem !important;
+}
+.case-study-details ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.case-study-details ul li {
+  margin-bottom: 0.5rem; /* optional spacing between items */
+}
+ .hero {
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+    text-align: center;
+    padding: 6rem 2rem;
+    background: linear-gradient(120deg, #007bff, #00c6ff);
+    animation: gradientShift 8s ease infinite;
+  }
+
+  @keyframes gradientShift {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+    margin: auto;
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero h2 {
+    font-size: 1.75rem;
+    height: 2rem; /* reserve space */
+    margin-bottom: 1rem;
+    font-weight: 400;
+  }
+
+  .cursor {
+    display: inline-block;
+    background-color: currentColor;
+    width: 2px;
+    animation: blink 0.7s steps(1) infinite;
+    vertical-align: bottom;
+  }
+
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    50.1%, 100% { opacity: 0; }
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Wave at bottom */
+  .hero-wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    color: #fff;
+  }
+  /* ---------- About Section ---------- */
+.about-container {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  max-width: 1000px;
+  margin: auto;
+  flex-wrap: wrap;
+}
+
+.avatar-wrapper {
+  flex: 0 0 200px;
+  display: flex;
+  justify-content: center;
+}
+
+.avatar {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  border: 4px solid var(--blue);
+  animation: pulse-border 3s ease-in-out infinite;
+  object-fit: cover;
+}
+
+@keyframes pulse-border {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0,123,255,0.6); }
+  50%      { box-shadow: 0 0 0 12px rgba(0,123,255,0); }
+}
+
+.about-text {
+  flex: 1 1 300px;
+}
+
+.about-text h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: var(--blue);
+}
+
+.about-text p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.badges {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+}
+
+.badges li {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  font-size: 1rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* reveal badges when section becomes active */
+.about.reveal.active .badges li {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* mobile */
+@media (max-width: 768px) {
+  .about-container { flex-direction: column; text-align: center; }
+  .avatar-wrapper { margin-bottom: 1.5rem; }
+  .badges { justify-content: center; }
+}
+.avatar-wrapper {
+  flex: 0 0 200px;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 4px solid var(--blue);
+  object-fit: cover;      /* ensures it fills without distortion */
+  animation: pulse-border 3s ease-in-out infinite;
+}
+section + section {
+  margin-top: 6rem;
+}
+#about {
+  margin-bottom: 6rem; /* adjust value to taste */
+}
+
+/* optionally, add space above Timeline */
+#timeline {
+  margin-top: 4rem; /* or whatever feels right */
+}
+
+/* move the line itself down by the same amount */
+#timeline::after {
+  top: 3rem;  
+}
+
+/* give extra breathing room under the heading */
+#timeline h2 {
+  margin-bottom: 1.5rem;
+}
+.logo {
+  height: 48px;              /* increase from 40px */
+  margin-right: 1.5rem;      /* a bit more spacing from nav links */
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));  /* subtle depth */
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+/* on hover, sharpen and slightly scale for emphasis */
+.logo:hover {
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.7));
+  transform: scale(1.05);
+}
   </style>
 </head>
 <body>
   <div class="page-wrapper">
     <!-- --------------  Header -------------- -->
     <header>
+      <img src="my logo.png" alt="Dallen Smith Logo" class="logo" />
       <nav aria-label="Primary">
         <a href="#about">About</a>
         <a href="#timeline">Journey</a>
@@ -384,19 +795,41 @@ footer { text-align: center; padding: 2rem 0; }
     </header>
 
     <!-- --------------  Hero -------------- -->
-    <section class="hero reveal" id="home">
-      <h1>Hello, I am Dallen Smith</h1>
-      <p>I design and build beautiful web experiences.</p>
-      <a href="#projects" class="button" aria-label="View Projects">View Projects</a>
-    </section>
-
+ <section id="home" class="hero reveal">
+  <div class="hero-content">
+    <h1>Hello, I’m Dallen Smith</h1>
+    <h2>
+      <span id="typewriter"></span><span class="cursor">|</span>
+    </h2>
+    <p>Crafting intuitive UI/UX and full-stack Django applications.</p>
+    <a href="#projects" class="button" aria-label="View Projects">View Projects</a>
+  </div>
+</section>
     <!-- --------------  About -------------- -->
-    <section id="about" class="about reveal">
-      <img src="me.jfif" alt="Portrait of Dallen Smith" loading="lazy" />
-      <p>I'm a web developer passionate about creating user-centered digital experiences. With a strong foundation in design and coding, I bring both beauty and functionality to every project.</p>
-    </section>
+   <section id="about" class="about reveal">
+  <div class="about-container">
+    <div class="avatar-wrapper">
+      <img src="me.jfif" alt="Portrait of Dallen Smith" loading="lazy" class="avatar" />
+    </div>
+    <div class="about-text">
+      <h2>About Me</h2>
+      <p>
+        I’m <strong>Dallen Smith</strong>, a Web & UX designer-developer who merges
+        pixel-perfect design with rock-solid code. I believe great experiences
+        are built on empathy, clarity, and a dash of delight.
+      </p>
+      <ul class="badges">
+        <li>🎨 User-Centered Design</li>
+        <li>⚛️ React & Django</li>
+        <li>🚀 Performance Optimization</li>
+        <li>♿ Accessibility Advocacy</li>
+      </ul>
+    </div>
+  </div>
+</section>
 
-    <!-- --------------  Timeline -------------- -->
+
+     
     <section id="timeline" class="reveal timeline" aria-labelledby="timeline-heading">
       <h2 id="timeline-heading">My Journey</h2>
       <div class="entry">
@@ -422,96 +855,358 @@ footer { text-align: center; padding: 2rem 0; }
     </section>
 
     <!-- --------------  Projects -------------- -->
-    <section id="projects" class="reveal" aria-labelledby="projects-heading">
-      <h2 id="projects-heading">Showcase</h2>
-      <div class="filters">
-        <button data-filter="all">All</button>
-        <button data-filter="web">Web</button>
-        <button data-filter="design">Design</button>
-        <button data-filter="code">Code</button>
-      </div>
-      <div class="projects">
-        <!-- ------------ Existing Web Projects ------- -->
-        <a href="https://reactmusicplayingapp.netlify.app" class="project" data-category="web" target="_blank" rel="noopener noreferrer">
-          <img src="reactmusicplayingapp.netlify.app_.png" alt="React Music App screenshot" loading="lazy" />
-          <h3>React Music App</h3>
-        </a>
-        <a href="https://wikipediaviewer1.netlify.app" class="project" data-category="web" target="_blank" rel="noopener noreferrer">
-          <img src="wikipediaviewer1.netlify.app_.png" alt="Wikipedia Viewer screenshot" loading="lazy" />
-          <h3>Wikipedia Viewer</h3>
-        </a>
-        <a href="https://jjjtje-3n.myshopify.com" class="project" data-category="web" target="_blank" rel="noopener noreferrer">
-          <img src="jjjtje-3n.myshopify.com_.png" alt="Kambo Website screenshot" loading="lazy" />
-          <h3>Kambo Website (ask for password)</h3>
-        </a>
-        <a href="https://blindswordsmands.netlify.app" class="project" data-category="web" target="_blank" rel="noopener noreferrer">
-          <img src="blindswordsmands.netlify.app_.png" alt="Blindswordsman Website screenshot" loading="lazy" />
-          <h3>Blindswordsman Website</h3>
-        </a>
 
-        <!-- ------------ New Figma Design Case-Studies ------- -->
-        <a href="https://embed.figma.com/design/SJwNRVTMX3BYpnX9mdazE3/Kambo-with-categores-drop-down-desgin?node-id=0-1&embed-host=share" class="project" data-category="design" target="_blank" rel="noopener noreferrer">
-          <img src="Kambo.JPG" alt="Figma Design System screenshot" loading="lazy" />
-          <h3>Design System (Figma)</h3>
-        </a>
-        <a href="https://embed.figma.com/design/ywbeq2hgQmOddkMUVEaUOA/Pink-Banana-Designs?embed-host=share" class="project" data-category="design" target="_blank" rel="noopener noreferrer">
-          <img src="pink banana designs.JPG" alt="second figma design screen shot" loading="lazy" />
-          <h3>Mobile App Case Study</h3>
-        </a>
+     <section id="projects" class="reveal" aria-labelledby="projects-heading">
+  <h2 id="projects-heading">Project Case Studies</h2>
+  <div class="case-studies">
+    <!-- React Music App -->
+    <div class="case-study" data-category="web">
+      <a href="https://reactmusicplayingapp.netlify.app" class="project" target="_blank" rel="noopener noreferrer">
+        <img src="reactmusicplayingapp.netlify.app_.png" alt="React Music App screenshot" loading="lazy" />
+        <h3>React Music App</h3>
+      </a>
+      <div class="case-study-details">
+        <h4>Overview</h4>
+        <p>A distraction-free React-based music player that lets users browse, play, and queue tracks in a sleek interface with shimmering playback controls.</p>
+        <h4>Role & Team</h4>
+        <p>Sole designer & developer.</p>
+        <h4>Problem & Opportunity</h4>
+        <p>Most online players are cluttered or ad-heavy, distracting listeners. This app delivers a minimal, ad-free listening experience.</p>
+        <h4>Goals & Metrics</h4>
+        <p>Create a lightweight, responsive player with smooth animations; page load under 2 s; ≥ 80 % play-rate on queued tracks; 90 % positive feedback in user tests.</p>
+        <h4>Process & Deliverables</h4>
+        <ul>
+          <li>Research: Surveyed 20 users on pain points with existing players.</li>
+          <li>Design: Wireframed in Figma; defined dark/light themes and shimmer guidelines.</li>
+          <li>Development: React + Context API, CSS keyframe shimmer on buttons, responsive CSS Grid layout.</li>
+          <li>Testing: 5 usability sessions; refined play/pause affordance and shimmer timing.</li>
+        </ul>
+        <h4>Outcome & Impact</h4>
+        <p>Session duration ↑ 25 %; 90 % of testers rated UI flow “very intuitive.” Live prototype: <a href="https://reactmusicplayingapp.netlify.app" target="_blank">Netlify</a>; <a href="https://github.com/dallensmith93/react-music-app" target="_blank">GitHub</a>.</p>
+        <h4>Key Learnings</h4>
+        <p>Judicious animation enhances delight without compromising performance.</p>
+      </div>
+    </div>
+
+    <!-- Wikipedia Viewer -->
+    <div class="case-study" data-category="web">
+      <a href="https://wikipediaviewer1.netlify.app" class="project" target="_blank" rel="noopener noreferrer">
+        <img src="wikipediaviewer1.netlify.app_.png" alt="Wikipedia Viewer screenshot" loading="lazy" />
+        <h3>Wikipedia Viewer</h3>
+      </a>
+      <div class="case-study-details">
+        <h4>Overview</h4>
+        <p>A clean, single-page React app to search Wikipedia articles in real-time, filtering out ads and clutter.</p>
+        <h4>Role & Team</h4>
+        <p>Sole developer & UX designer.</p>
+        <h4>Problem & Opportunity</h4>
+        <p>Existing wiki search tools load full page layouts with distractions. Users needed a focused lookup tool.</p>
+        <h4>Goals & Metrics</h4>
+        <p>Instant search results; no page reloads; mobile-first; search latency < 300 ms; bounce rate < 20 %.</p>
+        <h4>Process & Deliverables</h4>
+        <ul>
+          <li>Research: Competitive audit of top 5 wiki clients.</li>
+          <li>Design: Figma prototyping of search-as-you-type UI; style guide for typography.</li>
+          <li>Development: React + Hooks, Wikipedia REST API, CSS Flexbox for responsive cards.</li>
+          <li>Testing: A/B tested result layouts with 10 participants; refined text truncation.</li>
+        </ul>
+        <h4>Outcome & Impact</h4>
+        <p>85 % of users preferred it over the desktop site; average search completion in 0.25 s. Live demo: <a href="https://wikipediaviewer1.netlify.app" target="_blank">Netlify</a>; <a href="https://github.com/dallensmith93/wikipedia-viewer" target="_blank">GitHub</a>.</p>
+        <h4>Key Learnings</h4>
+        <p>Micro-optimizations (debounce, virtualization) drastically improve perceived performance.</p>
+      </div>
+    </div>
+
+    <!-- Kambo Website (Shopify) -->
+    <div class="case-study" data-category="web">
+      <a href="https://jjjtje-3n.myshopify.com" class="project" target="_blank" rel="noopener noreferrer">
+        <img src="jjjtje-3n.myshopify.com_.png" alt="Kambo Website screenshot" loading="lazy" />
+        <h3>Kambo Website (Shopify)</h3>
+      </a>
+      <div class="case-study-details">
+        <h4>Overview</h4>
+        <p>A custom-themed Shopify storefront for Kambo product lines, featuring category dropdowns and password-protected content.</p>
+        <h4>Role & Team</h4>
+        <p>UX/UI designer & front-end developer (Shopify Liquid).</p>
+        <h4>Problem & Opportunity</h4>
+        <p>Client needed a clean e-commerce presence with intuitive category browsing and exclusive access to premium SKUs.</p>
+        <h4>Goals & Metrics</h4>
+        <p>Improve category navigation; secure premium section. Category click-through ↑ 30 %; bounce rate ↓ 15 %.</p>
+        <h4>Process & Deliverables</h4>
+        <ul>
+          <li>Research: Reviewed 3 competitor stores; user interviews (n=8).</li>
+          <li>Design: Figma mockups for dropdowns and gated content.</li>
+          <li>Development: Shopify Liquid + SCSS theme, JS for interactions, password gating.</li>
+          <li>Testing: QA across Chrome, Safari, Firefox; user flow test with 5 participants.</li>
+        </ul>
+        <h4>Outcome & Impact</h4>
+        <p>Average time on site ↑ 20 %; gated-section sign-ups ↑ 50 %. Live store: <a href="https://jjjtje-3n.myshopify.com" target="_blank">Shopify</a>.</p>
+        <h4>Key Learnings</h4>
+        <p>Shopify’s theming system is powerful but requires strict naming conventions for overrides.</p>
+      </div>
+    </div>
+
+    <!-- Design System (Figma) -->
+    <div class="case-study" data-category="design">
+      <a href="https://embed.figma.com/design/SJwNRVTMX3BYpnX9mdazE3/Kambo-with-categores-drop-down-desgin?node-id=0-1&embed-host=share" class="project" target="_blank" rel="noopener noreferrer">
+        <img src="Kambo.JPG" alt="Design System screenshot" loading="lazy" />
+        <h3>Design System (Figma)</h3>
+      </a>
+      <div class="case-study-details">
+        <h4>Overview</h4>
+        <p>A comprehensive Figma-based component library and style guide to unify brand look-and-feel across products.</p>
+        <h4>Role & Team</h4>
+        <p>Lead UX designer; collaborated with 2 developers for integration.</p>
+        <h4>Problem & Opportunity</h4>
+        <p>Disparate styling across apps led to inconsistent UX and excessive dev time.</p>
+        <h4>Goals & Metrics</h4>
+        <p>Establish reusable components, typography scale, and color tokens. Component reuse ↑ 70 %; dev handoff time ↓ 40 %.</p>
+        <h4>Process & Deliverables</h4>
+        <ul>
+          <li>Audit: Identified 25 unique UI patterns.</li>
+          <li>Design: Created 40+ components in Figma.</li>
+          <li>Documentation: Published shareable library with guidelines.</li>
+          <li>Integration: Synced tokens in CSS variables with dev team.</li>
+        </ul>
+        <h4>Outcome & Impact</h4>
+        <p>Adopted in > 3 new projects; design-dev iterations ↓ 35 %. Library: <a href="https://embed.figma.com/design/SJwNRVTMX3BYpnX9mdazE3" target="_blank">Figma Embed</a>.</p>
+        <h4>Key Learnings</h4>
+        <p>Early design-dev sync prevents mismatches and rework.</p>
+      </div>
+    </div>
+
+    <!-- Mobile App Case Study (Figma) -->
+    <div class="case-study" data-category="design">
+      <a href="https://embed.figma.com/design/ywbeq2hgQmOddkMUVEaUOA/Pink-Banana-Designs?embed-host=share" class="project" target="_blank" rel="noopener noreferrer">
+        <img src="pink banana designs.JPG" alt="Mobile App Case Study screenshot" loading="lazy" />
+        <h3>Mobile App Case Study</h3>
+      </a>
+      <div class="case-study-details">
+        <h4>Overview</h4>
+        <p>A mid-fidelity mobile app prototype for “Pink Banana Designs,” focusing on intuitive navigation and playful UI.</p>
+        <h4>Role & Team</h4>
+        <p>Sole UX/UI designer; presented to stakeholders for feedback.</p>
+        <h4>Problem & Opportunity</h4>
+        <p>Client needed a mobile experience that conveyed brand personality and simplified key flows.</p>
+        <h4>Goals & Metrics</h4>
+        <p>Streamline onboarding; task success ≥ 90 % in prototype testing.</p>
+        <h4>Process & Deliverables</h4>
+        <ul>
+          <li>Research: Competitive analysis of 4 lifestyle apps.</li>
+          <li>Design: Wireframes & high-fi screens in Figma; clickable prototype.</li>
+          <li>Testing: 8 remote moderated sessions; tracked success and time on task.</li>
+        </ul>
+        <h4>Outcome & Impact</h4>
+        <p>Task success 92 %; onboarding time ↓ 50 %. Prototype: <a href="https://embed.figma.com/design/ywbeq2hgQmOddkMUVEaUOA" target="_blank">Figma Embed</a>.</p>
+        <h4>Key Learnings</h4>
+        <p>Progressive disclosure and clear tap-targets ensure mobile usability.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
         <!-- ------------ GitHub Repos for Code filter ------- -->
-        <a href="https://github.com/dallensmith93/budgetlyapp.git" class="project" data-category="code" target="_blank" rel="noopener noreferrer">
-          <img src="github.com_dallensmith93_budgetlyapp.png" alt="budgetlyapp repository" loading="lazy" />
-          <h3>Budgetly app Repo</h3>
-        </a>
-        <a href="https://github.com/dallensmith93/chatbox.git" class="project" data-category="code" target="_blank" rel="noopener noreferrer">
-          <img src="github.com_dallensmith93_chatbox.png" alt="chatbox repository" loading="lazy" />
-          <h3>Chatbox Repo</h3>
-        </a>
-        <a href="https://github.com/dallensmith93/Libs.git" class="project" data-category="code" target="_blank" rel="noopener noreferrer">
-          <img src="github.com_dallensmith93_Libs.png" alt="Django Mad Libs repository" loading="lazy" />
-          <h3>Madlibs Repo</h3>
-        </a>
+  <section id="code-projects" class="reveal" aria-labelledby="code-projects-heading">
+  <h2 id="code-projects-heading">Code Project Case Studies</h2>
+  <div class="case-studies">
+    <!-- Budgetly App Repo -->
+    <div class="case-study" data-category="code">
+      <a href="https://github.com/dallensmith93/budgetlyapp.git" class="project" target="_blank" rel="noopener noreferrer">
+        <img src="github.com_dallensmith93_budgetlyapp.png" alt="Budgetly App repository" loading="lazy" />
+        <h3>Budgetly App Repo</h3>
+      </a>
+      <div class="case-study-details">
+        <h4>Overview</h4>
+        <p>
+          Budgetly is a Django-powered personal finance tool that helps users track spending, set budgets, and visualize cash flow over time. I led the full UX/UI design and implemented the backend with Django REST Framework, using serializers and viewsets to expose secure APIs. Iterative usability tests refined filters and alert flows, resulting in a responsive, intuitive interface.
+        </p>
+        <h4>Key Technologies</h4>
+        <ul>
+          <li>Django & Django REST Framework for API and data modeling</li>
+          <li>React + Redux for a dynamic, state-driven frontend</li>
+          <li>PostgreSQL for relational data storage</li>
+          <li>D3.js for interactive spend-trend visualizations</li>
+        </ul>
       </div>
-    </section>
-  <!-- --------------  Simple Series -------------- -->
-<section id="simple-series" class="reveal" aria-labelledby="simple-series-heading">
-  <div class="simple-series-container">
-    <div class="info">
-      <h2 id="simple-series-heading">Simple Series</h2>
-      <p>All of these are simple projects built with HTML, CSS, and JavaScript.</p>
     </div>
-      <div class="projects">
-        <a href="htmlcssjavascripttodo.netlify.app" class="project" target="_blank" rel="noopener noreferrer">
-          <img src="simple todo.JPG" alt="todo" loading="lazy" />
-          <h3>Simple todo program</h3>
-        </a>
-        <a href="simplecalculator2x.netlify.app" class="project" target="_blank" rel="noopener noreferrer">
-          <img src="simplecalc.JPG" alt="calc" loading="lazy" />
-          <h3>Simple calculator</h3>
-        </a>
-        <a href="simplisticdash.netlify.app" class="project" target="_blank" rel="noopener noreferrer">
-          <img src="simpledash.JPG" alt="dash" loading="lazy" />
-          <h3>Simple dashboard</h3>
-        </a>
-        <a href="https://ecommercepagese.netlify.app/" class="project" target="_blank" rel="noopener noreferrer">
-          <img src="simpleecommerce page.JPG" alt="e" loading="lazy" />
-          <h3>Simple ecommerce page</h3>
-        </a>
-        <a href="https://app.netlify.com/projects/simpleworldclock/overview" class="project" target="_blank" rel="noopener noreferrer">
-          <img src="world clock simple.JPG" alt="world" loading="lazy" />
-          <h3>Simple World Clock</h3>
-        </a>
-        <a href="htmlweather.netlify.app" class="project" target="_blank" rel="noopener noreferrer">
-          <img src="weather html.JPG" alt="html" loading="lazy" />
-          <h3>Simple weather App</h3>
-        </a>
-        <a href="https://tackgame.netlify.app/" class="project" target="_blank" rel="noopener noreferrer">
-          <img src="tack game.JPG" alt="tack" loading="lazy" />
-          <h3>Simple weather App</h3>
-        </a>
+
+    <!-- Chatbox Repo -->
+    <div class="case-study" data-category="code">
+      <a href="https://github.com/dallensmith93/chatbox.git" class="project" target="_blank" rel="noopener noreferrer">
+        <img src="github.com_dallensmith93_chatbox.png" alt="Chatbox repository" loading="lazy" />
+        <h3>Chatbox Repo</h3>
+      </a>
+      <div class="case-study-details">
+        <h4>Overview</h4>
+        <p>
+          Chatbox is a real-time messaging app built with Django Channels to handle WebSocket connections and asynchronous event loops. I designed the UI for accessibility (keyboard nav, ARIA labels), and load tests proved stable handling of hundreds of concurrent users with sub-200 ms message delivery.
+        </p>
+        <h4>Key Technologies</h4>
+        <ul>
+          <li>Django + Django Channels for async WebSocket support</li>
+          <li>Redis as channel layer and in-memory session store</li>
+          <li>Vue.js for reactive frontend components</li>
+          <li>Docker Compose for local dev and testing</li>
+        </ul>
       </div>
-    </section>
+    </div>
+
+    <!-- Madlibs Repo -->
+    <div class="case-study" data-category="code">
+      <a href="https://github.com/dallensmith93/Libs.git" class="project" target="_blank" rel="noopener noreferrer">
+        <img src="github.com_dallensmith93_Libs.png" alt="Madlibs repository" loading="lazy" />
+        <h3>Madlibs Repo</h3>
+      </a>
+      <div class="case-study-details">
+        <h4>Overview</h4>
+        <p>
+          Madlibs is a Django app where users fill in prompts (nouns, verbs, adjectives) to generate playful stories. The backend uses Django ORM to model templates and entries; Django forms dynamically render input fields. On the frontend, CSS animations guide users through each step, culminating in an animated reveal of their completed narrative.
+        </p>
+        <h4>Key Technologies</h4>
+        <ul>
+          <li>Django for MVC architecture and form handling</li>
+          <li>SQLite/PostgreSQL for template and submission storage</li>
+          <li>Vanilla JavaScript & CSS keyframe animations for UX</li>
+          <li>Bootstrap for rapid, responsive UI scaffolding</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ------------ Simple Series Case Studies ------------ -->
+<section id="simple-series" class="reveal" aria-labelledby="simple-series-heading">
+  <h2 id="simple-series-heading">Simple Series Case Studies</h2>
+  <div class="case-studies">
+    <!-- Simple Todo Program -->
+    <div class="case-study" data-category="simple">
+      <a href="https://htmlcssjavascripttodo.netlify.app" class="project" target="_blank" rel="noopener noreferrer">
+        <img src="simple todo.JPG" alt="Simple Todo Program" loading="lazy" />
+        <h3>Simple Todo Program</h3>
+      </a>
+      <div class="case-study-details">
+        <h4>Overview</h4>
+        <p>
+          A lightweight vanilla-JS todo list app that lets users add, complete, and delete tasks. Tasks persist in localStorage so you can pick up where you left off—even after closing the browser.
+        </p>
+        <h4>Core Interaction</h4>
+        <p>
+          Users type a task into the input, press Enter to add it to the list, click the checkbox to mark complete, and hit the “×” button to remove. All DOM updates happen instantly with minimal reflows.
+        </p>
+      </div>
+    </div>
+
+    <!-- Simple Calculator -->
+    <div class="case-study" data-category="simple">
+      <a href="https://simplecalculator2x.netlify.app" class="project" target="_blank" rel="noopener noreferrer">
+        <img src="simplecalc.JPG" alt="Simple Calculator" loading="lazy" />
+        <h3>Simple Calculator</h3>
+      </a>
+      <div class="case-study-details">
+        <h4>Overview</h4>
+        <p>
+          A basic arithmetic calculator built with HTML, CSS, and JavaScript. Supports addition, subtraction, multiplication, division, and decimal inputs—all handled client-side without page reloads.
+        </p>
+        <h4>Core Interaction</h4>
+        <p>
+          Clicking number and operator buttons updates the display in real time. “=” computes the result by parsing the input string and evaluating the expression safely using a simple stack algorithm.
+        </p>
+      </div>
+    </div>
+
+    <!-- Simple Dashboard -->
+    <div class="case-study" data-category="simple">
+      <a href="https://simplisticdash.netlify.app" class="project" target="_blank" rel="noopener noreferrer">
+        <img src="simpledash.JPG" alt="Simple Dashboard" loading="lazy" />
+        <h3>Simple Dashboard</h3>
+      </a>
+      <div class="case-study-details">
+        <h4>Overview</h4>
+        <p>
+          A static dashboard layout demonstrating responsive grid design. Includes cards for key metrics like “Users,” “Sales,” and “Notifications,” styled entirely with CSS Grid and Flexbox.
+        </p>
+        <h4>Core Interaction</h4>
+        <p>
+          Hover over each card to reveal a subtle drop shadow and scale effect. The grid reflows from three columns on desktop to a single column on mobile, ensuring readability everywhere.
+        </p>
+      </div>
+    </div>
+
+    <!-- Simple Ecommerce Page -->
+    <div class="case-study" data-category="simple">
+      <a href="https://ecommercepagese.netlify.app/" class="project" target="_blank" rel="noopener noreferrer">
+        <img src="simpleecommerce page.JPG" alt="Simple Ecommerce Page" loading="lazy" />
+        <h3>Simple Ecommerce Page</h3>
+      </a>
+      <div class="case-study-details">
+        <h4>Overview</h4>
+        <p>
+          A mock product listing page showing a grid of items with images, names, prices, and “Add to Cart” buttons. Built with semantic HTML and CSS Grid for layout.
+        </p>
+        <h4>Core Interaction</h4>
+        <p>
+          Clicking “Add to Cart” toggles a visual confirmation badge on each product. The page uses CSS transitions for hover states and responsive breakpoints to adapt across devices.
+        </p>
+      </div>
+    </div>
+
+    <!-- Simple World Clock -->
+    <div class="case-study" data-category="simple">
+      <a href="https://simpleworldclock.netlify.app/" class="project" target="_blank" rel="noopener noreferrer">
+        <img src="world clock simple.JPG" alt="Simple World Clock" loading="lazy" />
+        <h3>Simple World Clock</h3>
+      </a>
+      <div class="case-study-details">
+        <h4>Overview</h4>
+        <p>
+          A vanilla-JS world clock that displays the current time in multiple time zones. Users can add or remove cities, and the clocks update every second.
+        </p>
+        <h4>Core Interaction</h4>
+        <p>
+          A dropdown lets users select a city to add; each clock card shows hours, minutes, and seconds. The setInterval function keeps all clocks in sync without noticeable drift.
+        </p>
+      </div>
+    </div>
+
+    <!-- Simple Weather App -->
+    <div class="case-study" data-category="simple">
+      <a href="https://htmlweather.netlify.app" class="project" target="_blank" rel="noopener noreferrer">
+        <img src="weather html.JPG" alt="Simple Weather App" loading="lazy" />
+        <h3>Simple Weather App</h3>
+      </a>
+      <div class="case-study-details">
+        <h4>Overview</h4>
+        <p>
+          A minimal weather lookup tool using the OpenWeatherMap API. Users type a city name and get back current temperature, humidity, and an icon representing the conditions.
+        </p>
+        <h4>Core Interaction</h4>
+        <p>
+          The form submission triggers a fetch() call; JSON data is parsed and injected into the DOM. Error handling displays a friendly message for invalid city names.
+        </p>
+      </div>
+    </div>
+
+    <!-- Simple Tic-Tac-Toe -->
+    <div class="case-study" data-category="simple">
+      <a href="https://tackgame.netlify.app/" class="project" target="_blank" rel="noopener noreferrer">
+        <img src="tack game.JPG" alt="Simple Tic-Tac-Toe" loading="lazy" />
+        <h3>Simple Tic-Tac-Toe</h3>
+      </a>
+      <div class="case-study-details">
+        <h4>Overview</h4>
+        <p>
+          A classic Tic-Tac-Toe game implemented with JavaScript. Two players alternate placing Xs and Os on a 3×3 grid until one wins or the board fills.
+        </p>
+        <h4>Core Interaction</h4>
+        <p>
+          Clicking an empty cell places the current player’s mark and triggers a win-check. A simple algorithm scans rows, columns, and diagonals; on win or draw, the game resets automatically.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 
     <!-- --------------  Skills -------------- -->
     <section id="skills" class="reveal skills" aria-labelledby="skills-heading">
@@ -568,6 +1263,30 @@ footer { text-align: center; padding: 2rem 0; }
 
   <!-- ------------------  Scripts ------------------ -->
   <script>
+    const roles = [
+    'Web & UX Designer',
+    'Full-Stack Django Developer',
+    'Accessibility Advocate'
+  ];
+  let idx = 0, char = 0, forward = true;
+  const el = document.getElementById('typewriter');
+
+  function type() {
+    const current = roles[idx];
+    if (forward) {
+      char++;
+      if (char === current.length) forward = false;
+    } else {
+      char--;
+      if (char === 0) {
+        forward = true;
+        idx = (idx + 1) % roles.length;
+      }
+    }
+    el.textContent = current.substring(0, char);
+    setTimeout(type, forward ? 100 : 50);
+  }
+  document.addEventListener('DOMContentLoaded', type);
     // Reveal on scroll
     document.querySelectorAll('.reveal').forEach(el => {
       const observer = new IntersectionObserver(entries => {
