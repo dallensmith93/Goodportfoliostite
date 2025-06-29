@@ -22,6 +22,18 @@
   /* Primary gradient (solid blue now) */
   --primary-start: var(--blue);
   --primary-end:   var(--blue);
+  --card-bg-light: #ffffff;      /* pure white card background */
+  --card-border-light: #e0e0e0;  /* soft light-gray border */
+}
+html.light .case-study {
+  background: var(--card-bg-light);
+  border: 1px solid var(--card-border-light);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Optional: give the rectangle variant a slightly deeper border */
+html.light .case-study.rectangle {
+  border-color: #c0c0c0;
 }
 .case-study {
   background: var(--card-bg-light);
@@ -31,7 +43,9 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
+html.dark .case-study {
+  border: none !important;
+}
 /* Dark‐mode override */
 html.dark .case-study {
   background: var(--card-bg-dark);
@@ -770,29 +784,65 @@ section + section {
   filter: drop-shadow(0 4px 8px rgba(0,0,0,0.7));
   transform: scale(1.05);
 }
+@media (max-width: 768px) {
+  header {
+    /* keep it sticky and high over content */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem 0;
+    padding: 0.5rem 0;
+  }
+
+  nav a {
+    /* allow two items per row */
+    flex: 1 1 45%;
+    text-align: center;
+    padding: 0.5rem 0;
+    font-size: 1rem;
+  }
+
+  /* Make the CV button span full width below the links */
+  .controls {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.5rem;
+  }
+  .controls .resume {
+    flex: 1 1 100%;
+    margin: 0.25rem 0;
+  }
+}
+
   </style>
 </head>
 <body>
   <div class="page-wrapper">
     <!-- --------------  Header -------------- -->
-    <header>
-      <img src="my logo.png" alt="Dallen Smith Logo" class="logo" />
-      <nav aria-label="Primary">
-        <a href="#about">About</a>
-        <a href="#timeline">Journey</a>
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <div class="controls">
-        <a href="Dallen-Smith- Web Developer.pdf" class="resume" download>Download CV</a>
-        <!-- Theme switch -->
-        <label class="theme-switch">
-          <input type="checkbox" id="theme-toggle" aria-label="Toggle theme" />
-          <span class="slider"></span>
-        </label>
-      </div>
-    </header>
+  <header>
+  <img src="my logo.png" alt="Dallen Smith Logo" class="logo" />
+  <nav aria-label="Primary">
+    <a href="index.html">Home</a>
+    <a href="#projects">Projects</a>
+    <a href="#code-projects">Code Projects</a>
+    <a href="#about">About</a>
+    <a href="#simple-series">Simple Series</a>
+  </nav>
+  <div class="controls">
+    <a href="Dallen-Smith- Web Developer.pdf" class="resume" download>Download CV</a>
+    <!-- Theme switch -->
+    <label class="theme-switch">
+      <input type="checkbox" id="theme-toggle" aria-label="Toggle theme" />
+      <span class="slider"></span>
+    </label>
+  </div>
+</header>
 
     <!-- --------------  Hero -------------- -->
  <section id="home" class="hero reveal">
@@ -801,7 +851,7 @@ section + section {
     <h2>
       <span id="typewriter"></span><span class="cursor">|</span>
     </h2>
-    <p>Crafting intuitive UI/UX and full-stack Django applications.</p>
+    <p>Crafting intuitive UI/UX and full-stack applications.</p>
     <a href="#projects" class="button" aria-label="View Projects">View Projects</a>
   </div>
 </section>
