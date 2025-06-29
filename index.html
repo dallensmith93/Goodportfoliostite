@@ -785,41 +785,54 @@ section + section {
   transform: scale(1.05);
 }
 @media (max-width: 768px) {
-  header {
-    /* keep it sticky and high over content */
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+  /* 1) Remove the central line */
+  #timeline::after {
+    display: none !important;
   }
 
-  nav {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 0.5rem 0;
-    padding: 0.5rem 0;
+  /* 2) Make each entry a full-width card */
+  .entry {
+    position: relative !important;
+    width: 100% !important;
+    left: 0 !important;
+    padding: 1rem 1rem 1rem 2.5rem !important;
+    margin-bottom: 1.5rem !important;
+    text-align: left !important;
+    background: rgba(255,255,255,0.03);
+    border-radius: 0.5rem;
   }
 
-  nav a {
-    /* allow two items per row */
-    flex: 1 1 45%;
-    text-align: center;
-    padding: 0.5rem 0;
-    font-size: 1rem;
+  /* 3) Replace the old dot with a simpler circle at the top-left of each card */
+  .entry::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 1rem !important;
+    left: 1rem !important;
+    width: 10px !important;
+    height: 10px !important;
+    background: var(--blue) !important;
+    border-radius: 50% !important;
+    box-shadow: none !important;
+    transform: none !important;
   }
 
-  /* Make the CV button span full width below the links */
-  .controls {
-    display: flex;
-    flex-direction: column;
-    margin-top: 0.5rem;
+  /* Tweak typography inside each card */
+  .entry h3 {
+    margin: 0 0 .25rem 0 !important;
+    font-size: 1.1rem !important;
   }
-  .controls .resume {
-    flex: 1 1 100%;
-    margin: 0.25rem 0;
+  .entry time {
+    display: block !important;
+    font-size: .9rem !important;
+    color: #888 !important;
+    margin-bottom: .75rem !important;
+  }
+  .entry p {
+    font-size: .95rem !important;
+    line-height: 1.4 !important;
+    margin: 0 !important;
   }
 }
-
   </style>
 </head>
 <body>
