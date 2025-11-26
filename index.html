@@ -833,6 +833,7 @@ section + section {
     margin: 0 !important;
   }
 }
+
   </style>
 </head>
 <body>
@@ -1069,9 +1070,11 @@ section + section {
 </section>
 
         <!-- ------------ GitHub Repos for Code filter ------- -->
-  <section id="code-projects" class="reveal" aria-labelledby="code-projects-heading">
+<section id="code-projects" class="reveal" aria-labelledby="code-projects-heading">
   <h2 id="code-projects-heading">Code Project Case Studies</h2>
+
   <div class="case-studies">
+
     <!-- Budgetly App Repo -->
     <div class="case-study" data-category="code">
       <a href="https://github.com/dallensmith93/budgetlyapp.git" class="project" target="_blank" rel="noopener noreferrer">
@@ -1085,10 +1088,9 @@ section + section {
         </p>
         <h4>Key Technologies</h4>
         <ul>
-          <li>Django & Django REST Framework for API and data modeling</li>
+          <li>Django &amp; Django REST Framework for API and data modeling</li>
           <li>React + Redux for a dynamic, state-driven frontend</li>
           <li>PostgreSQL for relational data storage</li>
-          <li>D3.js for interactive spend-trend visualizations</li>
         </ul>
       </div>
     </div>
@@ -1109,7 +1111,6 @@ section + section {
           <li>Django + Django Channels for async WebSocket support</li>
           <li>Redis as channel layer and in-memory session store</li>
           <li>Vue.js for reactive frontend components</li>
-          <li>Docker Compose for local dev and testing</li>
         </ul>
       </div>
     </div>
@@ -1129,13 +1130,58 @@ section + section {
         <ul>
           <li>Django for MVC architecture and form handling</li>
           <li>SQLite/PostgreSQL for template and submission storage</li>
-          <li>Vanilla JavaScript & CSS keyframe animations for UX</li>
-          <li>Bootstrap for rapid, responsive UI scaffolding</li>
+          <li>Vanilla JavaScript &amp; CSS keyframe animations for UX</li>
         </ul>
       </div>
     </div>
+
+    <!-- WordPress Mini App -->
+    <div class="case-study" data-category="code">
+      <a href="https://oz-wp-project.netlify.app" class="project" target="_blank" rel="noopener noreferrer">
+        <img src="wordpresssite.JPG" alt="WordPress Mini App Screenshot" loading="lazy" />
+        <h3>WordPress Mini App</h3>
+      </a>
+      <div class="case-study-details">
+        <h4>Overview</h4>
+        <p>
+          A custom WordPress theme built from scratch using modern PHP templating,
+          custom loops, and dynamic archive pages. It showcases a clean, app-like
+          UI with dealership-style inventory layouts and smooth hover interactions.
+        </p>
+        <h4>Key Technologies</h4>
+        <ul>
+          <li>WordPress Theme Development with PHP</li>
+          <li>Custom Post Types &amp; WP_Query loops</li>
+          <li>Template hierarchy &amp; custom archive pages</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- PHP VGK App -->
+    <div class="case-study" data-category="code">
+      <a href="https://github.com/dallensmith93/vgk-php-app" class="project" target="_blank" rel="noopener noreferrer">
+        <img src="php vgk playoffs.JPG" alt="PHP VGK App Screenshot" loading="lazy" />
+        <h3>PHP VGK App</h3>
+      </a>
+      <div class="case-study-details">
+        <h4>Overview</h4>
+        <p>
+          A custom PHP + MySQL application built to manage roster data for a
+          VGK-themed sports dashboard. It supports full CRUD, status flags like
+          “gone”, and dynamic row creation in the admin UI powered by JavaScript.
+        </p>
+        <h4>Key Technologies</h4>
+        <ul>
+          <li>Pure PHP 8 (no frameworks)</li>
+          <li>MySQL / MariaDB relational database</li>
+          <li>Prepared statements &amp; server-side validation</li>
+        </ul>
+      </div>
+    </div>
+
   </div>
 </section>
+
 
 <!-- ------------ Simple Series Case Studies ------------ -->
 <section id="simple-series" class="reveal" aria-labelledby="simple-series-heading">
