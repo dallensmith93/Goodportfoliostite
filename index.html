@@ -1475,66 +1475,81 @@ section + section {
 <!-- --------------  React Native projects -------------- -->
 
  <!-- React Native Projects -->
-<section>
- <div class="case-study horizontal">
-  <a href="https://github.com/dallensmith93/PrepTimerFix.git" class="project" target="_blank" rel="noopener noreferrer">
-    <img src="preptimer.JPG" alt="Prep Timer App" loading="lazy" />
-  </a>
+<!-- React Native Projects (Screenshot-style cards) -->
+<section class="projects-grid">
 
-  <div class="case-study-details">
-    <h3>Prep Timer (React Native)</h3>
+  <!-- Prep Timer -->
+  <div class="case-study card-row" data-category="mobile">
+    <div class="card-left">
+      <a href="https://github.com/dallensmith93/PrepTimerFix.git" target="_blank" rel="noopener noreferrer" class="thumb-link">
+        <div class="thumb-frame">
+          <img src="preptimerractnative.JPG" alt="Prep Timer App" loading="lazy" />
+        </div>
+      </a>
+      <div class="thumb-title">Prep Timer (React Native)</div>
+    </div>
 
-    <h4>Overview</h4>
-    <p>
-      A simple interview preparation timer built with React Native. Users can start, pause, and reset a countdown timer to practice timed responses.
-    </p>
+    <div class="card-right">
+      <h4>Overview</h4>
+      <p>
+        A simple interview preparation timer built with React Native. Users can start, pause, and reset a countdown timer to practice timed responses.
+      </p>
 
-    <h4>Core Interaction</h4>
-    <p>
-      The timer uses React hooks to manage state and intervals. Users can toggle between running and paused states, with real-time countdown updates.
-    </p>
+      <h4>Core Interaction</h4>
+      <p>
+        Uses React hooks to manage timer state and interval updates. The countdown updates in real time, and users can toggle between running and paused states.
+      </p>
+    </div>
   </div>
-</div>
 
- <div class="case-study horizontal">
-  <a href="https://github.com/dallensmith93/ApiCards.git" class="project" target="_blank" rel="noopener noreferrer">
-    <img src="apicards.JPG" alt="API Cards App" loading="lazy" />
-  </a>
+  <!-- API Cards -->
+  <div class="case-study card-row" data-category="mobile">
+    <div class="card-left">
+      <a href="https://github.com/dallensmith93/ApiCards.git" target="_blank" rel="noopener noreferrer" class="thumb-link">
+        <div class="thumb-frame">
+          <img src="apicards.JPG" alt="API Cards App" loading="lazy" />
+        </div>
+      </a>
+      <div class="thumb-title">API Cards (React Native)</div>
+    </div>
 
-  <div class="case-study-details">
-    <h3>API Cards (React Native)</h3>
+    <div class="card-right">
+      <h4>Overview</h4>
+      <p>
+        A mobile app that fetches data from an external API and displays it in a searchable list, demonstrating API integration and dynamic rendering.
+      </p>
 
-    <h4>Overview</h4>
-    <p>
-      A mobile application that fetches data from an external API and displays it in a searchable list, demonstrating dynamic rendering and API integration.
-    </p>
-
-    <h4>Core Interaction</h4>
-    <p>
-      Data is fetched asynchronously and rendered using FlatList. Users can filter results instantly through a search input, updating the UI in real time.
-    </p>
+      <h4>Core Interaction</h4>
+      <p>
+        Data is fetched asynchronously and rendered with FlatList. Users can filter results instantly through a search input, updating the list in real time.
+      </p>
+    </div>
   </div>
-</div>
 
-  <div class="case-study horizontal">
-  <a href="https://github.com/dallensmith93/HabitTracker.git" class="project" target="_blank" rel="noopener noreferrer">
-    <img src="habittracker.JPG" alt="Habit Tracker App" loading="lazy" />
-  </a>
+  <!-- Habit Tracker -->
+  <div class="case-study card-row" data-category="mobile">
+    <div class="card-left">
+      <a href="https://github.com/dallensmith93/HabitTracker.git" target="_blank" rel="noopener noreferrer" class="thumb-link">
+        <div class="thumb-frame">
+          <img src="habit-tracker.JPG" alt="Habit Tracker App" loading="lazy" />
+        </div>
+      </a>
+      <div class="thumb-title">Habit Tracker (React Native)</div>
+    </div>
 
-  <div class="case-study-details">
-    <h3>Habit Tracker (React Native)</h3>
+    <div class="card-right">
+      <h4>Overview</h4>
+      <p>
+        A habit tracking app that lets users create habits, track daily completion, and monitor streaks over time with persistent local storage.
+      </p>
 
-    <h4>Overview</h4>
-    <p>
-      A habit tracking application that allows users to create habits, track daily progress, and monitor streaks over time with persistent local storage.
-    </p>
-
-    <h4>Core Interaction</h4>
-    <p>
-      Uses AsyncStorage to persist user data across sessions. Users can mark habits as complete for the day, with streak calculations and progress tracking updating dynamically.
-    </p>
+      <h4>Core Interaction</h4>
+      <p>
+        Uses AsyncStorage to persist habits across sessions. Users mark habits complete for the day, and the UI updates progress + streak calculations dynamically.
+      </p>
+    </div>
   </div>
-</div>
+
 </section>
 
 <!-- --------------  Technical Writing -------------- -->
