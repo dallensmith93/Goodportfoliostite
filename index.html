@@ -9,8 +9,8 @@
   <meta property="og:description" content="I design and build beautiful web experiences."/>
   <meta property="og:image" content="me.jfif"/>
   <link rel="icon" type="image/png" href="favicon.png" />
-     <style>
 
+  <style>
 :root {
   --blue: #007bff;            /* unified brand blue */
   /* Light theme */
@@ -25,6 +25,8 @@
   --card-bg-light: #ffffff;      /* pure white card background */
   --card-border-light: #e0e0e0;  /* soft light-gray border */
 }
+
+/* ---------------- Existing layout bits ---------------- */
 .case-study.horizontal {
   display: flex;
   gap: 20px;
@@ -45,6 +47,7 @@
 .case-study-details h3 {
   margin-top: 0;
 }
+
 html.light .case-study {
   background: var(--card-bg-light);
   border: 1px solid var(--card-border-light);
@@ -55,6 +58,7 @@ html.light .case-study {
 html.light .case-study.rectangle {
   border-color: #c0c0c0;
 }
+
 .case-study {
   background: var(--card-bg-light);
   border: 1px solid var(--card-border-light);
@@ -63,9 +67,11 @@ html.light .case-study.rectangle {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 html.dark .case-study {
   border: none !important;
 }
+
 /* Dark‐mode override */
 html.dark .case-study {
   background: var(--card-bg-dark);
@@ -81,7 +87,7 @@ html.dark .case-study {
 
 /* Optional: slightly enlarge “rectangle” variants */
 .case-study.rectangle {
-  max-width: 280px;  /* bump from 220px if you like */
+  max-width: 280px;
 }
 
 /* Tidy up inner image */
@@ -100,8 +106,8 @@ html.dark .case-study {
 
 html.light body { background: var(--bg-light); color: var(--text-light); }
 html.dark  body { background: var(--bg-dark);  color: var(--text-dark);  }
+
 .logo { height: 40px; margin-right: 1rem; }
-/* Light-mode header tweak so nav links stay visible */
 html.light header { background: rgba(255,255,255,0.9); }
 
 a { text-decoration: none; color: inherit; }
@@ -111,7 +117,7 @@ body { font-family: 'Helvetica Neue', sans-serif; line-height: 1.6; transition: 
 
 /* ------------------  Global Section Spacing ------------------ */
 section { margin-block: 5rem; padding: 0 2rem; }
-header + .hero { margin-top: 0; } /* keep hero tight under header */
+header + .hero { margin-top: 0; }
 
 /* ------------------  Buttons & Interactive ------------------ */
 .button,
@@ -137,6 +143,7 @@ header + .hero { margin-top: 0; } /* keep hero tight under header */
   transform: scale(1.05);
   box-shadow: 0 0 20px rgba(0,123,255,0.7), 0 0 40px rgba(0,123,255,0.5);
 }
+
 .button::after,
 .filters button::after,
 .controls a.resume::after {
@@ -168,40 +175,43 @@ header {
   position: sticky; top: 0; z-index: 10;
   display: flex; align-items: center;
 }
+
 nav {
   flex: 1;
   display: flex;
-  justify-content: center;   /* center nav links */
+  justify-content: center;
   gap: 2rem;
 }
 
-/* ─── Nav links: text-only with smooth lift + underline grow ─── */
+/* Nav links */
 nav a {
   position: relative;
   font-weight: 600;
   padding: 0.5rem 0.75rem;
-  color: inherit;           /* inherit white/black text */
+  color: inherit;
   background: none;
-  animation: none;          /* remove pulseGlow */
+  animation: none;
   transition: transform .3s ease, opacity .3s ease;
 }
+
 nav a:hover {
-  transform: translateY(-3px);   /* gentle lift */
-  opacity: 0.85;                 /* subtle fade */
+  transform: translateY(-3px);
+  opacity: 0.85;
 }
+
 nav a.current { outline: none; }
 
-/* underline animation */
 nav a::after {
   content: '';
   position: absolute;
   left: 0; bottom: -4px;
   width: 100%; height: 2px;
-  background: currentColor;  /* same as link text */
+  background: currentColor;
   transform: scaleX(0);
   transform-origin: left;
   transition: transform .3s ease;
 }
+
 nav a:hover::after,
 nav a.current::after { transform: scaleX(1); }
 
@@ -223,7 +233,7 @@ input:checked + .slider::before { transform: translateX(26px); }
 
 /* Section reveal */
 .page-wrapper { opacity: 0; transform: translateY(50px); animation: fadeSlideIn 1s ease-out forwards; }
-@keyframes fadeSlideIn { to { opacity: 1; transform: translateY(0); }}
+@keyframes fadeSlideIn { to { opacity: 1; transform: translateY(0); } }
 .reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease; }
 .reveal.active { opacity: 1; transform: translateY(0); }
 
@@ -253,10 +263,9 @@ input:checked + .slider::before { transform: translateX(26px); }
   border-radius: 50%;
   background: var(--blue);
   border: 4px solid var(--bg-dark);
-  transform: translate(-50%, -50%); /* shift by half for perfect centering */
+  transform: translate(-50%, -50%);
   z-index: 2;
 }
-/* place the dot at the timeline center for each side */
 .entry:nth-child(odd)::before  { left: 100%; }
 .entry:nth-child(even)::before { left: 0%;   }
 
@@ -289,20 +298,18 @@ input:checked + .slider::before { transform: translateX(26px); }
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 0.75rem;              /* adds breathing room */
-  background: rgba(0, 0, 0, 0.75); /* darker, semi-opaque backdrop */
-  color: #fff;                   /* pure white text */
-  font-size: 1rem;               /* slightly larger */
-  font-weight: 600;              /* bolder weight for contrast */
+  padding: 0.75rem;
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
   text-align: center;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
   transition: opacity 0.3s ease;
-  opacity: 0.9;                  /* visible by default */
+  opacity: 0.9;
 }
 
-.project:hover h3 {
-  opacity: 1;                    /* full opacity on hover */
-}
+.project:hover h3 { opacity: 1; }
 
 /* Skills with progress bars */
 .skills { max-width: 800px; margin: auto; }
@@ -311,7 +318,7 @@ input:checked + .slider::before { transform: translateX(26px); }
 .skill .bar { width: 100%; background: #ddd; border-radius: 0.5rem; overflow: hidden; }
 .bar-inner {
   height: 1rem;
-  width: 0;                       /* starts at 0, fills via JS */
+  width: 0;
   border-radius: 0.5rem;
   background: repeating-linear-gradient(
     45deg,
@@ -321,8 +328,8 @@ input:checked + .slider::before { transform: translateX(26px); }
     #1e90ff 20px
   );
   background-size: 200% 100%;
-  animation: slide 3s linear infinite; /* diagonal stripes animation */
-  transition: width 1.5s ease-out;     /* smooth growth */
+  animation: slide 3s linear infinite;
+  transition: width 1.5s ease-out;
 }
 
 @keyframes slide {
@@ -352,40 +359,16 @@ footer { text-align: center; padding: 2rem 0; }
 
 /* ------------------  Mobile Optimizations ------------------ */
 @media (max-width: 768px) {
-  /* Collapse nav links into a column and reduce padding */
-  nav {
-    flex-direction: column;
-    gap: 1rem;
-    padding: 0.5rem 0;
-  }
-  nav a {
-    padding: 0.5rem;
-    font-size: 1rem;
-  }
+  nav { flex-direction: column; gap: 1rem; padding: 0.5rem 0; }
+  nav a { padding: 0.5rem; font-size: 1rem; }
 
-  /* Stack hero and shrink headline */
-  .hero h1 {
-    font-size: 2rem;
-    margin-bottom: 0.75rem;
-  }
-  .hero p {
-    font-size: 0.95rem;
-  }
+  .hero h1 { font-size: 2rem; margin-bottom: 0.75rem; }
+  .hero p { font-size: 0.95rem; }
 
-  /* About: turn into single column */
-  .about {
-    flex-direction: column;
-    text-align: center;
-  }
-  .about img {
-    margin: 0 auto 1rem;
-    width: 60%;
-  }
-  .about p {
-    font-size: 0.95rem;
-  }
+  .about { flex-direction: column; text-align: center; }
+  .about img { margin: 0 auto 1rem; width: 60%; }
+  .about p { font-size: 0.95rem; }
 
-  /* Timeline: make entries full-width */
   .timeline::after { left: 10px; }
   .entry {
     width: 100%;
@@ -393,292 +376,113 @@ footer { text-align: center; padding: 2rem 0; }
     padding-right: 0;
     text-align: left !important;
   }
-  .entry::before {
-    left: 0;
-    transform: translate(-50%, -50%);
-  }
+  .entry::before { left: 0; transform: translate(-50%, -50%); }
 
-  /* Projects: single-column grid */
-  .projects {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
+  .projects { grid-template-columns: 1fr; gap: 1rem; }
+  .skills { padding: 0 1rem; }
+  .skill label { font-size: 0.9rem; }
 
-  /* Skills bars: tighten up */
-  .skills {
-    padding: 0 1rem;
-  }
-  .skill label {
-    font-size: 0.9rem;
-  }
-
-  /* Contact form: full-width inputs */
-  #contact-form {
-    grid-template-columns: 1fr;
-  }
+  #contact-form { grid-template-columns: 1fr; }
   #contact-form input,
-  #contact-form textarea {
-    font-size: 0.95rem;
-  }
+  #contact-form textarea { font-size: 0.95rem; }
 
-  /* Footer: reduce padding */
-  footer {
-    padding: 1.5rem 1rem;
-    font-size: 0.9rem;
-  }
-
-  /* Adjust header padding */
-  header {
-    padding: 0.75rem 1rem;
-  }
-}
-/* Simple Series layout */
-#simple-series {
-  margin-block: 5rem;
-  padding: 0 2rem;  
-}
-#simple-series .info {
-  max-width: 1200px;
-  margin: 0 auto 1.5rem;   /* center text under the wrapper */
+  footer { padding: 1.5rem 1rem; font-size: 0.9rem; }
+  header { padding: 0.75rem 1rem; }
 }
 
-/* 2) Projects grid copied straight from #projects */
+/* ------------------ Simple Series layout ------------------ */
+#simple-series { margin-block: 5rem; padding: 0 2rem; }
+#simple-series .info { max-width: 1200px; margin: 0 auto 1.5rem; }
 #simple-series .projects {
   max-width: 1200px;
-  margin: 0 auto;          /* center your grid */
+  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;             /* same gutter as Showcase */
+  gap: 1.5rem;
   justify-items: center;
 }
-.case-study {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background: var(--card-bg-light);
-  border: 1px solid rgba(0,0,0,0.1);
-  border-radius: 0.5rem;
-  padding: 1rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease;
-}
 
-.case-study img {
-  width: 100%;
-  height: 120px;        /* fix height */
-  object-fit: cover;    /* crop to fit */
-  border-radius: 0.5rem;
-  margin-bottom: 1rem;
-}
-
-.case-studies > .case-study {
-  /* force two-column flex */
+/* ---------------- Case Studies (your forced row layout) ---------------- */
+.case-studies .case-study {
   display: flex !important;
   flex-direction: row !important;
   align-items: flex-start !important;
   gap: 1.5rem !important;
-
-  /* card look */
   background: var(--card-bg-light) !important;
   border: 1px solid var(--card-border-light) !important;
   border-radius: 0.75rem !important;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
   padding: 1.5rem !important;
-
-  /* initial hidden for reveal */
-  opacity: 0 !important;
-  transform: translateY(20px) !important;
-  transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease, transform 0.3s ease !important;
+  opacity: 1 !important;
+  transform: none !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
 }
-
-/* dark‐mode */
-html.dark .case-studies > .case-study {
+html.dark .case-studies .case-study {
   background: var(--card-bg-dark) !important;
   border-color: var(--card-border-dark) !important;
   box-shadow: 0 4px 12px rgba(0,0,0,0.5) !important;
 }
-
-/* on scroll-reveal */
-.case-studies > .case-study.reveal.active {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
-}
-
-/* hover lift */
-.case-studies > .case-study:hover {
+.case-studies .case-study:hover {
   transform: translateY(-6px) !important;
   box-shadow: 0 12px 24px rgba(0,0,0,0.15) !important;
 }
-
-/* image sizing */
-.case-studies > .case-study img {
-  flex: 0 0 180px !important;
-  width: 100% !important;
-  height: auto !important;
-  border-radius: 0.5rem !important;
-  object-fit: cover !important;
-}
-
-/* text column */
-.case-studies > .case-study .case-study-details {
-  flex: 1 !important;
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 0.75rem !important;
-}
-.case-studies .case-study {
-      display: flex !important;
-      flex-direction: row !important;
-      align-items: flex-start !important;
-      gap: 1.5rem !important;
-      background: var(--card-bg-light) !important;
-      border: 1px solid var(--card-border-light) !important;
-      border-radius: 0.75rem !important;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
-      padding: 1.5rem !important;
-      opacity: 1 !important;
-      transform: none !important;
-      transition: transform 0.3s ease, box-shadow 0.3s ease !important;
-    }
-    html.dark .case-studies .case-study {
-      background: var(--card-bg-dark) !important;
-      border-color: var(--card-border-dark) !important;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.5) !important;
-    }
-    .case-studies .case-study:hover {
-      transform: translateY(-6px) !important;
-      box-shadow: 0 12px 24px rgba(0,0,0,0.15) !important;
-    }
-    .case-studies .case-study img {
-      flex: 0 0 180px !important;
-      width: 100% !important;
-      height: auto !important;
-      border-radius: 0.5rem !important;
-      object-fit: cover !important;
-    }
-    .case-studies .case-study .case-study-details {
-      flex: 1 !important;
-      display: flex !important;
-      flex-direction: column !important;
-      gap: 0.75rem !important;
-    }
-
-    /* ─── CONDENSED CASE-STUDY CARDS ──────────────────────────────────────────────── */
-    .case-studies .case-study {
-      max-height: 200px !important;
-      overflow: hidden !important;
-      padding: 1rem !important;
-    }
-    .case-studies .case-study img {
-      flex: 0 0 40% !important;
-      max-height: 180px !important;
-    }
-    .case-studies .case-study .case-study-details {
-      flex: 1 1 60% !important;
-      font-size: 0.9rem !important;
-      line-height: 1.3 !important;
-      gap: 0.5rem !important;
-    }
-    .case-studies .case-study h3,
-    .case-studies .case-study h4 {
-      margin: 0 !important;
-      font-weight: 600 !important;
-    }
-    .case-studies .case-study p {
-      margin: 0 !important;
-    }
-    .case-studies .case-study:hover {
-      transform: translateY(-4px) !important;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.12) !important;
-    }
-
-/* fix image width */
 .case-studies .case-study img {
-  flex: 0 0 180px !important;
+  flex: 0 0 40% !important;
+  max-height: 180px !important;
   width: 100% !important;
   height: auto !important;
   border-radius: 0.5rem !important;
   object-fit: cover !important;
+  margin-bottom: 0 !important;
 }
-
-/* text column */
 .case-studies .case-study .case-study-details {
   flex: 1 !important;
   display: flex !important;
   flex-direction: column !important;
   gap: 0.75rem !important;
 }
-.case-study-details ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+
+/* ------------------ Hero styling ------------------ */
+.hero {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  text-align: center;
+  padding: 6rem 2rem;
+  background: linear-gradient(120deg, #007bff, #00c6ff);
+  animation: gradientShift 8s ease infinite;
 }
-.case-study-details ul li {
-  margin-bottom: 0.5rem; /* optional spacing between items */
+
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
- .hero {
-    position: relative;
-    overflow: hidden;
-    color: #fff;
-    text-align: center;
-    padding: 6rem 2rem;
-    background: linear-gradient(120deg, #007bff, #00c6ff);
-    animation: gradientShift 8s ease infinite;
-  }
 
-  @keyframes gradientShift {
-    0%   { background-position: 0% 50%; }
-    50%  { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+  margin: auto;
+}
 
-  .hero-content {
-    position: relative;
-    z-index: 1;
-    max-width: 700px;
-    margin: auto;
-  }
+.hero h1 { font-size: 3rem; margin-bottom: 0.5rem; }
+.hero h2 { font-size: 1.75rem; height: 2rem; margin-bottom: 1rem; font-weight: 400; }
 
-  .hero h1 {
-    font-size: 3rem;
-    margin-bottom: 0.5rem;
-  }
+.cursor {
+  display: inline-block;
+  background-color: currentColor;
+  width: 2px;
+  animation: blink 0.7s steps(1) infinite;
+  vertical-align: bottom;
+}
 
-  .hero h2 {
-    font-size: 1.75rem;
-    height: 2rem; /* reserve space */
-    margin-bottom: 1rem;
-    font-weight: 400;
-  }
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  50.1%, 100% { opacity: 0; }
+}
 
-  .cursor {
-    display: inline-block;
-    background-color: currentColor;
-    width: 2px;
-    animation: blink 0.7s steps(1) infinite;
-    vertical-align: bottom;
-  }
-
-  @keyframes blink {
-    0%, 50% { opacity: 1; }
-    50.1%, 100% { opacity: 0; }
-  }
-
-  .hero p {
-    font-size: 1.1rem;
-    margin-bottom: 1.5rem;
-  }
-
-  /* Wave at bottom */
-  .hero-wave {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100px;
-    color: #fff;
-  }
-  /* ---------- About Section ---------- */
+/* About improvements */
 .about-container {
   display: flex;
   align-items: center;
@@ -690,17 +494,20 @@ html.dark .case-studies > .case-study {
 
 .avatar-wrapper {
   flex: 0 0 200px;
+  width: 200px;
+  height: 200px;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .avatar {
-  width: 180px;
-  height: 180px;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   border: 4px solid var(--blue);
-  animation: pulse-border 3s ease-in-out infinite;
   object-fit: cover;
+  animation: pulse-border 3s ease-in-out infinite;
 }
 
 @keyframes pulse-border {
@@ -708,21 +515,9 @@ html.dark .case-studies > .case-study {
   50%      { box-shadow: 0 0 0 12px rgba(0,123,255,0); }
 }
 
-.about-text {
-  flex: 1 1 300px;
-}
-
-.about-text h2 {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
-  color: var(--blue);
-}
-
-.about-text p {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
-}
+.about-text { flex: 1 1 300px; }
+.about-text h2 { font-size: 2rem; margin-bottom: 0.5rem; color: var(--blue); }
+.about-text p { font-size: 1.1rem; line-height: 1.6; margin-bottom: 1.5rem; }
 
 .badges {
   list-style: none;
@@ -742,75 +537,36 @@ html.dark .case-studies > .case-study {
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-/* reveal badges when section becomes active */
 .about.reveal.active .badges li {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* mobile */
 @media (max-width: 768px) {
   .about-container { flex-direction: column; text-align: center; }
   .avatar-wrapper { margin-bottom: 1.5rem; }
   .badges { justify-content: center; }
 }
-.avatar-wrapper {
-  flex: 0 0 200px;
-  width: 200px;
-  height: 200px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
-.avatar {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  border: 4px solid var(--blue);
-  object-fit: cover;      /* ensures it fills without distortion */
-  animation: pulse-border 3s ease-in-out infinite;
-}
-section + section {
-  margin-top: 6rem;
-}
-#about {
-  margin-bottom: 6rem; /* adjust value to taste */
-}
+section + section { margin-top: 6rem; }
+#about { margin-bottom: 6rem; }
+#timeline { margin-top: 4rem; }
+#timeline::after { top: 3rem; }
+#timeline h2 { margin-bottom: 1.5rem; }
 
-/* optionally, add space above Timeline */
-#timeline {
-  margin-top: 4rem; /* or whatever feels right */
-}
-
-/* move the line itself down by the same amount */
-#timeline::after {
-  top: 3rem;  
-}
-
-/* give extra breathing room under the heading */
-#timeline h2 {
-  margin-bottom: 1.5rem;
-}
 .logo {
-  height: 48px;              /* increase from 40px */
-  margin-right: 1.5rem;      /* a bit more spacing from nav links */
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));  /* subtle depth */
+  height: 48px;
+  margin-right: 1.5rem;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
   transition: filter 0.3s ease, transform 0.3s ease;
 }
-
-/* on hover, sharpen and slightly scale for emphasis */
 .logo:hover {
   filter: drop-shadow(0 4px 8px rgba(0,0,0,0.7));
   transform: scale(1.05);
 }
-@media (max-width: 768px) {
-  /* 1) Remove the central line */
-  #timeline::after {
-    display: none !important;
-  }
 
-  /* 2) Make each entry a full-width card */
+@media (max-width: 768px) {
+  #timeline::after { display: none !important; }
   .entry {
     position: relative !important;
     width: 100% !important;
@@ -821,8 +577,6 @@ section + section {
     background: rgba(255,255,255,0.03);
     border-radius: 0.5rem;
   }
-
-  /* 3) Replace the old dot with a simpler circle at the top-left of each card */
   .entry::before {
     content: '' !important;
     position: absolute !important;
@@ -835,163 +589,133 @@ section + section {
     box-shadow: none !important;
     transform: none !important;
   }
-
-  /* Tweak typography inside each card */
-  .entry h3 {
-    margin: 0 0 .25rem 0 !important;
-    font-size: 1.1rem !important;
-  }
-  .entry time {
-    display: block !important;
-    font-size: .9rem !important;
-    color: #888 !important;
-    margin-bottom: .75rem !important;
-  }
-  .entry p {
-    font-size: .95rem !important;
-    line-height: 1.4 !important;
-    margin: 0 !important;
-  }
-}
-/* Screenshot-style layout */
-.card-row {
-  display: flex;
-  gap: 28px;
-  align-items: flex-start;
-  background: #0f1115;
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 14px;
-  padding: 22px;
-  margin-bottom: 18px;
+  .entry h3 { margin: 0 0 .25rem 0 !important; font-size: 1.1rem !important; }
+  .entry time { display: block !important; font-size: .9rem !important; color: #888 !important; margin-bottom: .75rem !important; }
+  .entry p { font-size: .95rem !important; line-height: 1.4 !important; margin: 0 !important; }
 }
 
-/* Left column */
-.card-left {
-  width: 280px;               /* matches the screenshot proportions */
+/* ------------------ React Native section (SCOPED) ------------------
+   Makes your RN cards look like your screenshot, WITHOUT breaking other cards.
+*/
+#react-native .case-study.rn-card {
+  align-items: flex-start !important;
+}
+
+#react-native .rn-left {
   flex: 0 0 280px;
+  width: 280px;
 }
 
-.thumb-link { display: block; }
+#react-native .rn-thumb {
+  display: block;
+}
 
-.thumb-frame {
+#react-native .rn-frame {
   background: #ffffff;
   border-radius: 10px;
   padding: 14px;
-  height: 130px;              /* keeps the “white box” consistent */
+  height: 130px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
 }
 
-.thumb-frame img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;        /* keeps your screenshot fully visible */
-  display: block;
+#react-native .rn-frame img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  border-radius: 0 !important;
+  margin: 0 !important;
+  max-height: none !important;
+  flex: none !important;
 }
 
-/* Title underneath image */
-.thumb-title {
+#react-native .rn-title {
   margin-top: 14px;
   text-align: center;
   font-weight: 800;
-  color: #ffffff;
   font-size: 18px;
-}
-
-/* Right column */
-.card-right {
-  flex: 1;
-  min-width: 0;
-}
-
-.card-right h4 {
   color: #ffffff;
-  font-size: 16px;
-  font-weight: 800;
-  margin: 0 0 8px 0;
 }
 
-.card-right p {
-  color: rgba(255,255,255,0.82);
-  margin: 0 0 14px 0;
-  line-height: 1.55;
-}
+/* Match screenshot vibe in dark mode */
+html.dark #react-native .rn-title { color: #ffffff; }
 
-/* Mobile responsive: stack like a card */
+/* Mobile: stack */
 @media (max-width: 820px) {
-  .card-row {
-    flex-direction: column;
+  #react-native .case-study.rn-card {
+    flex-direction: column !important;
   }
-  .card-left {
+  #react-native .rn-left {
     width: 100%;
     flex: 0 0 auto;
   }
-  .thumb-frame {
+  #react-native .rn-frame {
     height: 180px;
   }
 }
   </style>
 </head>
+
 <body>
   <div class="page-wrapper">
+
     <!-- --------------  Header -------------- -->
-  <header>
-  <img src="my logo.png" alt="Dallen Smith Logo" class="logo" />
-  <nav aria-label="Primary">
-    <a href="index.html">Home</a>
-    <a href="#projects">Projects</a>
-    <a href="#code-projects">Code Projects</a>
-    <a href="#about">About</a>
-    <a href="#simple-series">Simple Series</a>
-  </nav>
-  <div class="controls">
-    <a href="Dallen_Smith.pdf" class="resume" download>Download CV</a>
-    <!-- Theme switch -->
-    <label class="theme-switch">
-      <input type="checkbox" id="theme-toggle" aria-label="Toggle theme" />
-      <span class="slider"></span>
-    </label>
-  </div>
-</header>
+    <header>
+      <img src="my logo.png" alt="Dallen Smith Logo" class="logo" />
+      <nav aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="#projects">Projects</a>
+        <a href="#code-projects">Code Projects</a>
+        <a href="#about">About</a>
+        <a href="#simple-series">Simple Series</a>
+        <a href="#react-native">React Native</a>
+      </nav>
+      <div class="controls">
+        <a href="Dallen_Smith.pdf" class="resume" download>Download CV</a>
+        <label class="theme-switch">
+          <input type="checkbox" id="theme-toggle" aria-label="Toggle theme" />
+          <span class="slider"></span>
+        </label>
+      </div>
+    </header>
 
     <!-- --------------  Hero -------------- -->
- <section id="home" class="hero reveal">
-  <div class="hero-content">
-    <h1>Hello, I’m Dallen Smith</h1>
-    <h2>
-      <span id="typewriter"></span><span class="cursor">|</span>
-    </h2>
-    <p>Crafting intuitive UI/UX and full-stack applications.</p>
-    <a href="#projects" class="button" aria-label="View Projects">View Projects</a>
-  </div>
-</section>
+    <section id="home" class="hero reveal">
+      <div class="hero-content">
+        <h1>Hello, I’m Dallen Smith</h1>
+        <h2>
+          <span id="typewriter"></span><span class="cursor">|</span>
+        </h2>
+        <p>Crafting intuitive UI/UX and full-stack applications.</p>
+        <a href="#projects" class="button" aria-label="View Projects">View Projects</a>
+      </div>
+    </section>
+
     <!-- --------------  About -------------- -->
-   <section id="about" class="about reveal">
-  <div class="about-container">
-    <div class="avatar-wrapper">
-      <img src="me.jfif" alt="Portrait of Dallen Smith" loading="lazy" class="avatar" />
-    </div>
-    <div class="about-text">
-      <h2>About Me</h2>
-      <p>
-        I’m <strong>Dallen Smith</strong>, a Web & UX designer-developer who merges
-        pixel-perfect design with rock-solid code. I believe great experiences
-        are built on empathy, clarity, and a dash of delight.
-      </p>
-      <ul class="badges">
-        <li>🎨 User-Centered Design</li>
-        <li>⚛️ React & Django</li>
-        <li>🚀 Performance Optimization</li>
-        <li>♿ Accessibility Advocacy</li>
-      </ul>
-    </div>
-  </div>
-</section>
+    <section id="about" class="about reveal">
+      <div class="about-container">
+        <div class="avatar-wrapper">
+          <img src="me.jfif" alt="Portrait of Dallen Smith" loading="lazy" class="avatar" />
+        </div>
+        <div class="about-text">
+          <h2>About Me</h2>
+          <p>
+            I’m <strong>Dallen Smith</strong>, a Web & UX designer-developer who merges
+            pixel-perfect design with rock-solid code. I believe great experiences
+            are built on empathy, clarity, and a dash of delight.
+          </p>
+          <ul class="badges">
+            <li>🎨 User-Centered Design</li>
+            <li>⚛️ React & Django</li>
+            <li>🚀 Performance Optimization</li>
+            <li>♿ Accessibility Advocacy</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-
-     
     <section id="timeline" class="reveal timeline" aria-labelledby="timeline-heading">
       <h2 id="timeline-heading">My Journey</h2>
       <div class="entry">
@@ -1017,657 +741,584 @@ section + section {
     </section>
 
     <!-- --------------  Projects -------------- -->
+    <section id="projects" class="reveal" aria-labelledby="projects-heading">
+      <h2 id="projects-heading">Project Case Studies</h2>
+      <div class="case-studies">
 
-     <section id="projects" class="reveal" aria-labelledby="projects-heading">
-  <h2 id="projects-heading">Project Case Studies</h2>
-  <div class="case-studies">
-    <!-- React Music App -->
-    <div class="case-study" data-category="web">
-      <a href="https://reactmusicplayingapp.netlify.app" class="project" target="_blank" rel="noopener noreferrer">
-        <img src="reactmusicplayingapp.netlify.app_.png" alt="React Music App screenshot" loading="lazy" />
-        <h3>React Music App</h3>
-      </a>
-      <div class="case-study-details">
-        <h4>Overview</h4>
-        <p>A distraction-free React-based music player that lets users browse, play, and queue tracks in a sleek interface with shimmering playback controls.</p>
-        <h4>Role & Team</h4>
-        <p>Sole designer & developer.</p>
-        <h4>Problem & Opportunity</h4>
-        <p>Most online players are cluttered or ad-heavy, distracting listeners. This app delivers a minimal, ad-free listening experience.</p>
-        <h4>Goals & Metrics</h4>
-        <p>Create a lightweight, responsive player with smooth animations; page load under 2 s; ≥ 80 % play-rate on queued tracks; 90 % positive feedback in user tests.</p>
-        <h4>Process & Deliverables</h4>
-        <ul>
-          <li>Research: Surveyed 20 users on pain points with existing players.</li>
-          <li>Design: Wireframed in Figma; defined dark/light themes and shimmer guidelines.</li>
-          <li>Development: React + Context API, CSS keyframe shimmer on buttons, responsive CSS Grid layout.</li>
-          <li>Testing: 5 usability sessions; refined play/pause affordance and shimmer timing.</li>
-        </ul>
-        <h4>Outcome & Impact</h4>
-        <p>Session duration ↑ 25 %; 90 % of testers rated UI flow “very intuitive.” Live prototype: <a href="https://reactmusicplayingapp.netlify.app" target="_blank">Netlify</a>; <a href="https://github.com/dallensmith93/react-music-app" target="_blank">GitHub</a>.</p>
-        <h4>Key Learnings</h4>
-        <p>Judicious animation enhances delight without compromising performance.</p>
-      </div>
-    </div>
-
-    <!-- Wikipedia Viewer -->
-    <div class="case-study" data-category="web">
-      <a href="https://wikipediaviewer1.netlify.app" class="project" target="_blank" rel="noopener noreferrer">
-        <img src="wikipediaviewer1.netlify.app_.png" alt="Wikipedia Viewer screenshot" loading="lazy" />
-        <h3>Wikipedia Viewer</h3>
-      </a>
-      <div class="case-study-details">
-        <h4>Overview</h4>
-        <p>A clean, single-page React app to search Wikipedia articles in real-time, filtering out ads and clutter.</p>
-        <h4>Role & Team</h4>
-        <p>Sole developer & UX designer.</p>
-        <h4>Problem & Opportunity</h4>
-        <p>Existing wiki search tools load full page layouts with distractions. Users needed a focused lookup tool.</p>
-        <h4>Goals & Metrics</h4>
-        <p>Instant search results; no page reloads; mobile-first; search latency < 300 ms; bounce rate < 20 %.</p>
-        <h4>Process & Deliverables</h4>
-        <ul>
-          <li>Research: Competitive audit of top 5 wiki clients.</li>
-          <li>Design: Figma prototyping of search-as-you-type UI; style guide for typography.</li>
-          <li>Development: React + Hooks, Wikipedia REST API, CSS Flexbox for responsive cards.</li>
-          <li>Testing: A/B tested result layouts with 10 participants; refined text truncation.</li>
-        </ul>
-        <h4>Outcome & Impact</h4>
-        <p>85 % of users preferred it over the desktop site; average search completion in 0.25 s. Live demo: <a href="https://wikipediaviewer1.netlify.app" target="_blank">Netlify</a>; <a href="https://github.com/dallensmith93/wikipedia-viewer" target="_blank">GitHub</a>.</p>
-        <h4>Key Learnings</h4>
-        <p>Micro-optimizations (debounce, virtualization) drastically improve perceived performance.</p>
-      </div>
-    </div>
-
-    <!-- Kambo Website (Shopify) -->
-    <div class="case-study" data-category="web">
-      <a href="https://jjjtje-3n.myshopify.com" class="project" target="_blank" rel="noopener noreferrer">
-        <img src="jjjtje-3n.myshopify.com_.png" alt="Kambo Website screenshot" loading="lazy" />
-        <h3>Kambo Website (Shopify)</h3>
-      </a>
-      <div class="case-study-details">
-        <h4>Overview</h4>
-        <p>A custom-themed Shopify storefront for Kambo product lines, featuring category dropdowns and password-protected content.</p>
-        <h4>Role & Team</h4>
-        <p>UX/UI designer & front-end developer (Shopify Liquid).</p>
-        <h4>Problem & Opportunity</h4>
-        <p>Client needed a clean e-commerce presence with intuitive category browsing and exclusive access to premium SKUs.</p>
-        <h4>Goals & Metrics</h4>
-        <p>Improve category navigation; secure premium section. Category click-through ↑ 30 %; bounce rate ↓ 15 %.</p>
-        <h4>Process & Deliverables</h4>
-        <ul>
-          <li>Research: Reviewed 3 competitor stores; user interviews (n=8).</li>
-          <li>Design: Figma mockups for dropdowns and gated content.</li>
-          <li>Development: Shopify Liquid + SCSS theme, JS for interactions, password gating.</li>
-          <li>Testing: QA across Chrome, Safari, Firefox; user flow test with 5 participants.</li>
-        </ul>
-        <h4>Outcome & Impact</h4>
-        <p>Average time on site ↑ 20 %; gated-section sign-ups ↑ 50 %. Live store: <a href="https://jjjtje-3n.myshopify.com" target="_blank">Shopify</a>.</p>
-        <h4>Key Learnings</h4>
-        <p>Shopify’s theming system is powerful but requires strict naming conventions for overrides.</p>
-      </div>
-    </div>
-
-    <!-- Design System (Figma) -->
-    <div class="case-study" data-category="design">
-      <a href="https://embed.figma.com/design/SJwNRVTMX3BYpnX9mdazE3/Kambo-with-categores-drop-down-desgin?node-id=0-1&embed-host=share" class="project" target="_blank" rel="noopener noreferrer">
-        <img src="Kambo.JPG" alt="Design System screenshot" loading="lazy" />
-        <h3>Design System (Figma)</h3>
-      </a>
-      <div class="case-study-details">
-        <h4>Overview</h4>
-        <p>A comprehensive Figma-based component library and style guide to unify brand look-and-feel across products.</p>
-        <h4>Role & Team</h4>
-        <p>Lead UX designer; collaborated with 2 developers for integration.</p>
-        <h4>Problem & Opportunity</h4>
-        <p>Disparate styling across apps led to inconsistent UX and excessive dev time.</p>
-        <h4>Goals & Metrics</h4>
-        <p>Establish reusable components, typography scale, and color tokens. Component reuse ↑ 70 %; dev handoff time ↓ 40 %.</p>
-        <h4>Process & Deliverables</h4>
-        <ul>
-          <li>Audit: Identified 25 unique UI patterns.</li>
-          <li>Design: Created 40+ components in Figma.</li>
-          <li>Documentation: Published shareable library with guidelines.</li>
-          <li>Integration: Synced tokens in CSS variables with dev team.</li>
-        </ul>
-        <h4>Outcome & Impact</h4>
-        <p>Adopted in > 3 new projects; design-dev iterations ↓ 35 %. Library: <a href="https://embed.figma.com/design/SJwNRVTMX3BYpnX9mdazE3" target="_blank">Figma Embed</a>.</p>
-        <h4>Key Learnings</h4>
-        <p>Early design-dev sync prevents mismatches and rework.</p>
-      </div>
-    </div>
-
-    <!-- Mobile App Case Study (Figma) -->
-    <div class="case-study" data-category="design">
-      <a href="https://embed.figma.com/design/ywbeq2hgQmOddkMUVEaUOA/Pink-Banana-Designs?embed-host=share" class="project" target="_blank" rel="noopener noreferrer">
-        <img src="pink banana designs.JPG" alt="Mobile App Case Study screenshot" loading="lazy" />
-        <h3>Mobile App Case Study</h3>
-      </a>
-      <div class="case-study-details">
-        <h4>Overview</h4>
-        <p>A mid-fidelity mobile app prototype for “Pink Banana Designs,” focusing on intuitive navigation and playful UI.</p>
-        <h4>Role & Team</h4>
-        <p>Sole UX/UI designer; presented to stakeholders for feedback.</p>
-        <h4>Problem & Opportunity</h4>
-        <p>Client needed a mobile experience that conveyed brand personality and simplified key flows.</p>
-        <h4>Goals & Metrics</h4>
-        <p>Streamline onboarding; task success ≥ 90 % in prototype testing.</p>
-        <h4>Process & Deliverables</h4>
-        <ul>
-          <li>Research: Competitive analysis of 4 lifestyle apps.</li>
-          <li>Design: Wireframes & high-fi screens in Figma; clickable prototype.</li>
-          <li>Testing: 8 remote moderated sessions; tracked success and time on task.</li>
-        </ul>
-        <h4>Outcome & Impact</h4>
-        <p>Task success 92 %; onboarding time ↓ 50 %. Prototype: <a href="https://embed.figma.com/design/ywbeq2hgQmOddkMUVEaUOA" target="_blank">Figma Embed</a>.</p>
-        <h4>Key Learnings</h4>
-        <p>Progressive disclosure and clear tap-targets ensure mobile usability.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-        <!-- ------------ GitHub Repos for Code filter ------- -->
-<section id="code-projects" class="reveal" aria-labelledby="code-projects-heading">
-  <h2 id="code-projects-heading">Code Project Case Studies</h2>
-
-  <div class="case-studies">
-
-    <!-- Budgetly App Repo -->
-    <div class="case-study" data-category="code">
-      <a href="https://github.com/dallensmith93/budgetlyapp.git" class="project" target="_blank" rel="noopener noreferrer">
-        <img src="github.com_dallensmith93_budgetlyapp.png" alt="Budgetly App repository" loading="lazy" />
-        <h3>Budgetly App Repo</h3>
-      </a>
-      <div class="case-study-details">
-        <h4>Overview</h4>
-        <p>
-          Budgetly is a Django-powered personal finance tool that helps users track spending, set budgets, and visualize cash flow over time. I led the full UX/UI design and implemented the backend with Django REST Framework, using serializers and viewsets to expose secure APIs. Iterative usability tests refined filters and alert flows, resulting in a responsive, intuitive interface.
-        </p>
-        <h4>Key Technologies</h4>
-        <ul>
-          <li>Django &amp; Django REST Framework for API and data modeling</li>
-          <li>React + Redux for a dynamic, state-driven frontend</li>
-          <li>PostgreSQL for relational data storage</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Chatbox Repo -->
-    <div class="case-study" data-category="code">
-      <a href="https://github.com/dallensmith93/chatbox.git" class="project" target="_blank" rel="noopener noreferrer">
-        <img src="github.com_dallensmith93_chatbox.png" alt="Chatbox repository" loading="lazy" />
-        <h3>Chatbox Repo</h3>
-      </a>
-      <div class="case-study-details">
-        <h4>Overview</h4>
-        <p>
-          Chatbox is a real-time messaging app built with Django Channels to handle WebSocket connections and asynchronous event loops. I designed the UI for accessibility (keyboard nav, ARIA labels), and load tests proved stable handling of hundreds of concurrent users with sub-200 ms message delivery.
-        </p>
-        <h4>Key Technologies</h4>
-        <ul>
-          <li>Django + Django Channels for async WebSocket support</li>
-          <li>Redis as channel layer and in-memory session store</li>
-          <li>Vue.js for reactive frontend components</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Madlibs Repo -->
-    <div class="case-study" data-category="code">
-      <a href="https://github.com/dallensmith93/Libs.git" class="project" target="_blank" rel="noopener noreferrer">
-        <img src="github.com_dallensmith93_Libs.png" alt="Madlibs repository" loading="lazy" />
-        <h3>Madlibs Repo</h3>
-      </a>
-      <div class="case-study-details">
-        <h4>Overview</h4>
-        <p>
-          Madlibs is a Django app where users fill in prompts (nouns, verbs, adjectives) to generate playful stories. The backend uses Django ORM to model templates and entries; Django forms dynamically render input fields. On the frontend, CSS animations guide users through each step, culminating in an animated reveal of their completed narrative.
-        </p>
-        <h4>Key Technologies</h4>
-        <ul>
-          <li>Django for MVC architecture and form handling</li>
-          <li>SQLite/PostgreSQL for template and submission storage</li>
-          <li>Vanilla JavaScript &amp; CSS keyframe animations for UX</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Job Tracker Repo -->
-<div class="case-study" data-category="code">
-  <a
-    href="https://github.com/dallensmith93/jobtracker.git"
-    class="project"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    <img src="jobtracker.JPG" alt="Svelte job tracker app" loading="lazy" />
-    <h3>Job Tracker (Svelte)</h3>
-  </a>
-
-  <div class="case-study-details">
-    <h4>Overview</h4>
-    <p>
-      Job Tracker is a Svelte app that helps users keep track of job applications in one place—company,
-      role, status, dates, and notes. Users can add, edit, and remove entries, quickly filter by status,
-      and stay organized during an active job search. The UI is built with Svelte’s reactive state so
-      updates feel instant and smooth.
-    </p>
-
-    <h4>Key Technologies</h4>
-    <ul>
-      <li>Svelte (reactive components + state)</li>
-      <li>Vite dev/build tooling (via SvelteKit or Svelte + Vite)</li>
-      <li>Local storage (or JSON) persistence for saved applications</li>
-    </ul>
-  </div>
-</div>
-
- <!-- Svelte Todo Repo -->
-<div class="case-study" data-category="code">
-  <a
-    href="https://github.com/dallensmith93/Todo.git"
-    class="project"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    <img src="todosvelte.JPG" alt="Svelte to-do list app" loading="lazy" />
-    <h3>To-Do List (Svelte)</h3>
-  </a>
-
-  <div class="case-study-details">
-    <h4>Overview</h4>
-    <p>
-      This To-Do List is a lightweight Svelte application designed to manage daily tasks with speed
-      and simplicity. Users can add, complete, and remove tasks while seeing updates instantly through
-      Svelte’s reactive state system. The clean UI keeps the focus on productivity without unnecessary
-      complexity.
-    </p>
-
-    <h4>Key Technologies</h4>
-    <ul>
-      <li>Svelte (reactive state & component-based architecture)</li>
-      <li>Vite for fast local development and optimized builds</li>
-      <li>Local storage for persistent task data</li>
-    </ul>
-  </div>
-</div>
-
- <!-- Live Counter Repo -->
-<div class="case-study" data-category="code">
-  <a
-    href="https://github.com/dallensmith93/livecounter.git"
-    class="project"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    <img src="counter.JPG" alt="Svelte live counter app" loading="lazy" />
-    <h3>Live Counter (Svelte)</h3>
-  </a>
-
-  <div class="case-study-details">
-    <h4>Overview</h4>
-    <p>
-      Live Counter is a simple Svelte application that demonstrates real-time state updates using
-      Svelte’s reactivity system. Users can increment, decrement, and reset a counter while the UI
-      updates instantly without manual DOM manipulation. This project highlights Svelte’s clean
-      syntax and reactive assignments.
-    </p>
-
-    <h4>Key Technologies</h4>
-    <ul>
-      <li>Svelte (reactive assignments and component state)</li>
-      <li>Vite for fast development and production builds</li>
-      <li>Minimal CSS for clean, focused UI</li>
-    </ul>
-  </div>
-</div>
-
- <!-- Directory Repo -->
-<div class="case-study" data-category="code">
-  <a
-    href="https://github.com/dallensmith93/directory.git"
-    class="project"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    <img src="directory.JPG" alt="Svelte directory app" loading="lazy" />
-    <h3>Directory App (Svelte)</h3>
-  </a>
-
-  <div class="case-study-details">
-    <h4>Overview</h4>
-    <p>
-      Directory App is a Svelte application that displays and organizes a list of entries in a clean,
-      searchable interface. Users can browse, filter, and view directory information with instant UI
-      updates powered by Svelte’s reactive state. This project focuses on list rendering, state-driven
-      UI updates, and clean component structure.
-    </p>
-
-    <h4>Key Technologies</h4>
-    <ul>
-      <li>Svelte (reactive state and list rendering)</li>
-      <li>Vite for fast development and optimized builds</li>
-      <li>CSS for responsive layout and visual clarity</li>
-    </ul>
-  </div>
-</div>
-
-
-    <!-- WordPress Mini App -->
-    <div class="case-study" data-category="code">
-      <a href="https://oz-wp-project.netlify.app" class="project" target="_blank" rel="noopener noreferrer">
-        <img src="wordpresssite.JPG" alt="WordPress Mini App Screenshot" loading="lazy" />
-        <h3>WordPress Mini App</h3>
-      </a>
-      <div class="case-study-details">
-        <h4>Overview</h4>
-        <p>
-          A custom WordPress theme built from scratch using modern PHP templating,
-          custom loops, and dynamic archive pages. It showcases a clean, app-like
-          UI with dealership-style inventory layouts and smooth hover interactions.
-        </p>
-        <h4>Key Technologies</h4>
-        <ul>
-          <li>WordPress Theme Development with PHP</li>
-          <li>Custom Post Types &amp; WP_Query loops</li>
-          <li>Template hierarchy &amp; custom archive pages</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- PHP VGK App -->
-    <div class="case-study" data-category="code">
-      <a href="https://github.com/dallensmith93/vgk-php-app" class="project" target="_blank" rel="noopener noreferrer">
-        <img src="php vgk playoffs.JPG" alt="PHP VGK App Screenshot" loading="lazy" />
-        <h3>PHP VGK App</h3>
-      </a>
-      <div class="case-study-details">
-        <h4>Overview</h4>
-        <p>
-          A custom PHP + MySQL application built to manage roster data for a
-          VGK-themed sports dashboard. It supports full CRUD, status flags like
-          “gone”, and dynamic row creation in the admin UI powered by JavaScript.
-        </p>
-        <h4>Key Technologies</h4>
-        <ul>
-          <li>Pure PHP 8 (no frameworks)</li>
-          <li>MySQL / MariaDB relational database</li>
-          <li>Prepared statements &amp; server-side validation</li>
-        </ul>
-      </div>
-    </div>
-   <div class="case-study" data-category="code">
-      <a href="https://luliscakes.com/" class="project" target="_blank" rel="noopener noreferrer">
-        <img src="lulis.JPG" alt="lulis" loading="lazy" />
-        <h3>Lulis cakes website</h3>
-      </a>
-      <div class="case-study-details">
-        <h4>Overview</h4>
-        <p>
-          A word press website I worked on at adventure wing
-        </p>
-        <h4>Key Technologies</h4>
-        <ul>
-          <li>Wordpress</li>
-          <li>HTML, CSS and JavaScript</li>
-        </ul>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ------------ Simple Series Case Studies ------------ -->
-<section id="simple-series" class="reveal" aria-labelledby="simple-series-heading">
-  <h2 id="simple-series-heading">Simple Series Case Studies</h2>
-  <div class="case-studies">
-    <!-- Simple Todo Program -->
-    <div class="case-study" data-category="simple">
-      <a href="https://htmlcssjavascripttodo.netlify.app" class="project" target="_blank" rel="noopener noreferrer">
-        <img src="simple todo.JPG" alt="Simple Todo Program" loading="lazy" />
-        <h3>Simple Todo Program</h3>
-      </a>
-      <div class="case-study-details">
-        <h4>Overview</h4>
-        <p>
-          A lightweight vanilla-JS todo list app that lets users add, complete, and delete tasks. Tasks persist in localStorage so you can pick up where you left off—even after closing the browser.
-        </p>
-        <h4>Core Interaction</h4>
-        <p>
-          Users type a task into the input, press Enter to add it to the list, click the checkbox to mark complete, and hit the “×” button to remove. All DOM updates happen instantly with minimal reflows.
-        </p>
-      </div>
-    </div>
-
-    <!-- Simple Calculator -->
-    <div class="case-study" data-category="simple">
-      <a href="https://simplecalculator2x.netlify.app" class="project" target="_blank" rel="noopener noreferrer">
-        <img src="simplecalc.JPG" alt="Simple Calculator" loading="lazy" />
-        <h3>Simple Calculator</h3>
-      </a>
-      <div class="case-study-details">
-        <h4>Overview</h4>
-        <p>
-          A basic arithmetic calculator built with HTML, CSS, and JavaScript. Supports addition, subtraction, multiplication, division, and decimal inputs—all handled client-side without page reloads.
-        </p>
-        <h4>Core Interaction</h4>
-        <p>
-          Clicking number and operator buttons updates the display in real time. “=” computes the result by parsing the input string and evaluating the expression safely using a simple stack algorithm.
-        </p>
-      </div>
-    </div>
-
-    <!-- Simple Dashboard -->
-    <div class="case-study" data-category="simple">
-      <a href="https://simplisticdash.netlify.app" class="project" target="_blank" rel="noopener noreferrer">
-        <img src="simpledash.JPG" alt="Simple Dashboard" loading="lazy" />
-        <h3>Simple Dashboard</h3>
-      </a>
-      <div class="case-study-details">
-        <h4>Overview</h4>
-        <p>
-          A static dashboard layout demonstrating responsive grid design. Includes cards for key metrics like “Users,” “Sales,” and “Notifications,” styled entirely with CSS Grid and Flexbox.
-        </p>
-        <h4>Core Interaction</h4>
-        <p>
-          Hover over each card to reveal a subtle drop shadow and scale effect. The grid reflows from three columns on desktop to a single column on mobile, ensuring readability everywhere.
-        </p>
-      </div>
-    </div>
-
-    <!-- Simple Ecommerce Page -->
-    <div class="case-study" data-category="simple">
-      <a href="https://ecommercepagese.netlify.app/" class="project" target="_blank" rel="noopener noreferrer">
-        <img src="simpleecommerce page.JPG" alt="Simple Ecommerce Page" loading="lazy" />
-        <h3>Simple Ecommerce Page</h3>
-      </a>
-      <div class="case-study-details">
-        <h4>Overview</h4>
-        <p>
-          A mock product listing page showing a grid of items with images, names, prices, and “Add to Cart” buttons. Built with semantic HTML and CSS Grid for layout.
-        </p>
-        <h4>Core Interaction</h4>
-        <p>
-          Clicking “Add to Cart” toggles a visual confirmation badge on each product. The page uses CSS transitions for hover states and responsive breakpoints to adapt across devices.
-        </p>
-      </div>
-    </div>
-
-    <!-- Simple World Clock -->
-    <div class="case-study" data-category="simple">
-      <a href="https://simpleworldclock.netlify.app/" class="project" target="_blank" rel="noopener noreferrer">
-        <img src="world clock simple.JPG" alt="Simple World Clock" loading="lazy" />
-        <h3>Simple World Clock</h3>
-      </a>
-      <div class="case-study-details">
-        <h4>Overview</h4>
-        <p>
-          A vanilla-JS world clock that displays the current time in multiple time zones. Users can add or remove cities, and the clocks update every second.
-        </p>
-        <h4>Core Interaction</h4>
-        <p>
-          A dropdown lets users select a city to add; each clock card shows hours, minutes, and seconds. The setInterval function keeps all clocks in sync without noticeable drift.
-        </p>
-      </div>
-    </div>
-
-    <!-- Simple Weather App -->
-    <div class="case-study" data-category="simple">
-      <a href="https://htmlweather.netlify.app" class="project" target="_blank" rel="noopener noreferrer">
-        <img src="weather html.JPG" alt="Simple Weather App" loading="lazy" />
-        <h3>Simple Weather App</h3>
-      </a>
-      <div class="case-study-details">
-        <h4>Overview</h4>
-        <p>
-          A minimal weather lookup tool using the OpenWeatherMap API. Users type a city name and get back current temperature, humidity, and an icon representing the conditions.
-        </p>
-        <h4>Core Interaction</h4>
-        <p>
-          The form submission triggers a fetch() call; JSON data is parsed and injected into the DOM. Error handling displays a friendly message for invalid city names.
-        </p>
-      </div>
-    </div>
-
-    <!-- Simple Tic-Tac-Toe -->
-    <div class="case-study" data-category="simple">
-      <a href="https://tackgame.netlify.app/" class="project" target="_blank" rel="noopener noreferrer">
-        <img src="tack game.JPG" alt="Simple Tic-Tac-Toe" loading="lazy" />
-        <h3>Simple Tic-Tac-Toe</h3>
-      </a>
-      <div class="case-study-details">
-        <h4>Overview</h4>
-        <p>
-          A classic Tic-Tac-Toe game implemented with JavaScript. Two players alternate placing Xs and Os on a 3×3 grid until one wins or the board fills.
-        </p>
-        <h4>Core Interaction</h4>
-        <p>
-          Clicking an empty cell places the current player’s mark and triggers a win-check. A simple algorithm scans rows, columns, and diagonals; on win or draw, the game resets automatically.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- --------------  React Native projects -------------- -->
-
- <!-- React Native Projects -->
-<!-- React Native Projects (Screenshot-style cards) -->
-<section class="projects-grid">
-
-  <!-- Prep Timer -->
-  <div class="case-study card-row" data-category="mobile">
-    <div class="card-left">
-      <a href="https://github.com/dallensmith93/PrepTimerFix.git" target="_blank" rel="noopener noreferrer" class="thumb-link">
-        <div class="thumb-frame">
-          <img src="preptimerractnative.JPG" alt="Prep Timer App" loading="lazy" />
+        <!-- React Music App -->
+        <div class="case-study" data-category="web">
+          <a href="https://reactmusicplayingapp.netlify.app" class="project" target="_blank" rel="noopener noreferrer">
+            <img src="reactmusicplayingapp.netlify.app_.png" alt="React Music App screenshot" loading="lazy" />
+            <h3>React Music App</h3>
+          </a>
+          <div class="case-study-details">
+            <h4>Overview</h4>
+            <p>A distraction-free React-based music player that lets users browse, play, and queue tracks in a sleek interface with shimmering playback controls.</p>
+            <h4>Role & Team</h4>
+            <p>Sole designer & developer.</p>
+            <h4>Problem & Opportunity</h4>
+            <p>Most online players are cluttered or ad-heavy, distracting listeners. This app delivers a minimal, ad-free listening experience.</p>
+            <h4>Goals & Metrics</h4>
+            <p>Create a lightweight, responsive player with smooth animations; page load under 2 s; ≥ 80 % play-rate on queued tracks; 90 % positive feedback in user tests.</p>
+            <h4>Process & Deliverables</h4>
+            <ul>
+              <li>Research: Surveyed 20 users on pain points with existing players.</li>
+              <li>Design: Wireframed in Figma; defined dark/light themes and shimmer guidelines.</li>
+              <li>Development: React + Context API, CSS keyframe shimmer on buttons, responsive CSS Grid layout.</li>
+              <li>Testing: 5 usability sessions; refined play/pause affordance and shimmer timing.</li>
+            </ul>
+            <h4>Outcome & Impact</h4>
+            <p>Session duration ↑ 25 %; 90 % of testers rated UI flow “very intuitive.” Live prototype: <a href="https://reactmusicplayingapp.netlify.app" target="_blank">Netlify</a>; <a href="https://github.com/dallensmith93/react-music-app" target="_blank">GitHub</a>.</p>
+            <h4>Key Learnings</h4>
+            <p>Judicious animation enhances delight without compromising performance.</p>
+          </div>
         </div>
-      </a>
-      <div class="thumb-title">Prep Timer (React Native)</div>
-    </div>
 
-    <div class="card-right">
-      <h4>Overview</h4>
-      <p>
-        A simple interview preparation timer built with React Native. Users can start, pause, and reset a countdown timer to practice timed responses.
-      </p>
-
-      <h4>Core Interaction</h4>
-      <p>
-        Uses React hooks to manage timer state and interval updates. The countdown updates in real time, and users can toggle between running and paused states.
-      </p>
-    </div>
-  </div>
-
-  <!-- API Cards -->
-  <div class="case-study card-row" data-category="mobile">
-    <div class="card-left">
-      <a href="https://github.com/dallensmith93/ApiCards.git" target="_blank" rel="noopener noreferrer" class="thumb-link">
-        <div class="thumb-frame">
-          <img src="apicards.JPG" alt="API Cards App" loading="lazy" />
+        <!-- Wikipedia Viewer -->
+        <div class="case-study" data-category="web">
+          <a href="https://wikipediaviewer1.netlify.app" class="project" target="_blank" rel="noopener noreferrer">
+            <img src="wikipediaviewer1.netlify.app_.png" alt="Wikipedia Viewer screenshot" loading="lazy" />
+            <h3>Wikipedia Viewer</h3>
+          </a>
+          <div class="case-study-details">
+            <h4>Overview</h4>
+            <p>A clean, single-page React app to search Wikipedia articles in real-time, filtering out ads and clutter.</p>
+            <h4>Role & Team</h4>
+            <p>Sole developer & UX designer.</p>
+            <h4>Problem & Opportunity</h4>
+            <p>Existing wiki search tools load full page layouts with distractions. Users needed a focused lookup tool.</p>
+            <h4>Goals & Metrics</h4>
+            <p>Instant search results; no page reloads; mobile-first; search latency < 300 ms; bounce rate < 20 %.</p>
+            <h4>Process & Deliverables</h4>
+            <ul>
+              <li>Research: Competitive audit of top 5 wiki clients.</li>
+              <li>Design: Figma prototyping of search-as-you-type UI; style guide for typography.</li>
+              <li>Development: React + Hooks, Wikipedia REST API, CSS Flexbox for responsive cards.</li>
+              <li>Testing: A/B tested result layouts with 10 participants; refined text truncation.</li>
+            </ul>
+            <h4>Outcome & Impact</h4>
+            <p>85 % of users preferred it over the desktop site; average search completion in 0.25 s. Live demo: <a href="https://wikipediaviewer1.netlify.app" target="_blank">Netlify</a>; <a href="https://github.com/dallensmith93/wikipedia-viewer" target="_blank">GitHub</a>.</p>
+            <h4>Key Learnings</h4>
+            <p>Micro-optimizations (debounce, virtualization) drastically improve perceived performance.</p>
+          </div>
         </div>
-      </a>
-      <div class="thumb-title">API Cards (React Native)</div>
-    </div>
 
-    <div class="card-right">
-      <h4>Overview</h4>
-      <p>
-        A mobile app that fetches data from an external API and displays it in a searchable list, demonstrating API integration and dynamic rendering.
-      </p>
-
-      <h4>Core Interaction</h4>
-      <p>
-        Data is fetched asynchronously and rendered with FlatList. Users can filter results instantly through a search input, updating the list in real time.
-      </p>
-    </div>
-  </div>
-
-  <!-- Habit Tracker -->
-  <div class="case-study card-row" data-category="mobile">
-    <div class="card-left">
-      <a href="https://github.com/dallensmith93/HabitTracker.git" target="_blank" rel="noopener noreferrer" class="thumb-link">
-        <div class="thumb-frame">
-          <img src="habit-tracker.JPG" alt="Habit Tracker App" loading="lazy" />
+        <!-- Kambo Website (Shopify) -->
+        <div class="case-study" data-category="web">
+          <a href="https://jjjtje-3n.myshopify.com" class="project" target="_blank" rel="noopener noreferrer">
+            <img src="jjjtje-3n.myshopify.com_.png" alt="Kambo Website screenshot" loading="lazy" />
+            <h3>Kambo Website (Shopify)</h3>
+          </a>
+          <div class="case-study-details">
+            <h4>Overview</h4>
+            <p>A custom-themed Shopify storefront for Kambo product lines, featuring category dropdowns and password-protected content.</p>
+            <h4>Role & Team</h4>
+            <p>UX/UI designer & front-end developer (Shopify Liquid).</p>
+            <h4>Problem & Opportunity</h4>
+            <p>Client needed a clean e-commerce presence with intuitive category browsing and exclusive access to premium SKUs.</p>
+            <h4>Goals & Metrics</h4>
+            <p>Improve category navigation; secure premium section. Category click-through ↑ 30 %; bounce rate ↓ 15 %.</p>
+            <h4>Process & Deliverables</h4>
+            <ul>
+              <li>Research: Reviewed 3 competitor stores; user interviews (n=8).</li>
+              <li>Design: Figma mockups for dropdowns and gated content.</li>
+              <li>Development: Shopify Liquid + SCSS theme, JS for interactions, password gating.</li>
+              <li>Testing: QA across Chrome, Safari, Firefox; user flow test with 5 participants.</li>
+            </ul>
+            <h4>Outcome & Impact</h4>
+            <p>Average time on site ↑ 20 %; gated-section sign-ups ↑ 50 %. Live store: <a href="https://jjjtje-3n.myshopify.com" target="_blank">Shopify</a>.</p>
+            <h4>Key Learnings</h4>
+            <p>Shopify’s theming system is powerful but requires strict naming conventions for overrides.</p>
+          </div>
         </div>
-      </a>
-      <div class="thumb-title">Habit Tracker (React Native)</div>
-    </div>
 
-    <div class="card-right">
-      <h4>Overview</h4>
-      <p>
-        A habit tracking app that lets users create habits, track daily completion, and monitor streaks over time with persistent local storage.
-      </p>
+        <!-- Design System (Figma) -->
+        <div class="case-study" data-category="design">
+          <a href="https://embed.figma.com/design/SJwNRVTMX3BYpnX9mdazE3/Kambo-with-categores-drop-down-desgin?node-id=0-1&embed-host=share" class="project" target="_blank" rel="noopener noreferrer">
+            <img src="Kambo.JPG" alt="Design System screenshot" loading="lazy" />
+            <h3>Design System (Figma)</h3>
+          </a>
+          <div class="case-study-details">
+            <h4>Overview</h4>
+            <p>A comprehensive Figma-based component library and style guide to unify brand look-and-feel across products.</p>
+            <h4>Role & Team</h4>
+            <p>Lead UX designer; collaborated with 2 developers for integration.</p>
+            <h4>Problem & Opportunity</h4>
+            <p>Disparate styling across apps led to inconsistent UX and excessive dev time.</p>
+            <h4>Goals & Metrics</h4>
+            <p>Establish reusable components, typography scale, and color tokens. Component reuse ↑ 70 %; dev handoff time ↓ 40 %.</p>
+            <h4>Process & Deliverables</h4>
+            <ul>
+              <li>Audit: Identified 25 unique UI patterns.</li>
+              <li>Design: Created 40+ components in Figma.</li>
+              <li>Documentation: Published shareable library with guidelines.</li>
+              <li>Integration: Synced tokens in CSS variables with dev team.</li>
+            </ul>
+            <h4>Outcome & Impact</h4>
+            <p>Adopted in > 3 new projects; design-dev iterations ↓ 35 %. Library: <a href="https://embed.figma.com/design/SJwNRVTMX3BYpnX9mdazE3" target="_blank">Figma Embed</a>.</p>
+            <h4>Key Learnings</h4>
+            <p>Early design-dev sync prevents mismatches and rework.</p>
+          </div>
+        </div>
 
-      <h4>Core Interaction</h4>
-      <p>
-        Uses AsyncStorage to persist habits across sessions. Users mark habits complete for the day, and the UI updates progress + streak calculations dynamically.
-      </p>
-    </div>
-  </div>
+        <!-- Mobile App Case Study (Figma) -->
+        <div class="case-study" data-category="design">
+          <a href="https://embed.figma.com/design/ywbeq2hgQmOddkMUVEaUOA/Pink-Banana-Designs?embed-host=share" class="project" target="_blank" rel="noopener noreferrer">
+            <img src="pink banana designs.JPG" alt="Mobile App Case Study screenshot" loading="lazy" />
+            <h3>Mobile App Case Study</h3>
+          </a>
+          <div class="case-study-details">
+            <h4>Overview</h4>
+            <p>A mid-fidelity mobile app prototype for “Pink Banana Designs,” focusing on intuitive navigation and playful UI.</p>
+            <h4>Role & Team</h4>
+            <p>Sole UX/UI designer; presented to stakeholders for feedback.</p>
+            <h4>Problem & Opportunity</h4>
+            <p>Client needed a mobile experience that conveyed brand personality and simplified key flows.</p>
+            <h4>Goals & Metrics</h4>
+            <p>Streamline onboarding; task success ≥ 90 % in prototype testing.</p>
+            <h4>Process & Deliverables</h4>
+            <ul>
+              <li>Research: Competitive analysis of 4 lifestyle apps.</li>
+              <li>Design: Wireframes & high-fi screens in Figma; clickable prototype.</li>
+              <li>Testing: 8 remote moderated sessions; tracked success and time on task.</li>
+            </ul>
+            <h4>Outcome & Impact</h4>
+            <p>Task success 92 %; onboarding time ↓ 50 %. Prototype: <a href="https://embed.figma.com/design/ywbeq2hgQmOddkMUVEaUOA" target="_blank">Figma Embed</a>.</p>
+            <h4>Key Learnings</h4>
+            <p>Progressive disclosure and clear tap-targets ensure mobile usability.</p>
+          </div>
+        </div>
 
-</section>
-
-<!-- --------------  Technical Writing -------------- -->
-<section id="technical-writing" class="reveal" aria-labelledby="tw-heading">
-  <h2 id="tw-heading">Technical Writing</h2>
-
-  <div class="case-studies">
-    <!-- Sample 1 -->
-    <div class="case-study" data-category="writing">
-      <a
-        href="https://github.com/dallensmith93/Technical-writing-repo.git"
-        class="project"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <img
-          src="technicalwritingrepo.JPG"
-          alt="Technical writing sample thumbnail"
-          loading="lazy"
-        />
-        <h3>Technical Writing Repo</h3>
-      </a>
-
-      <div class="case-study-details">
-        <h4>Overview</h4>
-        <p>
-          A collection of structured technical documentation samples demonstrating clear communication of software concepts, processes, and workflows. This repository showcases my ability to break down complex technical topics into concise, readable guides for both developers and end users.
-        </p>
-
-        <h4>What I Focused On</h4>
-        <ul>
-          <li>Organizing content with logical hierarchy and consistent formatting</li>
-          <li>Writing clear, concise explanations without unnecessary jargon</li>
-          <li>Providing practical examples, structured steps, and actionable guidance</li>
-        </ul>
       </div>
-    </div>
-</section>
+    </section>
 
+    <!-- ------------ GitHub Repos for Code filter ------- -->
+    <section id="code-projects" class="reveal" aria-labelledby="code-projects-heading">
+      <h2 id="code-projects-heading">Code Project Case Studies</h2>
+      <div class="case-studies">
 
+        <!-- Budgetly App Repo -->
+        <div class="case-study" data-category="code">
+          <a href="https://github.com/dallensmith93/budgetlyapp.git" class="project" target="_blank" rel="noopener noreferrer">
+            <img src="github.com_dallensmith93_budgetlyapp.png" alt="Budgetly App repository" loading="lazy" />
+            <h3>Budgetly App Repo</h3>
+          </a>
+          <div class="case-study-details">
+            <h4>Overview</h4>
+            <p>
+              Budgetly is a Django-powered personal finance tool that helps users track spending, set budgets, and visualize cash flow over time. I led the full UX/UI design and implemented the backend with Django REST Framework, using serializers and viewsets to expose secure APIs. Iterative usability tests refined filters and alert flows, resulting in a responsive, intuitive interface.
+            </p>
+            <h4>Key Technologies</h4>
+            <ul>
+              <li>Django &amp; Django REST Framework for API and data modeling</li>
+              <li>React + Redux for a dynamic, state-driven frontend</li>
+              <li>PostgreSQL for relational data storage</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Chatbox Repo -->
+        <div class="case-study" data-category="code">
+          <a href="https://github.com/dallensmith93/chatbox.git" class="project" target="_blank" rel="noopener noreferrer">
+            <img src="github.com_dallensmith93_chatbox.png" alt="Chatbox repository" loading="lazy" />
+            <h3>Chatbox Repo</h3>
+          </a>
+          <div class="case-study-details">
+            <h4>Overview</h4>
+            <p>
+              Chatbox is a real-time messaging app built with Django Channels to handle WebSocket connections and asynchronous event loops. I designed the UI for accessibility (keyboard nav, ARIA labels), and load tests proved stable handling of hundreds of concurrent users with sub-200 ms message delivery.
+            </p>
+            <h4>Key Technologies</h4>
+            <ul>
+              <li>Django + Django Channels for async WebSocket support</li>
+              <li>Redis as channel layer and in-memory session store</li>
+              <li>Vue.js for reactive frontend components</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Madlibs Repo -->
+        <div class="case-study" data-category="code">
+          <a href="https://github.com/dallensmith93/Libs.git" class="project" target="_blank" rel="noopener noreferrer">
+            <img src="github.com_dallensmith93_Libs.png" alt="Madlibs repository" loading="lazy" />
+            <h3>Madlibs Repo</h3>
+          </a>
+          <div class="case-study-details">
+            <h4>Overview</h4>
+            <p>
+              Madlibs is a Django app where users fill in prompts (nouns, verbs, adjectives) to generate playful stories. The backend uses Django ORM to model templates and entries; Django forms dynamically render input fields. On the frontend, CSS animations guide users through each step, culminating in an animated reveal of their completed narrative.
+            </p>
+            <h4>Key Technologies</h4>
+            <ul>
+              <li>Django for MVC architecture and form handling</li>
+              <li>SQLite/PostgreSQL for template and submission storage</li>
+              <li>Vanilla JavaScript &amp; CSS keyframe animations for UX</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Job Tracker Repo -->
+        <div class="case-study" data-category="code">
+          <a href="https://github.com/dallensmith93/jobtracker.git" class="project" target="_blank" rel="noopener noreferrer">
+            <img src="jobtracker.JPG" alt="Svelte job tracker app" loading="lazy" />
+            <h3>Job Tracker (Svelte)</h3>
+          </a>
+          <div class="case-study-details">
+            <h4>Overview</h4>
+            <p>
+              Job Tracker is a Svelte app that helps users keep track of job applications in one place—company,
+              role, status, dates, and notes. Users can add, edit, and remove entries, quickly filter by status,
+              and stay organized during an active job search. The UI is built with Svelte’s reactive state so
+              updates feel instant and smooth.
+            </p>
+            <h4>Key Technologies</h4>
+            <ul>
+              <li>Svelte (reactive components + state)</li>
+              <li>Vite dev/build tooling (via SvelteKit or Svelte + Vite)</li>
+              <li>Local storage (or JSON) persistence for saved applications</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Svelte Todo Repo -->
+        <div class="case-study" data-category="code">
+          <a href="https://github.com/dallensmith93/Todo.git" class="project" target="_blank" rel="noopener noreferrer">
+            <img src="todosvelte.JPG" alt="Svelte to-do list app" loading="lazy" />
+            <h3>To-Do List (Svelte)</h3>
+          </a>
+          <div class="case-study-details">
+            <h4>Overview</h4>
+            <p>
+              This To-Do List is a lightweight Svelte application designed to manage daily tasks with speed
+              and simplicity. Users can add, complete, and remove tasks while seeing updates instantly through
+              Svelte’s reactive state system. The clean UI keeps the focus on productivity without unnecessary
+              complexity.
+            </p>
+            <h4>Key Technologies</h4>
+            <ul>
+              <li>Svelte (reactive state & component-based architecture)</li>
+              <li>Vite for fast local development and optimized builds</li>
+              <li>Local storage for persistent task data</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Live Counter Repo -->
+        <div class="case-study" data-category="code">
+          <a href="https://github.com/dallensmith93/livecounter.git" class="project" target="_blank" rel="noopener noreferrer">
+            <img src="counter.JPG" alt="Svelte live counter app" loading="lazy" />
+            <h3>Live Counter (Svelte)</h3>
+          </a>
+          <div class="case-study-details">
+            <h4>Overview</h4>
+            <p>
+              Live Counter is a simple Svelte application that demonstrates real-time state updates using
+              Svelte’s reactivity system. Users can increment, decrement, and reset a counter while the UI
+              updates instantly without manual DOM manipulation. This project highlights Svelte’s clean
+              syntax and reactive assignments.
+            </p>
+            <h4>Key Technologies</h4>
+            <ul>
+              <li>Svelte (reactive assignments and component state)</li>
+              <li>Vite for fast development and production builds</li>
+              <li>Minimal CSS for clean, focused UI</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Directory Repo -->
+        <div class="case-study" data-category="code">
+          <a href="https://github.com/dallensmith93/directory.git" class="project" target="_blank" rel="noopener noreferrer">
+            <img src="directory.JPG" alt="Svelte directory app" loading="lazy" />
+            <h3>Directory App (Svelte)</h3>
+          </a>
+          <div class="case-study-details">
+            <h4>Overview</h4>
+            <p>
+              Directory App is a Svelte application that displays and organizes a list of entries in a clean,
+              searchable interface. Users can browse, filter, and view directory information with instant UI
+              updates powered by Svelte’s reactive state. This project focuses on list rendering, state-driven
+              UI updates, and clean component structure.
+            </p>
+            <h4>Key Technologies</h4>
+            <ul>
+              <li>Svelte (reactive state and list rendering)</li>
+              <li>Vite for fast development and optimized builds</li>
+              <li>CSS for responsive layout and visual clarity</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- WordPress Mini App -->
+        <div class="case-study" data-category="code">
+          <a href="https://oz-wp-project.netlify.app" class="project" target="_blank" rel="noopener noreferrer">
+            <img src="wordpresssite.JPG" alt="WordPress Mini App Screenshot" loading="lazy" />
+            <h3>WordPress Mini App</h3>
+          </a>
+          <div class="case-study-details">
+            <h4>Overview</h4>
+            <p>
+              A custom WordPress theme built from scratch using modern PHP templating,
+              custom loops, and dynamic archive pages. It showcases a clean, app-like
+              UI with dealership-style inventory layouts and smooth hover interactions.
+            </p>
+            <h4>Key Technologies</h4>
+            <ul>
+              <li>WordPress Theme Development with PHP</li>
+              <li>Custom Post Types &amp; WP_Query loops</li>
+              <li>Template hierarchy &amp; custom archive pages</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- PHP VGK App -->
+        <div class="case-study" data-category="code">
+          <a href="https://github.com/dallensmith93/vgk-php-app" class="project" target="_blank" rel="noopener noreferrer">
+            <img src="php vgk playoffs.JPG" alt="PHP VGK App Screenshot" loading="lazy" />
+            <h3>PHP VGK App</h3>
+          </a>
+          <div class="case-study-details">
+            <h4>Overview</h4>
+            <p>
+              A custom PHP + MySQL application built to manage roster data for a
+              VGK-themed sports dashboard. It supports full CRUD, status flags like
+              “gone”, and dynamic row creation in the admin UI powered by JavaScript.
+            </p>
+            <h4>Key Technologies</h4>
+            <ul>
+              <li>Pure PHP 8 (no frameworks)</li>
+              <li>MySQL / MariaDB relational database</li>
+              <li>Prepared statements &amp; server-side validation</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="case-study" data-category="code">
+          <a href="https://luliscakes.com/" class="project" target="_blank" rel="noopener noreferrer">
+            <img src="lulis.JPG" alt="lulis" loading="lazy" />
+            <h3>Lulis cakes website</h3>
+          </a>
+          <div class="case-study-details">
+            <h4>Overview</h4>
+            <p>A word press website I worked on at adventure wing</p>
+            <h4>Key Technologies</h4>
+            <ul>
+              <li>Wordpress</li>
+              <li>HTML, CSS and JavaScript</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ------------ Simple Series Case Studies ------------ -->
+    <section id="simple-series" class="reveal" aria-labelledby="simple-series-heading">
+      <h2 id="simple-series-heading">Simple Series Case Studies</h2>
+      <div class="case-studies">
+
+        <div class="case-study" data-category="simple">
+          <a href="https://htmlcssjavascripttodo.netlify.app" class="project" target="_blank" rel="noopener noreferrer">
+            <img src="simple todo.JPG" alt="Simple Todo Program" loading="lazy" />
+            <h3>Simple Todo Program</h3>
+          </a>
+          <div class="case-study-details">
+            <h4>Overview</h4>
+            <p>A lightweight vanilla-JS todo list app that lets users add, complete, and delete tasks. Tasks persist in localStorage so you can pick up where you left off—even after closing the browser.</p>
+            <h4>Core Interaction</h4>
+            <p>Users type a task into the input, press Enter to add it to the list, click the checkbox to mark complete, and hit the “×” button to remove. All DOM updates happen instantly with minimal reflows.</p>
+          </div>
+        </div>
+
+        <div class="case-study" data-category="simple">
+          <a href="https://simplecalculator2x.netlify.app" class="project" target="_blank" rel="noopener noreferrer">
+            <img src="simplecalc.JPG" alt="Simple Calculator" loading="lazy" />
+            <h3>Simple Calculator</h3>
+          </a>
+          <div class="case-study-details">
+            <h4>Overview</h4>
+            <p>A basic arithmetic calculator built with HTML, CSS, and JavaScript. Supports addition, subtraction, multiplication, division, and decimal inputs—all handled client-side without page reloads.</p>
+            <h4>Core Interaction</h4>
+            <p>Clicking number and operator buttons updates the display in real time. “=” computes the result by parsing the input string and evaluating the expression safely using a simple stack algorithm.</p>
+          </div>
+        </div>
+
+        <div class="case-study" data-category="simple">
+          <a href="https://simplisticdash.netlify.app" class="project" target="_blank" rel="noopener noreferrer">
+            <img src="simpledash.JPG" alt="Simple Dashboard" loading="lazy" />
+            <h3>Simple Dashboard</h3>
+          </a>
+          <div class="case-study-details">
+            <h4>Overview</h4>
+            <p>A static dashboard layout demonstrating responsive grid design. Includes cards for key metrics like “Users,” “Sales,” and “Notifications,” styled entirely with CSS Grid and Flexbox.</p>
+            <h4>Core Interaction</h4>
+            <p>Hover over each card to reveal a subtle drop shadow and scale effect. The grid reflows from three columns on desktop to a single column on mobile, ensuring readability everywhere.</p>
+          </div>
+        </div>
+
+        <div class="case-study" data-category="simple">
+          <a href="https://ecommercepagese.netlify.app/" class="project" target="_blank" rel="noopener noreferrer">
+            <img src="simpleecommerce page.JPG" alt="Simple Ecommerce Page" loading="lazy" />
+            <h3>Simple Ecommerce Page</h3>
+          </a>
+          <div class="case-study-details">
+            <h4>Overview</h4>
+            <p>A mock product listing page showing a grid of items with images, names, prices, and “Add to Cart” buttons. Built with semantic HTML and CSS Grid for layout.</p>
+            <h4>Core Interaction</h4>
+            <p>Clicking “Add to Cart” toggles a visual confirmation badge on each product. The page uses CSS transitions for hover states and responsive breakpoints to adapt across devices.</p>
+          </div>
+        </div>
+
+        <div class="case-study" data-category="simple">
+          <a href="https://simpleworldclock.netlify.app/" class="project" target="_blank" rel="noopener noreferrer">
+            <img src="world clock simple.JPG" alt="Simple World Clock" loading="lazy" />
+            <h3>Simple World Clock</h3>
+          </a>
+          <div class="case-study-details">
+            <h4>Overview</h4>
+            <p>A vanilla-JS world clock that displays the current time in multiple time zones. Users can add or remove cities, and the clocks update every second.</p>
+            <h4>Core Interaction</h4>
+            <p>A dropdown lets users select a city to add; each clock card shows hours, minutes, and seconds. The setInterval function keeps all clocks in sync without noticeable drift.</p>
+          </div>
+        </div>
+
+        <div class="case-study" data-category="simple">
+          <a href="https://htmlweather.netlify.app" class="project" target="_blank" rel="noopener noreferrer">
+            <img src="weather html.JPG" alt="Simple Weather App" loading="lazy" />
+            <h3>Simple Weather App</h3>
+          </a>
+          <div class="case-study-details">
+            <h4>Overview</h4>
+            <p>A minimal weather lookup tool using the OpenWeatherMap API. Users type a city name and get back current temperature, humidity, and an icon representing the conditions.</p>
+            <h4>Core Interaction</h4>
+            <p>The form submission triggers a fetch() call; JSON data is parsed and injected into the DOM. Error handling displays a friendly message for invalid city names.</p>
+          </div>
+        </div>
+
+        <div class="case-study" data-category="simple">
+          <a href="https://tackgame.netlify.app/" class="project" target="_blank" rel="noopener noreferrer">
+            <img src="tack game.JPG" alt="Simple Tic-Tac-Toe" loading="lazy" />
+            <h3>Simple Tic-Tac-Toe</h3>
+          </a>
+          <div class="case-study-details">
+            <h4>Overview</h4>
+            <p>A classic Tic-Tac-Toe game implemented with JavaScript. Two players alternate placing Xs and Os on a 3×3 grid until one wins or the board fills.</p>
+            <h4>Core Interaction</h4>
+            <p>Clicking an empty cell places the current player’s mark and triggers a win-check. A simple algorithm scans rows, columns, and diagonals; on win or draw, the game resets automatically.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- -------------- React Native Projects -------------- -->
+    <section id="react-native" class="reveal" aria-labelledby="react-native-heading">
+      <h2 id="react-native-heading">React Native Projects</h2>
+
+      <div class="case-studies">
+
+        <!-- Prep Timer -->
+        <div class="case-study rn-card" data-category="mobile">
+          <div class="rn-left">
+            <a href="https://github.com/dallensmith93/PrepTimerFix.git" target="_blank" rel="noopener noreferrer" class="rn-thumb">
+              <div class="rn-frame">
+                <img src="preptimerractnative.JPG" alt="Prep Timer App" loading="lazy" />
+              </div>
+            </a>
+            <div class="rn-title">Prep Timer (React Native)</div>
+          </div>
+
+          <div class="case-study-details">
+            <h4>Overview</h4>
+            <p>
+              A simple interview preparation timer built with React Native. Users can start, pause, and reset a countdown timer to practice timed responses.
+            </p>
+
+            <h4>Core Interaction</h4>
+            <p>
+              Uses React hooks to manage timer state and interval updates. The countdown updates in real time, and users can toggle between running and paused states.
+            </p>
+          </div>
+        </div>
+
+        <!-- API Cards -->
+        <div class="case-study rn-card" data-category="mobile">
+          <div class="rn-left">
+            <a href="https://github.com/dallensmith93/ApiCards.git" target="_blank" rel="noopener noreferrer" class="rn-thumb">
+              <div class="rn-frame">
+                <img src="apicards.JPG" alt="API Cards App" loading="lazy" />
+              </div>
+            </a>
+            <div class="rn-title">API Cards (React Native)</div>
+          </div>
+
+          <div class="case-study-details">
+            <h4>Overview</h4>
+            <p>
+              A mobile app that fetches data from an external API and displays it in a searchable list, demonstrating API integration and dynamic rendering.
+            </p>
+
+            <h4>Core Interaction</h4>
+            <p>
+              Data is fetched asynchronously and rendered with FlatList. Users can filter results instantly through a search input, updating the list in real time.
+            </p>
+          </div>
+        </div>
+
+        <!-- Habit Tracker -->
+        <div class="case-study rn-card" data-category="mobile">
+          <div class="rn-left">
+            <a href="https://github.com/dallensmith93/HabitTracker.git" target="_blank" rel="noopener noreferrer" class="rn-thumb">
+              <div class="rn-frame">
+                <img src="habit-tracker.JPG" alt="Habit Tracker App" loading="lazy" />
+              </div>
+            </a>
+            <div class="rn-title">Habit Tracker (React Native)</div>
+          </div>
+
+          <div class="case-study-details">
+            <h4>Overview</h4>
+            <p>
+              A habit tracking app that lets users create habits, track daily completion, and monitor streaks over time with persistent local storage.
+            </p>
+
+            <h4>Core Interaction</h4>
+            <p>
+              Uses AsyncStorage to persist habits across sessions. Users mark habits complete for the day, and the UI updates progress + streak calculations dynamically.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- --------------  Technical Writing -------------- -->
+    <section id="technical-writing" class="reveal" aria-labelledby="tw-heading">
+      <h2 id="tw-heading">Technical Writing</h2>
+
+      <div class="case-studies">
+        <div class="case-study" data-category="writing">
+          <a href="https://github.com/dallensmith93/Technical-writing-repo.git" class="project" target="_blank" rel="noopener noreferrer">
+            <img src="technicalwritingrepo.JPG" alt="Technical writing sample thumbnail" loading="lazy" />
+            <h3>Technical Writing Repo</h3>
+          </a>
+
+          <div class="case-study-details">
+            <h4>Overview</h4>
+            <p>
+              A collection of structured technical documentation samples demonstrating clear communication of software concepts, processes, and workflows. This repository showcases my ability to break down complex technical topics into concise, readable guides for both developers and end users.
+            </p>
+
+            <h4>What I Focused On</h4>
+            <ul>
+              <li>Organizing content with logical hierarchy and consistent formatting</li>
+              <li>Writing clear, concise explanations without unnecessary jargon</li>
+              <li>Providing practical examples, structured steps, and actionable guidance</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- --------------  Skills -------------- -->
     <section id="skills" class="reveal skills" aria-labelledby="skills-heading">
@@ -1707,7 +1358,6 @@ section + section {
       <h2 id="contact-heading">Get in Touch</h2>
       <iframe id="map" src="https://maps.google.com/maps?q=Layton%20Utah&t=&z=13&ie=UTF8&iwloc=&output=embed" loading="lazy"></iframe>
 
-      <!-- -------------  Custom Contact Form ------------- -->
       <form id="contact-form" novalidate>
         <input type="text" name="name" placeholder="Your Name" required />
         <input type="email" name="email" placeholder="Your Email" required />
@@ -1720,34 +1370,35 @@ section + section {
     <footer class="reveal">
       © 2025 Dallen Smith — Built with HTML/CSS/JavaScript
     </footer>
-  </div> <!-- end page-wrapper -->
 
-  <!-- ------------------  Scripts ------------------ -->
+  </div>
+
   <script>
     const roles = [
-    'Web & UX Designer',
-    'Full-Stack Django Developer',
-    'Accessibility Advocate'
-  ];
-  let idx = 0, char = 0, forward = true;
-  const el = document.getElementById('typewriter');
+      'Web & UX Designer',
+      'Full-Stack Django Developer',
+      'Accessibility Advocate'
+    ];
+    let idx = 0, char = 0, forward = true;
+    const el = document.getElementById('typewriter');
 
-  function type() {
-    const current = roles[idx];
-    if (forward) {
-      char++;
-      if (char === current.length) forward = false;
-    } else {
-      char--;
-      if (char === 0) {
-        forward = true;
-        idx = (idx + 1) % roles.length;
+    function type() {
+      const current = roles[idx];
+      if (forward) {
+        char++;
+        if (char === current.length) forward = false;
+      } else {
+        char--;
+        if (char === 0) {
+          forward = true;
+          idx = (idx + 1) % roles.length;
+        }
       }
+      el.textContent = current.substring(0, char);
+      setTimeout(type, forward ? 100 : 50);
     }
-    el.textContent = current.substring(0, char);
-    setTimeout(type, forward ? 100 : 50);
-  }
-  document.addEventListener('DOMContentLoaded', type);
+    document.addEventListener('DOMContentLoaded', type);
+
     // Reveal on scroll
     document.querySelectorAll('.reveal').forEach(el => {
       const observer = new IntersectionObserver(entries => {
@@ -1756,7 +1407,7 @@ section + section {
       observer.observe(el);
     });
 
-    // ------------------  Theme Toggle ------------------
+    // Theme Toggle
     const themeToggleCheckbox = document.getElementById('theme-toggle');
     const applyTheme = (theme) => {
       document.documentElement.classList.remove('light','dark');
@@ -1764,7 +1415,6 @@ section + section {
       localStorage.setItem('theme', theme);
     };
 
-    // Persist theme & checkbox state
     const storedTheme = localStorage.getItem('theme') || 'dark';
     applyTheme(storedTheme);
     themeToggleCheckbox.checked = (storedTheme === 'dark');
@@ -1774,7 +1424,7 @@ section + section {
       applyTheme(next);
     });
 
-    // ------------------  Project filter ------------------
+    // Project filter (kept as-is)
     document.querySelectorAll('.filters button').forEach(btn => {
       btn.addEventListener('click', () => {
         const filter = btn.dataset.filter;
@@ -1784,21 +1434,20 @@ section + section {
       });
     });
 
-    // ------------------  Animate skill bars ------------------
+    // Animate skill bars
     window.addEventListener('load', () => {
       document.querySelectorAll('.bar-inner').forEach(bar => {
         bar.style.width = bar.dataset.percentage;
       });
     });
 
-    // ------------------  Custom Contact Form Submission ------------------
+    // Contact form submission
     document.getElementById('contact-form').addEventListener('submit', async (e) => {
       e.preventDefault();
       const form = e.target;
       const data = new FormData(form);
 
       try {
-        // Replace '/api/contact' with your backend endpoint
         const res = await fetch('/api/contact', {
           method: 'POST',
           body: data
