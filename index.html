@@ -671,6 +671,7 @@ html.dark #react-native .rn-title { color: #ffffff; }
         <a href="#about">About</a>
         <a href="#simple-series">Simple Series</a>
         <a href="#react-native">React Native</a>
+        <a href="#sdet-projects">C# / SDET</a>
       </nav>
       <div class="controls">
         <a href="Dallen_Smith.pdf" class="resume" download>Download CV</a>
@@ -1286,6 +1287,120 @@ html.dark #react-native .rn-title { color: #ffffff; }
             <p>
               Uses AsyncStorage to persist habits across sessions. Users mark habits complete for the day, and the UI updates progress + streak calculations dynamically.
             </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- --------------  C# / SDET Projects -------------- -->
+    <section id="sdet-projects" class="reveal" aria-labelledby="sdet-heading">
+      <h2 id="sdet-heading">C# / Software Engineer in Test Projects</h2>
+
+      <div class="case-studies">
+
+        <!-- OrderPulse Playwright -->
+        <div class="case-study" data-category="code">
+          <a
+            href="https://github.com/dallensmith93/OrderPulseplaywright.git"
+            class="project"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src="orderpulseplaywright.JPG" alt="OrderPulse Playwright repository" loading="lazy" />
+            <h3>OrderPulse Playwright (Repo)</h3>
+          </a>
+
+          <div class="case-study-details">
+            <h4>Overview</h4>
+            <p>
+              End-to-end UI automation for OrderPulse using Playwright. Focused on building reliable smoke/regression coverage
+              with clean selectors, stable waits, and readable test structure.
+            </p>
+
+            <h4>What I Built</h4>
+            <ul>
+              <li>Core user-flow test coverage (auth → navigation → key workflows)</li>
+              <li>Reusable helpers (setup/teardown, shared assertions)</li>
+              <li>Stability improvements (timeouts, retries, deterministic locators)</li>
+            </ul>
+
+            <h4>Key Technologies</h4>
+            <ul>
+              <li>Playwright</li>
+              <li>JavaScript/TypeScript test automation</li>
+              <li>CI-ready test structure</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- OrderPulse.Playwright -->
+        <div class="case-study" data-category="code">
+          <a
+            href="https://github.com/dallensmith93/OrderPulse.Playwright.git"
+            class="project"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src="orderpulse-dot-playwright.JPG" alt="OrderPulse.Playwright repository" loading="lazy" />
+            <h3>OrderPulse.Playwright (Repo)</h3>
+          </a>
+
+          <div class="case-study-details">
+            <h4>Overview</h4>
+            <p>
+              A structured Playwright test suite organized for maintainability and scale. Emphasizes consistent patterns,
+              clear naming, and test readability—so adding new coverage stays fast and predictable.
+            </p>
+
+            <h4>What I Focused On</h4>
+            <ul>
+              <li>Test organization (spec grouping, shared fixtures, reusable utilities)</li>
+              <li>Clear reporting signals (assertions that point to root cause quickly)</li>
+              <li>Reduced flakiness (stable selectors and page-state checks)</li>
+            </ul>
+
+            <h4>Key Technologies</h4>
+            <ul>
+              <li>Playwright</li>
+              <li>Automation patterns (fixtures/utilities)</li>
+              <li>GitHub-based workflows</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- OrderPulse.Api -->
+        <div class="case-study" data-category="code">
+          <a
+            href="https://github.com/dallensmith93/OrderPulse.Api.git"
+            class="project"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src="orderpulse-api.JPG" alt="OrderPulse.Api repository" loading="lazy" />
+            <h3>OrderPulse.Api (C# / ASP.NET)</h3>
+          </a>
+
+          <div class="case-study-details">
+            <h4>Overview</h4>
+            <p>
+              A C# ASP.NET API project used for backend workflows and testing. This repo supports automated testing efforts by
+              providing predictable endpoints, clean separation of concerns, and a foundation for integration tests.
+            </p>
+
+            <h4>What I Built</h4>
+            <ul>
+              <li>REST-style endpoints and controllers</li>
+              <li>Service/data layers structured for testability</li>
+              <li>API foundation suitable for integration + E2E validation</li>
+            </ul>
+
+            <h4>Key Technologies</h4>
+            <ul>
+              <li>C# / ASP.NET</li>
+              <li>REST APIs</li>
+              <li>Testing-friendly architecture</li>
+            </ul>
           </div>
         </div>
 
