@@ -310,6 +310,25 @@ input:checked + .slider::before { transform: translateX(26px); }
 }
 
 .project:hover h3 { opacity: 1; }
+.project.private {
+  cursor: default;
+}
+.project.private:hover {
+  transform: none;
+}
+.private-badge {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: rgba(220, 53, 69, 0.95);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  padding: 0.2rem 0.45rem;
+  border-radius: 999px;
+  text-transform: uppercase;
+}
 
 /* Skills with progress bars */
 .skills { max-width: 800px; margin: auto; }
@@ -672,6 +691,7 @@ html.dark #react-native .rn-title { color: #ffffff; }
         <a href="#simple-series">Simple Series</a>
         <a href="#react-native">React Native</a>
         <a href="#sdet-projects">C# / SDET</a>
+        <a href="#ai-generated-projects">AI Projects</a>
       </nav>
       <div class="controls">
         <a href="Dallen_Smith.pdf" class="resume" download>Download CV</a>
@@ -1401,6 +1421,62 @@ html.dark #react-native .rn-title { color: #ffffff; }
               <li>REST APIs</li>
               <li>Testing-friendly architecture</li>
             </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- --------------  AI Generated Projects -------------- -->
+    <section id="ai-generated-projects" class="reveal" aria-labelledby="ai-generated-heading">
+      <h2 id="ai-generated-heading">AI Generated Projects</h2>
+
+      <div class="case-studies">
+
+        <!-- AI task -->
+        <div class="case-study" data-category="ai">
+          <div class="project" aria-label="AI task project thumbnail">
+            <img src="task.JPG" alt="AI task project thumbnail" loading="lazy" />
+            <h3>AI task</h3>
+          </div>
+
+          <div class="case-study-details">
+            <h4>Overview</h4>
+            <p>
+              AI-assisted task workflow project focused on planning and execution support.
+            </p>
+          </div>
+        </div>
+
+        <!-- AI Code Review (Private) -->
+        <div class="case-study" data-category="ai">
+          <div class="project private" aria-label="AI Code Review project is private">
+            <img src="codereview.JPG" alt="AI Code Review project thumbnail" loading="lazy" />
+            <span class="private-badge">Private</span>
+            <h3>AI Code Review</h3>
+          </div>
+
+          <div class="case-study-details">
+            <h4>Overview</h4>
+            <p>
+              AI-driven code quality and review workflow project. Repository access is private.
+            </p>
+          </div>
+        </div>
+
+        <!-- AI Test Generator (Private) -->
+        <div class="case-study" data-category="ai">
+          <div class="project private" aria-label="AI Test generator project is private">
+            <img src="test.JPG" alt="AI Test generator project thumbnail" loading="lazy" />
+            <span class="private-badge">Private</span>
+            <h3>AI Test generator</h3>
+          </div>
+
+          <div class="case-study-details">
+            <h4>Overview</h4>
+            <p>
+              AI-powered test generation project for speeding up test coverage creation. Repository access is private.
+            </p>
           </div>
         </div>
 
