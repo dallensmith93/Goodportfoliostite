@@ -421,11 +421,109 @@ footer { text-align: center; padding: 2rem 0; }
   justify-items: center;
 }
 
-.section-intro {
-  max-width: 900px;
-  margin: 0 auto 2rem;
-  text-align: center;
-  line-height: 1.7;
+.projects-spotlight {
+  position: relative;
+  isolation: isolate;
+  max-width: 1100px;
+  margin: 0 auto 2.75rem;
+  padding: 2rem;
+  overflow: hidden;
+  border: 1px solid rgba(0, 123, 255, 0.5);
+  border-radius: 1.5rem;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(0, 198, 255, 0.3), transparent 34%),
+    linear-gradient(135deg, rgba(0, 123, 255, 0.25), rgba(10, 13, 18, 0.95));
+  box-shadow: 0 24px 70px rgba(0, 123, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
+.projects-spotlight::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  z-index: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.02));
+}
+
+.projects-spotlight::after {
+  content: "";
+  position: absolute;
+  top: -45%;
+  right: -12%;
+  width: 280px;
+  height: 280px;
+  z-index: 0;
+  border-radius: 999px;
+  background: rgba(0, 198, 255, 0.35);
+  filter: blur(18px);
+}
+
+.projects-spotlight > * {
+  position: relative;
+  z-index: 1;
+}
+
+.spotlight-kicker {
+  display: inline-flex;
+  margin-bottom: 0.85rem;
+  padding: 0.35rem 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #bfeaff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.projects-spotlight h3 {
+  margin-bottom: 0.75rem;
+  color: #fff;
+  font-size: clamp(1.8rem, 4vw, 3.25rem);
+  line-height: 1.05;
+}
+
+.projects-spotlight p {
+  max-width: 780px;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 1.08rem;
+}
+
+.spotlight-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.spotlight-stat {
+  min-width: 150px;
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+}
+
+.spotlight-stat strong {
+  display: block;
+  color: #fff;
+  font-size: 1.45rem;
+  line-height: 1;
+}
+
+.spotlight-stat span {
+  display: block;
+  margin-top: 0.4rem;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.88rem;
+}
+
+html.light .projects-spotlight {
+  background:
+    radial-gradient(circle at 15% 20%, rgba(0, 198, 255, 0.32), transparent 34%),
+    linear-gradient(135deg, #006dff, #051a3d);
 }
 
 /* ---------------- Case Studies (your forced row layout) ---------------- */
@@ -771,9 +869,27 @@ html.dark #react-native .rn-title { color: #ffffff; }
     <!-- --------------  Projects -------------- -->
     <section id="projects" class="reveal" aria-labelledby="projects-heading">
       <h2 id="projects-heading">Project Case Studies</h2>
-      <p class="section-intro">
-        I have also contributed to roughly half of the websites built for LUMN Marketing, supporting client-facing web design, WordPress development, and front-end implementation.
-      </p>
+      <div class="projects-spotlight" aria-label="LUMN Marketing website work highlight">
+        <span class="spotlight-kicker">Featured Agency Work</span>
+        <h3>LUMN Marketing Website Builds</h3>
+        <p>
+          I have contributed to roughly half of the websites built for LUMN Marketing, bringing together client-facing web design, WordPress development, and polished front-end implementation.
+        </p>
+        <div class="spotlight-stats" aria-label="LUMN Marketing contribution highlights">
+          <div class="spotlight-stat">
+            <strong>~50%</strong>
+            <span>of site builds contributed to</span>
+          </div>
+          <div class="spotlight-stat">
+            <strong>Web + UX</strong>
+            <span>client-focused design support</span>
+          </div>
+          <div class="spotlight-stat">
+            <strong>WP + Front End</strong>
+            <span>responsive implementation work</span>
+          </div>
+        </div>
+      </div>
       <div class="case-studies">
 
         <!-- React Music App -->
